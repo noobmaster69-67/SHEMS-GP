@@ -1,0 +1,2583 @@
+<!DOCTYPE html>
+<!-- saved from url=(0216)file:///C:/Users/newky/AppData/Local/Packages/5319275A.WhatsAppDesktop_cv1g1gvanyjgm/LocalState/sessions/117A4B241F88C1D40386AF61F434B8F5EB9F63C8/transfers/2026-30/SHEMS_GlobalProjects_PunkRockPizza_PM_CLOUD_8_1.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>SHEMS Global Projects LLC — Project Management</title>
+<link href="./SHEMS Global Projects LLC — Project Management_files/css2" rel="stylesheet">
+<style>
+:root{
+  --bg:#0B0E14;--bg2:#111520;--bg3:#181D2A;--bg4:#1E2436;
+  --border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.11);--border3:rgba(255,255,255,0.18);
+  --text:#E8EBF4;--text2:#8892AB;--text3:#4A5270;
+  --blue:#3B7BE8;--blue2:#1A56C4;--blue3:#0D3A8E;--blue-bg:rgba(59,123,232,0.12);
+  --green:#22C55E;--green-bg:rgba(34,197,94,0.13);
+  --amber:#F59E0B;--amber-bg:rgba(245,158,11,0.13);
+  --red:#EF4444;--red-bg:rgba(239,68,68,0.13);
+  --purple:#A78BFA;--purple-bg:rgba(167,139,250,0.13);
+  --r:10px;--r2:14px;--r3:18px;
+  --shadow:0 4px 24px rgba(0,0,0,.3);--shadow2:0 2px 12px rgba(0,0,0,.2);
+  --grad-blue:linear-gradient(135deg,#0D3A8E,#1A56C4);
+  --grad-dark:linear-gradient(180deg,#111520,#0B0E14);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:13px;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:36px;}
+
+/* ── TOPBAR ── */
+.topbar{height:64px;background:var(--bg2);
+  border-bottom:1px solid transparent;
+  background-image:linear-gradient(var(--bg2),var(--bg2)),linear-gradient(90deg,var(--blue3),var(--blue),var(--blue2));
+  background-clip:padding-box,border-box;background-origin:padding-box,border-box;
+  display:flex;align-items:center;justify-content:space-between;padding:0 28px;
+  position:sticky;top:0;z-index:200;box-shadow:0 4px 24px rgba(0,0,0,.35);}
+.brand{display:flex;align-items:center;gap:0;}
+.brand-logo-wrap{
+  height:46px;display:flex;align-items:center;
+  background:#fff;border-radius:9px;padding:5px 14px;
+  box-shadow:0 2px 12px rgba(0,0,0,.35);
+}
+.brand-logo-img{height:36px;width:auto;display:block;}
+.brand-divider{width:1px;height:30px;background:var(--border2);margin:0 16px;}
+.brand-name{
+  font-size:11px;font-weight:700;letter-spacing:.5px;
+  color:var(--text2);line-height:1.2;
+  font-family:'Inter',sans-serif;display:none;
+}
+.brand-name-script{
+  font-family:'Dancing Script','Pacifico',cursive;
+  font-weight:600;font-size:13px;letter-spacing:.5px;
+  color:var(--blue);text-transform:none;margin-left:4px;
+}
+.brand-sub{font-size:10px;color:var(--text3);margin-top:3px;letter-spacing:.4px;}
+.topbar-center{display:flex;align-items:center;gap:6px;}
+.topbar-right{display:flex;align-items:center;gap:8px;}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:8px;
+  font-size:12px;font-weight:500;cursor:pointer;border:1px solid var(--border2);
+  background:var(--bg3);color:var(--text2);font-family:'Inter',sans-serif;transition:all .15s;}
+.btn:hover{background:var(--bg4);color:var(--text);border-color:var(--border3);}
+.btn.blue{background:linear-gradient(135deg,var(--blue2),var(--blue3));border-color:var(--blue2);color:#fff;box-shadow:0 2px 10px rgba(59,123,232,.3);}
+.btn.blue:hover{background:linear-gradient(135deg,var(--blue),var(--blue2));box-shadow:0 4px 16px rgba(59,123,232,.4);}
+.btn.green{background:rgba(34,197,94,0.15);border-color:rgba(34,197,94,0.3);color:var(--green);}
+.btn.sm{padding:5px 10px;font-size:11px;}
+.btn svg{width:13px;height:13px;flex-shrink:0;}
+
+/* ── INLINE EDIT / DELETE CONTROLS ── */
+.row-edit,.row-del{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:20px;height:20px;border-radius:5px;font-size:11px;cursor:pointer;
+  margin-left:6px;flex-shrink:0;opacity:.45;transition:all .15s;
+  border:1px solid transparent;vertical-align:middle;user-select:none;
+}
+.row-edit{color:var(--blue);}
+.row-edit:hover{opacity:1;background:var(--blue-bg);border-color:var(--blue2);}
+.row-del{color:var(--red);}
+.row-del:hover{opacity:1;background:var(--red-bg);border-color:var(--red);}
+.phase-head:hover .row-edit,.phase-head:hover .row-del,
+.task-header:hover .row-edit,.deliverable-row:hover .row-edit,.deliverable-row:hover .row-del{opacity:.8;}
+#edit-fields .form-field{margin-bottom:12px;}
+
+/* ── LAYOUT ── */
+.layout{display:flex;height:calc(100vh - 64px);}
+
+/* ── SIDEBAR ── */
+.sidebar{width:278px;flex-shrink:0;
+  background:linear-gradient(180deg,var(--bg2) 0%,#0E1220 100%);
+  border-right:1px solid var(--border);
+  display:flex;flex-direction:column;overflow:hidden;
+  box-shadow:4px 0 20px rgba(0,0,0,.25);}
+.sidebar-head{padding:16px 16px 10px;border-bottom:1px solid var(--border);}
+.sidebar-label{font-size:10px;font-weight:700;letter-spacing:1.2px;color:var(--text3);
+  text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;}
+.search{width:100%;padding:8px 11px;border-radius:8px;background:var(--bg3);
+  border:1px solid var(--border);color:var(--text);font-size:12px;font-family:'Inter',sans-serif;}
+.search::placeholder{color:var(--text3);}
+.search:focus{outline:none;border-color:var(--blue);}
+.proj-list{flex:1;overflow-y:auto;padding:8px;}
+.proj-list::-webkit-scrollbar{width:3px;}
+.proj-list::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px;}
+.proj-item{padding:12px;border-radius:var(--r);cursor:pointer;margin-bottom:5px;
+  border:1px solid transparent;transition:all .2s;}
+.proj-item:hover{background:var(--bg3);}
+.proj-item.active{background:var(--bg3);border-color:var(--border2);}
+.proj-item-top{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+.proj-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+.proj-name{font-size:12px;font-weight:600;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.proj-bar-wrap{height:3px;background:var(--bg4);border-radius:2px;overflow:hidden;margin-bottom:5px;}
+.proj-bar-fill{height:100%;border-radius:2px;transition:width .4s;}
+.proj-meta{display:flex;justify-content:space-between;font-size:10px;color:var(--text3);}
+.sidebar-foot{padding:12px 16px;border-top:1px solid var(--border);}
+
+/* ── MAIN ── */
+.main{flex:1;overflow-y:auto;background:var(--bg);}
+.main::-webkit-scrollbar{width:4px;}
+.main::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px;}
+
+/* ── PROJ HEADER ── */
+.proj-hdr{padding:22px 28px 16px;background:var(--bg2);border-bottom:1px solid var(--border);}
+.proj-hdr-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+.proj-title{font-size:24px;font-weight:800;letter-spacing:.3px;display:flex;align-items:center;gap:10px;}
+.proj-meta-row{font-size:11px;color:var(--text3);margin-top:4px;display:flex;gap:14px;flex-wrap:wrap;}
+.proj-meta-row span{display:flex;align-items:center;gap:4px;}
+.hdr-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+
+/* ── METRICS ── */
+.metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;padding:14px 28px;
+  border-bottom:1px solid var(--border);}
+.metric{background:linear-gradient(135deg,var(--bg3) 0%,#161B28 100%);
+  border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;
+  box-shadow:0 2px 10px rgba(0,0,0,.2);transition:transform .15s;}
+.metric:hover{transform:translateY(-1px);}
+.metric-label{font-size:10px;color:var(--text3);margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px;font-weight:600;}
+.metric-val{font-size:22px;font-weight:700;font-family:'JetBrains Mono',monospace;}
+.mv-blue{color:var(--blue);} .mv-green{color:var(--green);} .mv-amber{color:var(--amber);}
+.mv-red{color:var(--red);} .mv-purple{color:var(--purple);}
+
+/* ── OV BAR ── */
+.ov-wrap{padding:10px 28px 14px;border-bottom:1px solid var(--border);}
+.ov-labels{display:flex;justify-content:space-between;font-size:11px;color:var(--text3);margin-bottom:6px;}
+.ov-track{height:7px;background:var(--bg3);border-radius:4px;overflow:hidden;}
+.ov-fill{height:100%;border-radius:4px;transition:width .5s;}
+
+/* ── TABS ── */
+.tabs{display:flex;background:linear-gradient(180deg,var(--bg2),#0E1220);border-bottom:1px solid var(--border);padding:0 28px;gap:0;}
+.tab{padding:11px 16px;font-size:12px;font-weight:500;cursor:pointer;color:var(--text3);
+  border-bottom:2px solid transparent;white-space:nowrap;transition:all .15s;
+  display:flex;align-items:center;gap:6px;}
+.tab.active{color:var(--text);border-bottom-color:var(--blue);}
+.tab:hover{color:var(--text2);}
+.tab svg{width:13px;height:13px;}
+.panel{display:none;} .panel.active{display:block;}
+
+/* ── PHASE LIST ── */
+.phase-list{padding:14px 24px;display:flex;flex-direction:column;gap:10px;}
+
+/* ── PHASE CARD ── */
+.phase-card{background:linear-gradient(180deg,var(--bg2) 0%,#10141F 100%);
+  border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;
+  transition:all .2s;box-shadow:0 2px 12px rgba(0,0,0,.2);}
+.phase-card:hover{border-color:var(--border2);box-shadow:0 4px 20px rgba(0,0,0,.3);transform:translateY(-1px);}
+.phase-head{display:flex;align-items:center;gap:12px;padding:13px 16px;cursor:pointer;}
+.phase-head:hover{background:var(--bg3);}
+.phase-num{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:700;flex-shrink:0;font-family:'JetBrains Mono',monospace;}
+.phase-info{flex:1;min-width:0;}
+.phase-name{font-size:13px;font-weight:600;}
+.phase-sub{font-size:10px;color:var(--text3);margin-top:2px;display:flex;gap:10px;}
+.phase-right{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.mini-bar{width:72px;height:4px;background:var(--bg4);border-radius:2px;overflow:hidden;}
+.mini-fill{height:100%;border-radius:2px;transition:width .4s;}
+.phase-pct{font-size:12px;font-weight:700;font-family:'JetBrains Mono',monospace;min-width:36px;text-align:right;}
+.st-badge{font-size:10px;padding:3px 8px;border-radius:4px;font-weight:600;white-space:nowrap;}
+.st-active{background:var(--blue-bg);color:var(--blue);}
+.st-done{background:var(--green-bg);color:var(--green);}
+.st-wait{background:rgba(255,255,255,.05);color:var(--text3);}
+.st-blocked{background:var(--red-bg);color:var(--red);}
+.st-buffer{background:var(--purple-bg);color:var(--purple);}
+.chev{color:var(--text3);font-size:11px;transition:transform .2s;flex-shrink:0;}
+.chev.open{transform:rotate(180deg);}
+
+/* ── PHASE BODY ── */
+.phase-body{border-top:1px solid var(--border);}
+
+/* ── TASK ── */
+.task-block{border-bottom:1px solid var(--border);}
+.task-block:last-child{border-bottom:none;}
+.task-header{display:flex;align-items:center;gap:10px;padding:10px 16px 10px 52px;cursor:pointer;}
+.task-header:hover{background:rgba(255,255,255,.02);}
+.task-expand-btn{width:18px;height:18px;border-radius:4px;border:1px solid var(--border2);
+  background:transparent;color:var(--text3);font-size:12px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s;}
+.task-expand-btn:hover{background:var(--bg4);color:var(--text);}
+.task-name{flex:1;font-size:12px;font-weight:500;}
+.task-name.struck{color:var(--text3);text-decoration:line-through;}
+.task-resp{font-size:10px;color:var(--text3);min-width:90px;text-align:right;}
+.task-pct-lbl{font-size:11px;font-weight:700;font-family:'JetBrains Mono',monospace;min-width:36px;text-align:right;}
+.semaphore{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.sem-green{background:var(--green);box-shadow:0 0 6px rgba(34,197,94,.5);}
+.sem-amber{background:var(--amber);box-shadow:0 0 6px rgba(245,158,11,.5);}
+.sem-red{background:var(--red);box-shadow:0 0 6px rgba(239,68,68,.5);}
+
+/* ── DELIVERABLES PANEL ── */
+.deliverables-panel{background:var(--bg);border-top:1px solid var(--border);padding:10px 16px 12px 68px;}
+.deliv-section-label{font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;
+  letter-spacing:1px;margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+.deliv-section-label::after{content:'';flex:1;height:1px;background:var(--border);}
+
+.deliverable-row{display:flex;align-items:flex-start;gap:10px;padding:7px 0;
+  border-bottom:1px solid var(--border);}
+.deliverable-row:last-child{border-bottom:none;}
+.deliv-check{width:16px;height:16px;border-radius:4px;border:1.5px solid var(--border2);
+  display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;
+  margin-top:1px;transition:all .15s;}
+.deliv-check.done{background:var(--green);border-color:var(--green);}
+.deliv-check.done::after{content:'✓';color:#000;font-size:9px;font-weight:800;}
+.deliv-info{flex:1;min-width:0;}
+.deliv-name{font-size:11px;font-weight:500;color:var(--text);}
+.deliv-name.struck{color:var(--text3);text-decoration:line-through;}
+.deliv-meta{font-size:10px;color:var(--text3);margin-top:2px;}
+
+/* UPLOAD ZONE */
+.upload-zone{margin-top:6px;border:1.5px dashed var(--border2);border-radius:8px;
+  padding:10px 14px;display:flex;align-items:center;gap:10px;
+  cursor:pointer;transition:all .15s;background:var(--bg2);}
+.upload-zone:hover{border-color:var(--blue);background:var(--bg3);}
+.upload-zone.has-file{border-color:var(--green);background:rgba(34,197,94,.05);}
+.upload-icon{width:28px;height:28px;border-radius:7px;background:var(--bg3);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.upload-icon svg{width:14px;height:14px;stroke:var(--text3);}
+.upload-zone.has-file .upload-icon{background:var(--green-bg);}
+.upload-zone.has-file .upload-icon svg{stroke:var(--green);}
+.upload-text{flex:1;}
+.upload-title{font-size:11px;font-weight:600;color:var(--text2);}
+.upload-zone.has-file .upload-title{color:var(--green);}
+.upload-sub{font-size:10px;color:var(--text3);margin-top:1px;}
+.upload-badge{font-size:10px;padding:2px 8px;border-radius:4px;
+  background:var(--blue-bg);color:var(--blue);font-weight:600;white-space:nowrap;}
+.upload-zone.has-file .upload-badge{background:var(--green-bg);color:var(--green);}
+input[type=file]{display:none;}
+
+/* ADD DELIVERABLE */
+.add-deliv-row{display:flex;gap:6px;margin-top:10px;padding-top:8px;border-top:1px solid var(--border);}
+.deliv-input{flex:1;padding:6px 10px;border-radius:7px;background:var(--bg3);
+  border:1px solid var(--border2);color:var(--text);font-size:11px;font-family:'Inter',sans-serif;}
+.deliv-input::placeholder{color:var(--text3);}
+.deliv-input:focus{outline:none;border-color:var(--blue);}
+
+/* TASK FOOTER */
+.task-footer-row{display:flex;gap:6px;align-items:center;
+  padding:8px 16px 8px 52px;background:var(--bg);border-top:1px solid var(--border);}
+.new-task-inp{flex:1;padding:7px 10px;border-radius:8px;background:var(--bg2);
+  border:1px solid var(--border);color:var(--text);font-size:12px;font-family:'Inter',sans-serif;}
+.new-task-inp::placeholder{color:var(--text3);}
+.new-task-inp:focus{outline:none;border-color:var(--blue);}
+.st-select{font-size:11px;padding:6px 8px;border-radius:8px;background:var(--bg2);
+  border:1px solid var(--border2);color:var(--text2);font-family:'Inter',sans-serif;cursor:pointer;}
+
+/* COST SECTION */
+.cost-section{background:var(--bg);border-top:1px solid var(--border);padding:12px 16px 12px 52px;}
+.cost-section-label{font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;
+  letter-spacing:1px;margin-bottom:10px;display:flex;align-items:center;gap:6px;}
+.cost-section-label::after{content:'';flex:1;height:1px;background:var(--border);}
+.cost-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+.cost-field label{font-size:10px;color:var(--text3);display:block;margin-bottom:4px;font-weight:500;}
+.cost-inp{width:100%;padding:7px 10px;border-radius:8px;background:var(--bg2);
+  border:1px solid var(--border2);color:var(--text);font-size:12px;font-family:'JetBrains Mono',monospace;}
+.cost-inp:focus{outline:none;border-color:var(--blue);}
+input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0;}
+input[type=number]{-moz-appearance:textfield;}
+.cost-total-row{margin-top:10px;display:flex;justify-content:space-between;align-items:center;}
+.cost-total-val{font-size:16px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--blue);}
+
+/* ── GANTT ── */
+.gantt-wrap{padding:20px 28px;}
+.gantt-label-col{width:175px;flex-shrink:0;font-size:11px;color:var(--text2);
+  padding-right:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.gantt-track{flex:1;height:20px;background:var(--bg3);border-radius:4px;position:relative;overflow:hidden;}
+.g-bg{height:100%;position:absolute;border-radius:4px;}
+.g-fill{height:100%;position:absolute;border-radius:4px;opacity:.85;}
+.g-today{position:absolute;top:-2px;width:2px;height:calc(100% + 4px);background:var(--red);z-index:3;}
+.gantt-pct{font-size:10px;font-family:'JetBrains Mono',monospace;color:var(--text3);
+  min-width:34px;text-align:right;padding-left:8px;}
+.gantt-months{display:flex;margin-left:175px;margin-bottom:6px;}
+.gantt-month-lbl{font-size:10px;color:var(--text3);text-align:center;}
+
+/* ── BUDGET ── */
+.budget-wrap{padding:20px 28px;}
+.budget-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:18px;}
+.bcard{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:14px;}
+.bcard-label{font-size:10px;color:var(--text3);margin-bottom:5px;text-transform:uppercase;
+  letter-spacing:.5px;font-weight:600;}
+.bcard-val{font-size:20px;font-weight:700;font-family:'JetBrains Mono',monospace;}
+.btable{width:100%;border-collapse:collapse;font-size:12px;}
+.btable th{text-align:left;padding:8px 10px;border-bottom:1px solid var(--border2);
+  color:var(--text3);font-size:10px;text-transform:uppercase;letter-spacing:.5px;font-weight:700;}
+.btable td{padding:8px 10px;border-bottom:1px solid var(--border);vertical-align:middle;}
+.btable tr:hover td{background:rgba(255,255,255,.015);}
+.btable tfoot td{border-top:1px solid var(--border2);font-weight:700;padding-top:10px;}
+.num{text-align:right;font-family:'JetBrains Mono',monospace;}
+.phase-dot{width:8px;height:8px;border-radius:2px;display:inline-block;margin-right:6px;vertical-align:middle;}
+.bb-track{height:3px;background:var(--bg4);border-radius:2px;margin-top:3px;overflow:hidden;}
+.bb-fill{height:100%;border-radius:2px;}
+
+/* ── MODAL ── */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:300;
+  align-items:center;justify-content:center;}
+.overlay.open{display:flex;}
+.modal{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--r2);
+  padding:26px;width:440px;animation:fadeUp .2s ease;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+.modal h3{font-size:16px;font-weight:700;margin-bottom:18px;}
+.form-field{margin-bottom:12px;}
+.form-field label{font-size:10px;color:var(--text3);display:block;margin-bottom:5px;
+  font-weight:600;text-transform:uppercase;letter-spacing:.5px;}
+.form-inp{width:100%;padding:9px 12px;border-radius:8px;background:var(--bg3);
+  border:1px solid var(--border2);color:var(--text);font-size:13px;font-family:'Inter',sans-serif;}
+.form-inp:focus{outline:none;border-color:var(--blue);}
+.modal-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:18px;}
+.color-picker{display:flex;gap:7px;flex-wrap:wrap;margin-top:5px;}
+.color-opt{width:24px;height:24px;border-radius:6px;cursor:pointer;
+  border:2px solid transparent;transition:border-color .15s;}
+.color-opt.sel{border-color:#fff;}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:46px;right:24px;background:var(--bg2);
+  border:1px solid var(--green);color:var(--green);border-radius:var(--r);
+  padding:10px 16px;font-size:12px;font-weight:600;z-index:400;
+  display:none;align-items:center;gap:8px;animation:slideUp .3s ease;}
+@keyframes slideUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+/* ── FOOTER ── */
+.app-footer{position:fixed;bottom:0;left:0;right:0;height:30px;background:var(--bg2);
+  border-top:1px solid var(--border);display:flex;align-items:center;
+  justify-content:space-between;padding:0 24px;z-index:100;}
+.footer-left{font-size:11px;font-weight:700;color:var(--blue);}
+.footer-right{font-size:10px;color:var(--text3);}
+
+/* ── EMPTY ── */
+.empty{text-align:center;padding:70px 20px;}
+.empty svg{width:52px;height:52px;margin:0 auto 18px;display:block;opacity:.2;}
+.empty h3{font-size:17px;font-weight:700;color:var(--text2);margin-bottom:8px;}
+.empty p{font-size:12px;color:var(--text3);}
+
+/* Semaphore legend */
+.sem-legend{display:flex;align-items:center;gap:14px;font-size:10px;color:var(--text3);}
+.sem-legend span{display:flex;align-items:center;gap:5px;}
+.sem-dot{width:8px;height:8px;border-radius:50%;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">
+    <div class="brand-logo-wrap">
+      <img src="data:image/jpeg;base64,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" alt="SHEMS Global Projects LLC" class="brand-logo-img">
+    </div>
+    <div class="brand-divider"></div>
+    <div>
+      <div class="brand-name">SHEMS <span class="brand-name-script">Global Projects LLC</span></div>
+      <div class="brand-sub">Construction &amp; Development &nbsp;·&nbsp; Project Management Platform</div>
+    </div>
+  </div>
+  <div class="topbar-right">
+    <div class="sem-legend">
+      <span><div class="sem-dot" style="background:var(--green);box-shadow:0 0 5px rgba(34,197,94,.5);"></div>On track</span>
+      <span><div class="sem-dot" style="background:var(--amber);box-shadow:0 0 5px rgba(245,158,11,.5);"></div>At risk</span>
+      <span><div class="sem-dot" style="background:var(--red);box-shadow:0 0 5px rgba(239,68,68,.5);"></div>Behind</span>
+    </div>
+    <button class="btn" onclick="exportExcel()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18M9 21V9"></path></svg>Excel
+    </button>
+    <button class="btn" onclick="exportPDF()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>PDF Report
+    </button>
+    <button class="btn" onclick="exportWord()" title="Download an editable Word report with live progress">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><path d="M9 13l1.5 4 1.5-3 1.5 3 1.5-4"></path></svg>Word Report
+    </button>
+    <button class="btn" onclick="refreshFromCloud()" title="Pull latest changes from the cloud (if a teammate edited)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2v6h-6"></path><path d="M3 12a9 9 0 0115-6.7L21 8"></path><path d="M3 22v-6h6"></path><path d="M21 12a9 9 0 01-15 6.7L3 16"></path></svg>Sync
+    </button>
+    <button class="btn" onclick="resetData()" title="Reset to original example data">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 109-9 9.75 9.75 0 00-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>Reset
+    </button>
+    <button class="btn blue" onclick="openModal()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>New Project
+    </button>
+  </div>
+</div>
+
+<div class="layout">
+  <div class="sidebar">
+    <div class="sidebar-head">
+      <div class="sidebar-label">Projects <button class="btn sm" onclick="openModal()" style="padding:2px 8px;font-size:10px;">+ New</button></div>
+      <input class="search" placeholder="Search projects..." oninput="filterProjs(this.value)">
+    </div>
+    <div class="proj-list" id="proj-list"><div class="proj-item">
+      <div class="proj-item-top">
+        <div class="proj-dot" style="background:#3B7BE8;"></div>
+        <div class="proj-name">PUNK ROCK PIZZA — Dallas TX</div>
+        <span style="font-size:10px;font-weight:700;font-family:&#39;JetBrains Mono&#39;,monospace;color:var(--red);">13%</span>
+      </div>
+      <div class="proj-bar-wrap"><div class="proj-bar-fill" style="width:13%;background:var(--red);"></div></div>
+      <div class="proj-meta"><span>Dallas, TX</span><span>3 active phases</span></div></div><div class="proj-item active">
+      <div class="proj-item-top">
+        <div class="proj-dot" style="background:#F59E0B;"></div>
+        <div class="proj-name">CALABRESE — PASTA ROOM · Southlake TX</div>
+        <span style="font-size:10px;font-weight:700;font-family:&#39;JetBrains Mono&#39;,monospace;color:var(--red);">0%</span>
+      </div>
+      <div class="proj-bar-wrap"><div class="proj-bar-fill" style="width:0%;background:var(--red);"></div></div>
+      <div class="proj-meta"><span>Southlake, TX</span><span>0 active phases</span></div></div></div>
+    <div class="sidebar-foot">
+      <button class="btn" style="width:100%;justify-content:center;" onclick="openModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>Add New Project
+      </button>
+    </div>
+  </div>
+
+  <div class="main" id="main">
+    <div class="empty" id="empty-state" style="display: none;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18M9 21V9"></path></svg>
+      <h3>Select or create a project</h3>
+      <p>Choose a project from the sidebar or create a new one to start tracking.</p>
+    </div>
+    <div id="proj-view" style="display: block;">
+      <div class="proj-hdr">
+        <div class="proj-hdr-top">
+          <div>
+            <div class="proj-title" id="ph-name">
+    <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#F59E0B;margin-right:8px;vertical-align:middle;flex-shrink:0;"></span>CALABRESE — PASTA ROOM · Southlake TX</div>
+            <div class="proj-meta-row" id="ph-meta">
+    <span>📅 2026-07-24</span><span>→ 2026-08-08</span>
+    <span>📍 Southlake, TX</span><span>💰 $16,500</span></div>
+          </div>
+          <div class="hdr-actions">
+            <button class="btn sm" onclick="editProject()" title="Edit project details">✎ Edit project</button>
+            <button class="btn sm" onclick="addPhase()">+ Add Phase</button>
+            <button class="btn sm" onclick="exportExcel()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18M9 21V9"></path></svg>Excel
+            </button>
+            <button class="btn sm blue" onclick="exportPDF()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>PDF Report
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="metrics" id="metrics-row">
+    <div class="metric"><div class="metric-label">Phases</div><div class="metric-val mv-blue">4</div></div>
+    <div class="metric"><div class="metric-label">Active</div><div class="metric-val mv-amber">0</div></div>
+    <div class="metric"><div class="metric-label">Tasks done</div><div class="metric-val mv-green">0/20</div></div>
+    <div class="metric"><div class="metric-label">Deliverables</div><div class="metric-val mv-purple">0/24</div></div>
+    <div class="metric"><div class="metric-label">Total budget</div><div class="metric-val mv-blue">$16,500</div></div></div>
+      <div class="ov-wrap">
+        <div class="ov-labels"><span>Overall Project Progress — calculated from verified deliverables</span><span id="ov-lbl">0%</span></div>
+        <div class="ov-track"><div class="ov-fill" id="ov-bar" style="width: 0%; background: var(--red);"></div></div>
+      </div>
+      <div class="tabs">
+        <div class="tab active" onclick="switchTab(&#39;phases&#39;,this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"></path></svg>Phases &amp; Deliverables</div>
+        <div class="tab" onclick="switchTab(&#39;gantt&#39;,this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line></svg>Gantt</div>
+        <div class="tab" onclick="switchTab(&#39;budget&#39;,this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"></path></svg>Budget</div>
+      </div>
+      <div class="panel active" id="panel-phases"><div class="phase-list" id="phase-list"><div class="phase-card" style="border-left: 3px solid rgb(59, 123, 232);">
+      <div class="phase-head" onclick="togglePhase(&#39;1&#39;)">
+        <div class="phase-num" style="background:#3B7BE822;color:#3B7BE8;">1</div>
+        <div class="phase-info">
+          <div class="phase-name">Stage 1 — Floor Adaptation</div>
+          <div class="phase-sub">
+            <span>Jul 23, 2026 → Jul 27, 2026</span>
+            <span>0/8 deliverables verified</span>
+            <span>$1,700</span>
+          </div>
+        </div>
+        <div class="phase-right">
+          <div class="semaphore sem-red"></div>
+          <div class="mini-bar"><div class="mini-fill" style="width:0%;background:var(--red);"></div></div>
+          <div class="phase-pct" style="color:var(--red);">0%</div>
+          <span class="st-badge st-wait">Pending</span>
+          <span class="row-edit" title="Edit phase" onclick="event.stopPropagation();editPhase(&#39;1&#39;)">✎</span>
+          <span class="row-del" title="Delete phase" onclick="event.stopPropagation();deletePhase(&#39;1&#39;)">✕</span>
+          <span class="chev open">▾</span>
+        </div>
+      </div>
+      
+      <div class="phase-body">
+        
+          <div class="task-block">
+            <div class="task-header" onclick="toggleTask(&#39;c1a&#39;)">
+              <div class="semaphore sem-red"></div>
+              <div class="task-expand-btn">+</div>
+              <div class="task-name ">Measurement verification &amp; existing substrate check</div>
+              <span class="row-edit" title="Edit task" onclick="event.stopPropagation();editTask(&#39;c1a&#39;,&#39;1&#39;)">✎</span>
+              <div class="task-resp">Site Lead</div>
+              <div style="font-size:10px;color:var(--text3);min-width:60px;text-align:right;">0/2 deliverables</div>
+              <div class="task-pct-lbl" style="color:var(--red);">0%</div>
+            </div>
+            
+          </div>
+          <div class="task-block">
+            <div class="task-header" onclick="toggleTask(&#39;c1b&#39;)">
+              <div class="semaphore sem-red"></div>
+              <div class="task-expand-btn">+</div>
+              <div class="task-name ">Substrate prep, leveling &amp; removal of prior finish</div>
+              <span class="row-edit" title="Edit task" onclick="event.stopPropagation();editTask(&#39;c1b&#39;,&#39;1&#39;)">✎</span>
+              <div class="task-resp">Crew</div>
+              <div style="font-size:10px;color:var(--text3);min-width:60px;text-align:right;">0/2 deliverables</div>
+              <div class="task-pct-lbl" style="color:var(--red);">0%</div>
+            </div>
+            
+          </div>
+          <div class="task-block">
+            <div class="task-header" onclick="toggleTask(&#39;c1c&#39;)">
+              <div class="semaphore sem-red"></div>
+              <div class="task-expand-btn">+</div>
+              <div class="task-name ">Surface repair &amp; sealing</div>
+              <span class="row-edit" title="Edit task" onclick="event.stopPropagation();editTask(&#39;c1c&#39;,&#39;1&#39;)">✎</span>
+              <div class="task-resp">Crew</div>
+              <div style="font-size:10px;color:var(--text3);min-width:60px;text-align:right;">0/1 deliverables</div>
+              <div class="task-pct-lbl" style="color:var(--red);">0%</div>
+            </div>
+            
+          </div>
+          <div class="task-block">
+            <div class="task-header" onclick="toggleTask(&#39;c1d&#39;)">
+              <div class="semaphore sem-red"></div>
+              <div class="task-expand-btn">+</div>
+              <div class="task-name ">Rubberized coating application (per spec)</div>
+              <span class="row-edit" title="Edit task" onclick="event.stopPropagation();editTask(&#39;c1d&#39;,&#39;1&#39;)">✎</span>
+              <div class="task-resp">Crew</div>
+              <div style="font-size:10px;color:var(--text3);min-width:60px;text-align:right;">0/2 deliverables</div>
+              <div class="task-pct-lbl" style="color:var(--red);">0%</div>
+            </div>
+            
+          </div>
+          <div class="task-block">
+            <div class="task-header" onclick="toggleTask(&#39;c1e&#39;)">
+              <div class="semaphore sem-red"></div>
+              <div class="task-expand-btn">+</div>
+              <div class="task-name ">MILESTONE — Floor cured &amp; finish verified (Day 4)</div>
+              <span class="row-edit" title="Edit task" onclick="event.stopPropagation();editTask(&#39;c1e&#39;,&#39;1&#39;)">✎</span>
+              <div class="task-resp">Site Lead</div>
+              <div style="font-size:10px;color:var(--text3);min-width:60px;text-align:right;">0/1 deliverables</div>
+              <div class="task-pct-lbl" style="color:var(--red);">0%</div>
+            </div>
+            
+          </div>
+        <div class="cost-section">
+          <div class="cost-section-label">Phase Budget</div>
+          <div class="cost-grid">
+            <div class="cost-field"><label>Labor ($)</label><input class="cost-inp" type="text" inputmode="decimal" value="700" onfocus="this.select()" onchange="updateCost(&#39;1&#39;,&#39;labor&#39;,this.value)"></div>
+            <div class="cost-field"><label>Materials ($)</label><input class="cost-inp" type="text" inputmode="decimal" value="1000" onfocus="this.select()" onchange="updateCost(&#39;1&#39;,&#39;materials&#39;,this.value)"></div>
+            <div class="cost-field"><label>Equipment ($)</label><input class="cost-inp" type="text" inputmode="decimal" value="0" onfocus="this.select()" onchange="updateCost(&#39;1&#39;,&#39;equipment&#39;,this.value)"></div>
+            <div class="cost-field"><label>Permits / Other ($)</label><input class="cost-inp" type="text" inputmode="decimal" value="0" onfocus="this.select()" onchange="updateCost(&#39;1&#39;,&#39;other&#39;,this.value)"></div>
+          </div>
+          <div class="cost-total-row">
+            <span style="font-size:11px;color:var(--text3);">Phase subtotal</span>
+            <span class="cost-total-val" id="ctot-1">$1,700</span>
+          </div>
+        </div>
+        <div class="task-footer-row">
+          <input class="new-task-inp" id="ni-1" placeholder="New task name...">
+          <button class="btn sm blue" onclick="addTask(&#39;1&#39;)">+ Add Task</button>
+          <select class="st-select" onchange="updatePhaseStatus(&#39;1&#39;,this.value)">
+            <option value="active">Active</option>
+            <option value="done">Done</option>
+            <option value="wait" selected="">Pending</option>
+            <option value="blocked">Blocked</option>
+            <option value="buffer">Buffer</option>
+          </select>
+        </div>
+      </div></div><div class="phase-card" style="border-left: 3px solid rgb(167, 139, 250);">
+      <div class="phase-head" onclick="togglePhase(&#39;2&#39;)">
+        <div class="phase-num" style="background:#A78BFA22;color:#A78BFA;">2</div>
+        <div class="phase-info">
+          <div class="phase-name">Stage 2 — Wall Modification &amp; Enclosure</div>
+          <div class="phase-sub">
+            <span>Jul 26, 2026 → Jul 31, 2026</span>
+            <span>0/6 deliverables verified</span>
+            <span>$5,100</span>
+          </div>
+        </div>
+        <div class="phase-right">
+          <div class="semaphore sem-red"></div>
+          <div class="mini-bar"><div class="mini-fill" style="width:0%;background:var(--red);"></div></div>
+          <div class="phase-pct" style="color:var(--red);">0%</div>
+          <span class="st-badge st-wait">Pending</span>
+          <span class="row-edit" title="Edit phase" onclick="event.stopPropagation();editPhase(&#39;2&#39;)">✎</span>
+          <span class="row-del" title="Delete phase" onclick="event.stopPropagation();deletePhase(&#39;2&#39;)">✕</span>
+          <span class="chev open">▾</span>
+        </div>
+      </div>
+      
+      <div class="phase-body">
+        
+          <div class="task-block">
+            <div class="task-header" onclick="toggleTask(&#39;c2a&#39;)">
+              <div class="semaphore sem-red"></div>
+              <div class="task-expand-btn">+</div>
+              <div class="task-name ">Remove existing glass wall</div>
+              <span class="row-edit" title="Edit task" onclick="event.stopPropagation();editTask(&#39;c2a&#39;,&#39;2&#39;)">✎</span>
+              <div class="task-resp">Crew</div>
+              <div style="font-size:10px;color:var(--text3);min-width:60px;text-align:right;">0/1 deliverables</div>
+              <div class="task-pct-lbl" style="color:var(--red);">0%</div>
+            </div>
+            
+          </div>
+          <div class="task-block">
+            <div class="task-header" onclick="toggleTask(&#39;c2b&#39;)">
+              <div class="semaphore sem-red"></div>
+              <div class="task-expand-btn">+</div>
+              <div class="task-name ">Framing &amp; structure for new enclosure</div>
+              <span class="row-edit" title="Edit task" onclick="event.stopPropagation();editTask(&#39;c2b&#39;,&#39;2&#39;)">✎</span>
+              <div class="task-resp">Crew</div>
+              <div style="font-size:10px;color:var(--text3);min-width:60px;text-align:right;">0/1 deliverables</div>
+              <div class="task-pct-lbl" style="color:var(--red);">0%</div>
+            </div>
+            
+          </div>
+          <div class="task-block">
+            <div class="task-header" onclick="toggleTask(&#39;c2c&#39;)">
+              <div class="semaphore sem-red"></div>
+              <div class="task-expand-btn">+</div>
+              <div class="task-name ">Drywall installation (both faces) &amp; opening reinforcement</div>
+              <span class="row-edit" title="Edit task" onclick="event.stopPropagation();editTask(&#39;c2c&#39;,&#39;2&#39;)">✎</span>
+              <div class="task-resp">Crew</div>
+              <div style="font-size:10px;color:var(--text3);min-width:60px;text-align:right;">0/2 deliverables</div>
+              <div class="task-pct-lbl" style="color:var(--red);">0%</div>
+            </div>
+            
+          </div>
+          <div class="task-block">
+            <div class="task-header" onclick="toggleTask(&#39;c2d&#39;)">
+              <div class="semaphore sem-red"></div>
+              <div class="task-expand-btn">+</div>
+              <div class="task-name ">Mudding, sanding &amp; joint finish</div>
+              <span class="row-edit" title="Edit task" onclick="event.stopPropagation();editTask(&#39;c2d&#39;,&#39;2&#39;)">✎</span>
+              <div class="task-resp">Crew</div>
+              <div style="font-size:10px;color:var(--text3);min-width:60px;text-align:right;">0/1 deliverables</div>
+              <div class="task-pct-lbl" style="color:var(--red);">0%</div>
+            </div>
+            
+          </div>
+          <div class="task-block">
+            <div class="task-header" onclick="toggleTask(&#39;c2e&#39;)">
+              <div class="semaphore sem-red"></div>
+              <div class="task-expand-btn">+</div>
+              <div class="task-name ">MILESTONE — Full drywall enclosure &amp; opening ready (Day 8)</div>
+              <span class="row-edit" title="Edit task" onclick="event.stopPropagation();editTask(&#39;c2e&#39;,&#39;2&#39;)">✎</span>
+              <div class="task-resp">Site Lead</div>
+              <div style="font-size:10px;color:var(--text3);min-width:60px;text-align:right;">0/1 deliverables</div>
+              <div class="task-pct-lbl" style="color:var(--red);">0%</div>
+            </div>
+            
+          </div>
+        <div class="cost-section">
+          <div class="cost-section-label">Phase Budget</div>
+          <div class="cost-grid">
+            <div class="cost-field"><label>Labor ($)</label><input class="cost-inp" type="text" inputmode="decimal" value="1000" onfocus="this.select()" onchange="updateCost(&#39;2&#39;,&#39;labor&#39;,this.value)"></div>
+            <div class="cost-field"><label>Materials ($)</label><input class="cost-inp" type="text" inputmode="decimal" value="4100" onfocus="this.select()" onchange="updateCost(&#39;2&#39;,&#39;materials&#39;,this.value)"></div>
+            <div class="cost-field"><label>Equipment ($)</label><input class="cost-inp" type="text" inputmode="decimal" value="0" onfocus="this.select()" onchange="updateCost(&#39;2&#39;,&#39;equipment&#39;,this.value)"></div>
+            <div class="cost-field"><label>Permits / Other ($)</label><input class="cost-inp" type="text" inputmode="decimal" value="0" onfocus="this.select()" onchange="updateCost(&#39;2&#39;,&#39;other&#39;,this.value)"></div>
+          </div>
+          <div class="cost-total-row">
+            <span style="font-size:11px;color:var(--text3);">Phase subtotal</span>
+            <span class="cost-total-val" id="ctot-2">$5,100</span>
+          </div>
+        </div>
+        <div class="task-footer-row">
+          <input class="new-task-inp" id="ni-2" placeholder="New task name...">
+          <button class="btn sm blue" onclick="addTask(&#39;2&#39;)">+ Add Task</button>
+          <select class="st-select" onchange="updatePhaseStatus(&#39;2&#39;,this.value)">
+            <option value="active">Active</option>
+            <option value="done">Done</option>
+            <option value="wait" selected="">Pending</option>
+            <option value="blocked">Blocked</option>
+            <option value="buffer">Buffer</option>
+          </select>
+        </div>
+      </div></div><div class="phase-card" style="border-left: 3px solid rgb(249, 115, 22);">
+      <div class="phase-head" onclick="togglePhase(&#39;3&#39;)">
+        <div class="phase-num" style="background:#F9731622;color:#F97316;">3</div>
+        <div class="phase-info">
+          <div class="phase-name">Stage 3 — Doors, Window &amp; Entry Frame Closure</div>
+          <div class="phase-sub">
+            <span>Jul 30, 2026 → Aug 04, 2026</span>
+            <span>0/5 deliverables verified</span>
+            <span>$8,600</span>
+          </div>
+        </div>
+        <div class="phase-right">
+          <div class="semaphore sem-red"></div>
+          <div class="mini-bar"><div class="mini-fill" style="width:0%;background:var(--red);"></div></div>
+          <div class="phase-pct" style="color:var(--red);">0%</div>
+          <span class="st-badge st-wait">Pending</span>
+          <span class="row-edit" title="Edit phase" onclick="event.stopPropagation();editPhase(&#39;3&#39;)">✎</span>
+          <span class="row-del" title="Delete phase" onclick="event.stopPropagation();deletePhase(&#39;3&#39;)">✕</span>
+          <span class="chev open">▾</span>
+        </div>
+      </div>
+      
+      <div class="phase-body">
+        
+          <div class="task-block">
+            <div class="task-header" onclick="toggleTask(&#39;c3a&#39;)">
+              <div class="semaphore sem-red"></div>
+              <div class="task-expand-btn">+</div>
+              <div class="task-name ">Install fire-rated door — oven room</div>
+              <span class="row-edit" title="Edit task" onclick="event.stopPropagation();editTask(&#39;c3a&#39;,&#39;3&#39;)">✎</span>
+              <div class="task-resp">Crew</div>
+              <div style="font-size:10px;color:var(--text3);min-width:60px;text-align:right;">0/1 deliverables</div>
+              <div class="task-pct-lbl" style="color:var(--red);">0%</div>
+            </div>
+            
+          </div>
+          <div class="task-block">
+            <div class="task-header" onclick="toggleTask(&#39;c3b&#39;)">
+              <div class="semaphore sem-red"></div>
+              <div class="task-expand-btn">+</div>
+              <div class="task-name ">Fabricate / install door with window</div>
+              <span class="row-edit" title="Edit task" onclick="event.stopPropagation();editTask(&#39;c3b&#39;,&#39;3&#39;)">✎</span>
+              <div class="task-resp">Crew</div>
+              <div style="font-size:10px;color:var(--text3);min-width:60px;text-align:right;">0/1 deliverables</div>
+              <div class="task-pct-lbl" style="color:var(--red);">0%</div>
+            </div>
+            
+          </div>
+          <div class="task-block">
+            <div class="task-header" onclick="toggleTask(&#39;c3c&#39;)">
+              <div class="semaphore sem-red"></div>
+              <div class="task-expand-btn">+</div>
+              <div class="task-name ">Close entry frame to the room</div>
+              <span class="row-edit" title="Edit task" onclick="event.stopPropagation();editTask(&#39;c3c&#39;,&#39;3&#39;)">✎</span>
+              <div class="task-resp">Crew</div>
+              <div style="font-size:10px;color:var(--text3);min-width:60px;text-align:right;">0/1 deliverables</div>
+              <div class="task-pct-lbl" style="color:var(--red);">0%</div>
+            </div>
+            
+          </div>
+          <div class="task-block">
+            <div class="task-header" onclick="toggleTask(&#39;c3d&#39;)">
+              <div class="semaphore sem-red"></div>
+              <div class="task-expand-btn">+</div>
+              <div class="task-name ">Hardware, seals &amp; access alignment</div>
+              <span class="row-edit" title="Edit task" onclick="event.stopPropagation();editTask(&#39;c3d&#39;,&#39;3&#39;)">✎</span>
+              <div class="task-resp">Crew</div>
+              <div style="font-size:10px;color:var(--text3);min-width:60px;text-align:right;">0/1 deliverables</div>
+              <div class="task-pct-lbl" style="color:var(--red);">0%</div>
+            </div>
+            
+          </div>
+          <div class="task-block">
+            <div class="task-header" onclick="toggleTask(&#39;c3e&#39;)">
+              <div class="semaphore sem-red"></div>
+              <div class="task-expand-btn">+</div>
+              <div class="task-name ">MILESTONE — Accesses configured &amp; operational (Day 12)</div>
+              <span class="row-edit" title="Edit task" onclick="event.stopPropagation();editTask(&#39;c3e&#39;,&#39;3&#39;)">✎</span>
+              <div class="task-resp">Site Lead</div>
+              <div style="font-size:10px;color:var(--text3);min-width:60px;text-align:right;">0/1 deliverables</div>
+              <div class="task-pct-lbl" style="color:var(--red);">0%</div>
+            </div>
+            
+          </div>
+        <div class="cost-section">
+          <div class="cost-section-label">Phase Budget</div>
+          <div class="cost-grid">
+            <div class="cost-field"><label>Labor ($)</label><input class="cost-inp" type="text" inputmode="decimal" value="2600" onfocus="this.select()" onchange="updateCost(&#39;3&#39;,&#39;labor&#39;,this.value)"></div>
+            <div class="cost-field"><label>Materials ($)</label><input class="cost-inp" type="text" inputmode="decimal" value="6000" onfocus="this.select()" onchange="updateCost(&#39;3&#39;,&#39;materials&#39;,this.value)"></div>
+            <div class="cost-field"><label>Equipment ($)</label><input class="cost-inp" type="text" inputmode="decimal" value="0" onfocus="this.select()" onchange="updateCost(&#39;3&#39;,&#39;equipment&#39;,this.value)"></div>
+            <div class="cost-field"><label>Permits / Other ($)</label><input class="cost-inp" type="text" inputmode="decimal" value="0" onfocus="this.select()" onchange="updateCost(&#39;3&#39;,&#39;other&#39;,this.value)"></div>
+          </div>
+          <div class="cost-total-row">
+            <span style="font-size:11px;color:var(--text3);">Phase subtotal</span>
+            <span class="cost-total-val" id="ctot-3">$8,600</span>
+          </div>
+        </div>
+        <div class="task-footer-row">
+          <input class="new-task-inp" id="ni-3" placeholder="New task name...">
+          <button class="btn sm blue" onclick="addTask(&#39;3&#39;)">+ Add Task</button>
+          <select class="st-select" onchange="updatePhaseStatus(&#39;3&#39;,this.value)">
+            <option value="active">Active</option>
+            <option value="done">Done</option>
+            <option value="wait" selected="">Pending</option>
+            <option value="blocked">Blocked</option>
+            <option value="buffer">Buffer</option>
+          </select>
+        </div>
+      </div></div><div class="phase-card" style="border-left: 3px solid rgb(34, 197, 94);">
+      <div class="phase-head" onclick="togglePhase(&#39;4&#39;)">
+        <div class="phase-num" style="background:#22C55E22;color:#22C55E;">4</div>
+        <div class="phase-info">
+          <div class="phase-name">Stage 4 — Final Adjustments &amp; Handover</div>
+          <div class="phase-sub">
+            <span>Aug 03, 2026 → Aug 07, 2026</span>
+            <span>0/5 deliverables verified</span>
+            <span>$1,100</span>
+          </div>
+        </div>
+        <div class="phase-right">
+          <div class="semaphore sem-red"></div>
+          <div class="mini-bar"><div class="mini-fill" style="width:0%;background:var(--red);"></div></div>
+          <div class="phase-pct" style="color:var(--red);">0%</div>
+          <span class="st-badge st-wait">Pending</span>
+          <span class="row-edit" title="Edit phase" onclick="event.stopPropagation();editPhase(&#39;4&#39;)">✎</span>
+          <span class="row-del" title="Delete phase" onclick="event.stopPropagation();deletePhase(&#39;4&#39;)">✕</span>
+          <span class="chev open">▾</span>
+        </div>
+      </div>
+      
+      <div class="phase-body">
+        
+          <div class="task-block">
+            <div class="task-header" onclick="toggleTask(&#39;c4a&#39;)">
+              <div class="semaphore sem-red"></div>
+              <div class="task-expand-btn">+</div>
+              <div class="task-name ">Final finishing adjustments &amp; touch-ups</div>
+              <span class="row-edit" title="Edit task" onclick="event.stopPropagation();editTask(&#39;c4a&#39;,&#39;4&#39;)">✎</span>
+              <div class="task-resp">Crew</div>
+              <div style="font-size:10px;color:var(--text3);min-width:60px;text-align:right;">0/1 deliverables</div>
+              <div class="task-pct-lbl" style="color:var(--red);">0%</div>
+            </div>
+            
+          </div>
+          <div class="task-block">
+            <div class="task-header" onclick="toggleTask(&#39;c4b&#39;)">
+              <div class="semaphore sem-red"></div>
+              <div class="task-expand-btn">+</div>
+              <div class="task-name ">General review of executed work (internal walkthrough)</div>
+              <span class="row-edit" title="Edit task" onclick="event.stopPropagation();editTask(&#39;c4b&#39;,&#39;4&#39;)">✎</span>
+              <div class="task-resp">Site Lead</div>
+              <div style="font-size:10px;color:var(--text3);min-width:60px;text-align:right;">0/1 deliverables</div>
+              <div class="task-pct-lbl" style="color:var(--red);">0%</div>
+            </div>
+            
+          </div>
+          <div class="task-block">
+            <div class="task-header" onclick="toggleTask(&#39;c4c&#39;)">
+              <div class="semaphore sem-red"></div>
+              <div class="task-expand-btn">+</div>
+              <div class="task-name ">Reasonable cleanup of the intervened area</div>
+              <span class="row-edit" title="Edit task" onclick="event.stopPropagation();editTask(&#39;c4c&#39;,&#39;4&#39;)">✎</span>
+              <div class="task-resp">Crew</div>
+              <div style="font-size:10px;color:var(--text3);min-width:60px;text-align:right;">0/1 deliverables</div>
+              <div class="task-pct-lbl" style="color:var(--red);">0%</div>
+            </div>
+            
+          </div>
+          <div class="task-block">
+            <div class="task-header" onclick="toggleTask(&#39;c4d&#39;)">
+              <div class="semaphore sem-red"></div>
+              <div class="task-expand-btn">+</div>
+              <div class="task-name ">Handover of scope for client review</div>
+              <span class="row-edit" title="Edit task" onclick="event.stopPropagation();editTask(&#39;c4d&#39;,&#39;4&#39;)">✎</span>
+              <div class="task-resp">Site Lead</div>
+              <div style="font-size:10px;color:var(--text3);min-width:60px;text-align:right;">0/1 deliverables</div>
+              <div class="task-pct-lbl" style="color:var(--red);">0%</div>
+            </div>
+            
+          </div>
+          <div class="task-block">
+            <div class="task-header" onclick="toggleTask(&#39;c4e&#39;)">
+              <div class="semaphore sem-red"></div>
+              <div class="task-expand-btn">+</div>
+              <div class="task-name ">MILESTONE — Client final acceptance (Day 15 · Aug 8)</div>
+              <span class="row-edit" title="Edit task" onclick="event.stopPropagation();editTask(&#39;c4e&#39;,&#39;4&#39;)">✎</span>
+              <div class="task-resp">Client + SHEMS</div>
+              <div style="font-size:10px;color:var(--text3);min-width:60px;text-align:right;">0/1 deliverables</div>
+              <div class="task-pct-lbl" style="color:var(--red);">0%</div>
+            </div>
+            
+          </div>
+        <div class="cost-section">
+          <div class="cost-section-label">Phase Budget</div>
+          <div class="cost-grid">
+            <div class="cost-field"><label>Labor ($)</label><input class="cost-inp" type="text" inputmode="decimal" value="600" onfocus="this.select()" onchange="updateCost(&#39;4&#39;,&#39;labor&#39;,this.value)"></div>
+            <div class="cost-field"><label>Materials ($)</label><input class="cost-inp" type="text" inputmode="decimal" value="500" onfocus="this.select()" onchange="updateCost(&#39;4&#39;,&#39;materials&#39;,this.value)"></div>
+            <div class="cost-field"><label>Equipment ($)</label><input class="cost-inp" type="text" inputmode="decimal" value="0" onfocus="this.select()" onchange="updateCost(&#39;4&#39;,&#39;equipment&#39;,this.value)"></div>
+            <div class="cost-field"><label>Permits / Other ($)</label><input class="cost-inp" type="text" inputmode="decimal" value="0" onfocus="this.select()" onchange="updateCost(&#39;4&#39;,&#39;other&#39;,this.value)"></div>
+          </div>
+          <div class="cost-total-row">
+            <span style="font-size:11px;color:var(--text3);">Phase subtotal</span>
+            <span class="cost-total-val" id="ctot-4">$1,100</span>
+          </div>
+        </div>
+        <div class="task-footer-row">
+          <input class="new-task-inp" id="ni-4" placeholder="New task name...">
+          <button class="btn sm blue" onclick="addTask(&#39;4&#39;)">+ Add Task</button>
+          <select class="st-select" onchange="updatePhaseStatus(&#39;4&#39;,this.value)">
+            <option value="active">Active</option>
+            <option value="done">Done</option>
+            <option value="wait" selected="">Pending</option>
+            <option value="blocked">Blocked</option>
+            <option value="buffer">Buffer</option>
+          </select>
+        </div>
+      </div></div></div></div>
+      <div class="panel" id="panel-gantt"><div class="gantt-wrap" id="gantt-wrap"></div></div>
+      <div class="panel" id="panel-budget"><div class="budget-wrap" id="budget-wrap"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- NEW PROJECT MODAL -->
+<div class="overlay" id="modal-overlay">
+  <div class="modal">
+    <h3>New Project</h3>
+    <div class="form-field"><label>Project Name *</label><input class="form-inp" id="m-name" placeholder="e.g. Punk Rock Pizza — Dallas TX"></div>
+    <div class="modal-row">
+      <div class="form-field"><label>Start Date</label><input class="form-inp" id="m-start" type="date"></div>
+      <div class="form-field"><label>End Date</label><input class="form-inp" id="m-end" type="date"></div>
+    </div>
+    <div class="form-field"><label>Client / Location</label><input class="form-inp" id="m-client" placeholder="e.g. Dallas, TX"></div>
+    <div class="form-field"><label>Project Color</label><div class="color-picker" id="color-picker"><div class="color-opt sel" style="background: rgb(59, 123, 232);"></div><div class="color-opt" style="background: rgb(34, 197, 94);"></div><div class="color-opt" style="background: rgb(245, 158, 11);"></div><div class="color-opt" style="background: rgb(239, 68, 68);"></div><div class="color-opt" style="background: rgb(167, 139, 250);"></div><div class="color-opt" style="background: rgb(236, 72, 153);"></div><div class="color-opt" style="background: rgb(20, 184, 166);"></div><div class="color-opt" style="background: rgb(249, 115, 22);"></div><div class="color-opt" style="background: rgb(6, 182, 212);"></div><div class="color-opt" style="background: rgb(132, 204, 22);"></div></div></div>
+    <div class="modal-actions">
+      <button class="btn" onclick="closeModal()">Cancel</button>
+      <button class="btn blue" onclick="createProject()">Create Project</button>
+    </div>
+  </div>
+</div>
+
+<!-- UNIVERSAL EDIT MODAL -->
+<div class="overlay" id="edit-overlay">
+  <div class="modal">
+    <h3 id="edit-title">Edit project</h3>
+    <div id="edit-fields"><div class="form-field"><label>Project name</label><input class="form-inp" id="ef-name" type="text" value="CALABRESE — PASTA ROOM · Southlake TX" placeholder=""></div><div class="form-field"><label>Client / Location</label><input class="form-inp" id="ef-client" type="text" value="Southlake, TX" placeholder=""></div><div class="form-field"><label>Start date</label><input class="form-inp" id="ef-start" type="date" value="2026-07-24" placeholder=""></div><div class="form-field"><label>End date</label><input class="form-inp" id="ef-end" type="date" value="2026-08-08" placeholder=""></div><div class="form-field"><label>Project color</label><div style="display:flex;gap:8px;flex-wrap:wrap;" id="ef-color" data-val="#F59E0B"><div class="edit-color-sw" data-c="#3B7BE8" style="width:26px;height:26px;border-radius:7px;background:#3B7BE8;cursor:pointer;border:2px solid transparent;" onclick="pickEditColor(this)"></div><div class="edit-color-sw" data-c="#22C55E" style="width:26px;height:26px;border-radius:7px;background:#22C55E;cursor:pointer;border:2px solid transparent;" onclick="pickEditColor(this)"></div><div class="edit-color-sw" data-c="#F59E0B" style="width:26px;height:26px;border-radius:7px;background:#F59E0B;cursor:pointer;border:2px solid #fff;" onclick="pickEditColor(this)"></div><div class="edit-color-sw" data-c="#EF4444" style="width:26px;height:26px;border-radius:7px;background:#EF4444;cursor:pointer;border:2px solid transparent;" onclick="pickEditColor(this)"></div><div class="edit-color-sw" data-c="#A78BFA" style="width:26px;height:26px;border-radius:7px;background:#A78BFA;cursor:pointer;border:2px solid transparent;" onclick="pickEditColor(this)"></div><div class="edit-color-sw" data-c="#EC4899" style="width:26px;height:26px;border-radius:7px;background:#EC4899;cursor:pointer;border:2px solid transparent;" onclick="pickEditColor(this)"></div><div class="edit-color-sw" data-c="#14B8A6" style="width:26px;height:26px;border-radius:7px;background:#14B8A6;cursor:pointer;border:2px solid transparent;" onclick="pickEditColor(this)"></div><div class="edit-color-sw" data-c="#F97316" style="width:26px;height:26px;border-radius:7px;background:#F97316;cursor:pointer;border:2px solid transparent;" onclick="pickEditColor(this)"></div><div class="edit-color-sw" data-c="#06B6D4" style="width:26px;height:26px;border-radius:7px;background:#06B6D4;cursor:pointer;border:2px solid transparent;" onclick="pickEditColor(this)"></div><div class="edit-color-sw" data-c="#84CC16" style="width:26px;height:26px;border-radius:7px;background:#84CC16;cursor:pointer;border:2px solid transparent;" onclick="pickEditColor(this)"></div></div></div></div>
+    <div class="modal-actions">
+      <button class="btn" onclick="closeEditModal()">Cancel</button>
+      <button class="btn blue" onclick="saveEditModal()">Save changes</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" style="display: none;">✓  Synced with cloud</div>
+<div class="app-footer">
+  <div class="footer-left" style="display:flex;align-items:center;gap:8px;">
+    <span style="font-weight:900;letter-spacing:1.5px;color:var(--text);font-size:11px;">SHEMS</span>
+    <span style="font-family:&#39;Dancing Script&#39;,cursive;color:var(--blue);font-size:12px;">Global Projects LLC</span>
+  </div>
+  <div style="font-size:10px;color:var(--text3);">Construction &amp; Development &nbsp;·&nbsp; Project Management Platform</div>
+  <div class="footer-right">All rights reserved &nbsp;·&nbsp; USA &nbsp;·&nbsp; 2025</div>
+</div>
+
+<script>
+const COLORS=['#3B7BE8','#22C55E','#F59E0B','#EF4444','#A78BFA','#EC4899','#14B8A6','#F97316','#06B6D4','#84CC16'];
+let selColor=COLORS[0], activeProjId=null, activeTab='phases';
+let openPhases={}, openTasks={};
+
+const PROJECTS=[{
+  id:1, name:'PUNK ROCK PIZZA — Dallas TX', client:'Dallas, TX',
+  color:'#3B7BE8', start:'2025-05-07', end:'2025-09-25',
+  phases:[
+    {id:1,name:'Survey & Diagnostics',status:'active',startDay:0,endDay:10,color:'#3B7BE8',
+     budget:{labor:12000,materials:45000,equipment:8000,other:5000},
+     tasks:[
+      {id:'1a',text:'General space inspection',resp:'Lead Arch.',
+       deliverables:[
+        {id:'d1a1',text:'Site inspection checklist signed',done:true,file:null,fileRequired:true},
+        {id:'d1a2',text:'Photo report — existing conditions (min 20 photos)',done:true,file:'site_photos.zip',fileRequired:true},
+        {id:'d1a3',text:'Written inspection summary report',done:false,file:null,fileRequired:true},
+       ]},
+      {id:'1b',text:'As-built floor plan survey',resp:'Lead Arch.',
+       deliverables:[
+        {id:'d1b1',text:'CAD/PDF as-built floor plan uploaded',done:true,file:'asbuilt_v1.pdf',fileRequired:true},
+        {id:'d1b2',text:'Dimensions verified on site',done:true,file:null,fileRequired:false},
+        {id:'d1b3',text:'Plan approved and signed by architect',done:false,file:null,fileRequired:true},
+       ]},
+      {id:'1c',text:'Electrical systems diagnosis',resp:'Elec. Eng.',
+       deliverables:[
+        {id:'d1c1',text:'Electrical panel condition report',done:true,file:'elec_report.pdf',fileRequired:true},
+        {id:'d1c2',text:'Single-line diagram of existing system',done:false,file:null,fileRequired:true},
+        {id:'d1c3',text:'List of required upgrades and estimated costs',done:false,file:null,fileRequired:false},
+       ]},
+      {id:'1d',text:'Plumbing & drainage diagnosis',resp:'Plumber',
+       deliverables:[
+        {id:'d1d1',text:'Plumbing inspection report',done:true,file:null,fileRequired:true},
+        {id:'d1d2',text:'Pipe inspection review — video or photos uploaded',done:true,file:null,fileRequired:true},
+        {id:'d1d3',text:'Drainage capacity assessment',done:false,file:null,fileRequired:false},
+        {id:'d1d4',text:'Piping adaptation for PRP bathroom',done:false,file:null,fileRequired:false},
+        {id:'d1d5',text:'Pipe locating services using Ground Penetrating Radar (GPR)',done:false,file:null,fileRequired:false},
+       ]},
+      {id:'1e',text:'Site photo documentation',resp:'Lead Arch.',
+       deliverables:[
+        {id:'d1e1',text:'Full photo set uploaded (all spaces)',done:true,file:'photos_full.zip',fileRequired:true},
+        {id:'d1e2',text:'Photos labelled and organized by zone',done:true,file:null,fileRequired:false},
+       ]},
+     ]},
+    {id:2,name:'Demolition & Strip-out',status:'active',startDay:7,endDay:25,color:'#EF4444',
+     budget:{labor:0,materials:5220,equipment:0,other:0},
+     tasks:[
+      {id:'2a',text:'Remove existing furniture & equipment',resp:'Crew',
+       deliverables:[
+        {id:'d2a1',text:'Furniture removal complete — before/after photos',done:true,file:'demo_before_after.pdf',fileRequired:true},
+        {id:'d2a2',text:'Disposal manifest signed',done:true,file:null,fileRequired:false},
+       ]},
+      {id:'2b',text:'Demolish non-structural walls',resp:'Crew',
+       deliverables:[
+        {id:'d2b1',text:'Structural engineer approval for demolition scope',done:true,file:'struct_approval.pdf',fileRequired:true},
+        {id:'d2b2',text:'Demo complete — photo evidence uploaded',done:false,file:null,fileRequired:true},
+        {id:'d2b3',text:'Debris removed from site',done:false,file:null,fileRequired:false},
+       ]},
+      {id:'2c',text:'Strip floors and wall cladding',resp:'Crew',
+       deliverables:[
+        {id:'d2c1',text:'Floor stripping complete — photo evidence',done:false,file:null,fileRequired:true},
+        {id:'d2c2',text:'Substrate condition report',done:false,file:null,fileRequired:false},
+       ]},
+      {id:'2d',text:'Safe electrical disconnection',resp:'Elec. Eng.',
+       deliverables:[
+        {id:'d2d1',text:'Electrical disconnect permit from City of Dallas',done:true,file:'elec_permit.pdf',fileRequired:true},
+        {id:'d2d2',text:'Signed disconnect certificate by licensed electrician',done:true,file:'cert_disconnect.pdf',fileRequired:true},
+       ]},
+      {id:'2e',text:'Disconnect existing plumbing',resp:'Plumber',
+       deliverables:[
+        {id:'d2e1',text:'Water shut-off confirmed',done:true,file:null,fileRequired:false},
+        {id:'d2e2',text:'Plumbing disconnect report signed by plumber',done:false,file:null,fileRequired:true},
+       ]},
+     ]},
+    {id:3,name:'Architecture & Engineering Design',status:'active',startDay:0,endDay:35,color:'#A78BFA',
+     budget:{labor:6000,materials:500,equipment:20220,other:700},
+     tasks:[
+      {id:'3a',text:'Architectural plan — U-bar layout',resp:'Lead Arch.',
+       deliverables:[
+        {id:'d3a1',text:'Schematic design submitted',done:true,file:'schematic_v1.pdf',fileRequired:true},
+        {id:'d3a2',text:'Design development drawings (DD set)',done:false,file:null,fileRequired:true},
+        {id:'d3a3',text:'Owner sign-off on layout',done:false,file:null,fileRequired:true},
+       ]},
+      {id:'3b',text:'MEP engineering plan',resp:'MEP Eng.',
+       deliverables:[
+        {id:'d3b1',text:'Plumbing design drawings submitted',done:true,file:null,fileRequired:true},
+        {id:'d3b2',text:'HVAC / ventilation drawings submitted',done:false,file:null,fileRequired:true},
+        {id:'d3b3',text:'Engineer stamp and signature on drawings',done:false,file:null,fileRequired:true},
+       ]},
+      {id:'3c',text:'Electrical & lighting plan',resp:'Elec. Eng.',
+       deliverables:[
+        {id:'d3c1',text:'Electrical design drawings submitted',done:false,file:null,fileRequired:true},
+        {id:'d3c2',text:'Lighting layout approved',done:false,file:null,fileRequired:false},
+       ]},
+      {id:'3d',text:'Interior design & finishes',resp:'Int. Designer',
+       deliverables:[
+        {id:'d3d1',text:'Material board / finish schedule submitted',done:false,file:null,fileRequired:true},
+        {id:'d3d2',text:'Furniture and fixture list (FF&E) submitted',done:false,file:null,fileRequired:false},
+       ]},
+      {id:'3e',text:'3D renders for owner approval',resp:'Lead Arch.',
+       deliverables:[
+        {id:'d3e1',text:'Minimum 4 HD renders uploaded',done:false,file:null,fileRequired:true},
+        {id:'d3e2',text:'Owner comments documented',done:false,file:null,fileRequired:false},
+        {id:'d3e3',text:'Final render set approved and signed',done:false,file:null,fileRequired:true},
+       ]},
+     ]},
+    {id:4,name:'Permits & Approvals',status:'wait',startDay:35,endDay:60,color:'#F59E0B',
+     budget:{labor:1200,materials:0,equipment:0,other:26800},
+     tasks:[
+      {id:'4a',text:'Present plans to owner for approval',resp:'Lead Arch.',
+       deliverables:[
+        {id:'d4a1',text:'Complete drawing set issued to owner',done:false,file:null,fileRequired:true},
+        {id:'d4a2',text:'Meeting minutes from review session',done:false,file:null,fileRequired:false},
+        {id:'d4a3',text:'Signed owner approval letter',done:false,file:null,fileRequired:true},
+       ]},
+      {id:'4b',text:'Building permit — City of Dallas',resp:'Architect',
+       deliverables:[
+        {id:'d4b1',text:'Permit application submitted (receipt uploaded)',done:false,file:null,fileRequired:true},
+        {id:'d4b2',text:'City plan review comments addressed',done:false,file:null,fileRequired:false},
+        {id:'d4b3',text:'Building permit issued — permit card uploaded',done:false,file:null,fileRequired:true},
+       ]},
+      {id:'4c',text:'Health & zoning permit',resp:'Consultant',
+       deliverables:[
+        {id:'d4c1',text:'Health department application submitted',done:false,file:null,fileRequired:true},
+        {id:'d4c2',text:'Zoning approval letter uploaded',done:false,file:null,fileRequired:true},
+       ]},
+      {id:'4e',text:'Electrical permit (NEC)',resp:'Elec. Eng.',
+       deliverables:[
+        {id:'d4e1',text:'NEC electrical permit application submitted',done:false,file:null,fileRequired:true},
+        {id:'d4e2',text:'Electrical permit issued — card uploaded',done:false,file:null,fileRequired:true},
+       ]},
+      {id:'4d',text:'Fire Marshal approval',resp:'Consultant',
+       deliverables:[
+        {id:'d4d1',text:'Fire suppression plan submitted',done:false,file:null,fileRequired:true},
+        {id:'d4d2',text:'Fire Marshal approval letter uploaded',done:false,file:null,fileRequired:true},
+       ]},
+     ]},
+    {id:'4H',name:'Permits Buffer (Contingency)',status:'buffer',startDay:60,endDay:75,color:'#A78BFA',
+     budget:{labor:0,materials:0,equipment:0,other:1500},
+     tasks:[
+      {id:'4h1',text:'Follow up on permit observations',resp:'Consultant',
+       deliverables:[
+        {id:'d4h1',text:'Written response to City comments uploaded',done:false,file:null,fileRequired:true},
+       ]},
+      {id:'4h2',text:'Plan corrections if required',resp:'Lead Arch.',
+       deliverables:[
+        {id:'d4h2',text:'Corrected drawings uploaded',done:false,file:null,fileRequired:false},
+       ]},
+      {id:'4h3',text:'Re-submission to authorities (if applicable)',resp:'Consultant',
+       deliverables:[
+        {id:'d4h3',text:'Re-submission receipt uploaded',done:false,file:null,fileRequired:false},
+       ]},
+     ]},
+    {id:5,name:'Plumbing & Sanitary Works',status:'wait',startDay:75,endDay:105,color:'#14B8A6',
+     budget:{labor:5500,materials:8000,equipment:2000,other:500},
+     tasks:[
+      {id:'5a',text:'Drainage network & grease trap',resp:'Plumber',
+       deliverables:[
+        {id:'d5a1',text:'Drainage rough-in complete — photo evidence',done:false,file:null,fileRequired:true},
+        {id:'d5a2',text:'Grease trap installed — spec sheet uploaded',done:false,file:null,fileRequired:true},
+        {id:'d5a3',text:'City inspection passed — inspection card uploaded',done:false,file:null,fileRequired:true},
+       ]},
+      {id:'5b',text:'Hot & cold water supply',resp:'Plumber',
+       deliverables:[
+        {id:'d5b1',text:'Supply lines installed — photo evidence',done:false,file:null,fileRequired:true},
+        {id:'d5b2',text:'Pressure test report (min 100 PSI for 2 hrs)',done:false,file:null,fileRequired:true},
+       ]},
+      {id:'5c',text:'Kitchen, bar & dishpit connections',resp:'Plumber',
+       deliverables:[
+        {id:'d5c1',text:'All fixtures connected and operational',done:false,file:null,fileRequired:true},
+        {id:'d5c2',text:'Final plumbing inspection passed',done:false,file:null,fileRequired:true},
+       ]},
+      {id:'5d',text:'Floor drain - kitchen per plan',resp:'Plumber',
+       deliverables:[
+        {id:'d5d1',text:'Floor drains installed per plan — photo evidence',done:false,file:null,fileRequired:true},
+       ]},
+      {id:'5e',text:'Pressure & leak tests',resp:'Plumber',
+       deliverables:[
+        {id:'d5e1',text:'Pressure & leak test report signed',done:false,file:null,fileRequired:true},
+       ]},
+     ]},
+    {id:6,name:'Electrical Installations',status:'wait',startDay:75,endDay:110,color:'#F97316',
+     budget:{labor:6000,materials:9500,equipment:1500,other:500},
+     tasks:[
+      {id:'6a',text:'Main & sub electrical panels',resp:'Elec. Eng.',
+       deliverables:[
+        {id:'d6a1',text:'Panel schedule submitted and approved',done:false,file:null,fileRequired:true},
+        {id:'d6a2',text:'Panels installed — photo evidence',done:false,file:null,fileRequired:true},
+        {id:'d6a3',text:'Load calculation signed by engineer',done:false,file:null,fileRequired:true},
+       ]},
+      {id:'6b',text:'Kitchen, oven & hood wiring',resp:'Elec. Eng.',
+       deliverables:[
+        {id:'d6b1',text:'Rough-in wiring complete — photo evidence',done:false,file:null,fileRequired:true},
+        {id:'d6b2',text:'Hood interlock system tested and certified',done:false,file:null,fileRequired:true},
+       ]},
+      {id:'6c',text:'General & decorative lighting',resp:'Elec. Eng.',
+       deliverables:[
+        {id:'d6c1',text:'All fixtures installed and tested',done:false,file:null,fileRequired:true},
+        {id:'d6c2',text:'Dimmer / lighting control programmed',done:false,file:null,fileRequired:false},
+       ]},
+      {id:'6d',text:'Bar & dining outlets',resp:'Elec. Eng.',
+       deliverables:[
+        {id:'d6d1',text:'Outlets installed at bar & dining — photo evidence',done:false,file:null,fileRequired:true},
+       ]},
+      {id:'6e',text:'Ventilation & extraction system',resp:'Mech. Eng.',
+       deliverables:[
+        {id:'d6e1',text:'Extraction system installed — photo evidence',done:false,file:null,fileRequired:true},
+        {id:'d6e2',text:'Airflow test report signed',done:false,file:null,fileRequired:true},
+       ]},
+     ]},
+    {id:7,name:'Construction & Finishes',status:'wait',startDay:105,endDay:145,color:'#EC4899',
+     budget:{labor:18000,materials:32000,equipment:3000,other:2000},
+     tasks:[
+      {id:'7a',text:'Walls & internal partitions',resp:'Crew',
+       deliverables:[
+        {id:'d7a1',text:'Framing complete — photo evidence',done:false,file:null,fileRequired:true},
+        {id:'d7a2',text:'Drywall and finishing complete — photo evidence',done:false,file:null,fileRequired:true},
+       ]},
+      {id:'7b',text:'Travertine flooring & wall cladding',resp:'Crew',
+       deliverables:[
+        {id:'d7b1',text:'Material delivery receipt — travertine',done:false,file:null,fileRequired:true},
+        {id:'d7b2',text:'Installation complete — photo evidence',done:false,file:null,fileRequired:true},
+        {id:'d7b3',text:'Quality inspection sign-off',done:false,file:null,fileRequired:false},
+       ]},
+      {id:'7c',text:'U-shaped bar — walnut & marble top',resp:'Carpenter',
+       deliverables:[
+        {id:'d7c1',text:'Shop drawings approved by owner',done:false,file:null,fileRequired:true},
+        {id:'d7c2',text:'Bar installed — photo evidence',done:false,file:null,fileRequired:true},
+        {id:'d7c3',text:'Owner acceptance sign-off',done:false,file:null,fileRequired:true},
+       ]},
+      {id:'7d',text:'Wood-fired oven, hood & chimney',resp:'Specialist',
+       deliverables:[
+        {id:'d7d1',text:'Oven installation complete — photo evidence',done:false,file:null,fileRequired:true},
+        {id:'d7d2',text:'Fire Marshal inspection passed',done:false,file:null,fileRequired:true},
+        {id:'d7d3',text:'Test fire documentation',done:false,file:null,fileRequired:true},
+       ]},
+      {id:'7e',text:'Paint, plaster & Tuscan brick',resp:'Crew',
+       deliverables:[
+        {id:'d7e1',text:'Wall finishes complete — photo evidence',done:false,file:null,fileRequired:true},
+       ]},
+      {id:'7f',text:'Ceiling with decorative oak beams',resp:'Crew',
+       deliverables:[
+        {id:'d7f1',text:'Ceiling & oak beams installed — photo evidence',done:false,file:null,fileRequired:true},
+       ]},
+      {id:'7g',text:'Lighting fixtures & Italian signage',resp:'Elec. Eng.',
+       deliverables:[
+        {id:'d7g1',text:'Signage & fixtures installed — photo evidence',done:false,file:null,fileRequired:true},
+       ]},
+     ]},
+    {id:8,name:'Equipment & Final Setup',status:'wait',startDay:145,endDay:160,color:'#06B6D4',
+     budget:{labor:4000,materials:28000,equipment:5000,other:1000},
+     tasks:[
+      {id:'8a',text:'Commercial kitchen & refrigeration',resp:'Supplier',
+       deliverables:[
+        {id:'d8a1',text:'Equipment delivery receipt uploaded',done:false,file:null,fileRequired:true},
+        {id:'d8a2',text:'Installation complete — photo evidence',done:false,file:null,fileRequired:true},
+        {id:'d8a3',text:'Manufacturer startup report',done:false,file:null,fileRequired:false},
+       ]},
+      {id:'8b',text:'Walk-in cooler & dishpit',resp:'Supplier',
+       deliverables:[
+        {id:'d8b1',text:'Walk-in installed and cooling verified',done:false,file:null,fileRequired:true},
+        {id:'d8b2',text:'Temperature log — 24hrs operational test',done:false,file:null,fileRequired:true},
+       ]},
+      {id:'8c',text:'Tables, chairs & bar stools',resp:'Supplier',
+       deliverables:[
+        {id:'d8c1',text:'Delivery receipt uploaded',done:false,file:null,fileRequired:true},
+        {id:'d8c2',text:'All items installed — photo evidence',done:false,file:null,fileRequired:true},
+       ]},
+      {id:'8d',text:'Italian décor & design elements',resp:'Int. Designer',
+       deliverables:[
+        {id:'d8d1',text:'Décor elements installed — photo evidence',done:false,file:null,fileRequired:false},
+       ]},
+      {id:'8e',text:'Takeout window installation',resp:'Carpenter',
+       deliverables:[
+        {id:'d8e1',text:'Takeout window installed — photo evidence',done:false,file:null,fileRequired:true},
+       ]},
+     ]},
+    {id:9,name:'Final Inspections & Opening',status:'wait',startDay:160,endDay:141,color:'#22C55E',
+     budget:{labor:1500,materials:0,equipment:0,other:3000},
+     tasks:[
+      {id:'9a',text:'Dallas Health Dept. final inspection',resp:'Owner+Arch.',
+       deliverables:[
+        {id:'d9a1',text:'Health inspection passed — certificate uploaded',done:false,file:null,fileRequired:true},
+        {id:'d9a2',text:'All deficiencies corrected and documented',done:false,file:null,fileRequired:false},
+       ]},
+      {id:'9b',text:'Certificate of Occupancy (CO)',resp:'Owner',
+       deliverables:[
+        {id:'d9b1',text:'CO issued by City of Dallas — uploaded',done:false,file:null,fileRequired:true},
+       ]},
+      {id:'9c',text:'Soft opening & operational test',resp:'All team',
+       deliverables:[
+        {id:'d9c1',text:'Soft opening punch list completed',done:false,file:null,fileRequired:false},
+        {id:'d9c2',text:'Owner final acceptance signed',done:false,file:null,fileRequired:true},
+       ]},
+      {id:'9d',text:'Grand Opening — Sep 25, 2025',resp:'Owner',
+       deliverables:[
+        {id:'d9d1',text:'Grand opening event documentation',done:false,file:null,fileRequired:false},
+       ]},
+     ]},
+  ]
+},
+{
+  id:2, name:'CALABRESE — PASTA ROOM · Southlake TX', client:'Southlake, TX',
+  color:'#F59E0B', start:'2026-07-24', end:'2026-08-08',
+  phases:[
+    {id:1,name:'Stage 1 — Floor Adaptation',status:'wait',startDay:0,endDay:4,color:'#3B7BE8',
+     budget:{labor:0,materials:0,equipment:0,other:0},
+     tasks:[
+      {id:'c1a',text:'Measurement verification & existing substrate check',resp:'Site Lead',
+       deliverables:[
+        {id:'dc1a1',text:'Substrate condition & measurement report',done:false,file:null,fileRequired:true},
+        {id:'dc1a2',text:'Before photos of existing floor uploaded',done:false,file:null,fileRequired:false},
+       ]},
+      {id:'c1b',text:'Substrate prep, leveling & removal of prior finish',resp:'Crew',
+       deliverables:[
+        {id:'dc1b1',text:'Existing finish removed & substrate exposed',done:false,file:null,fileRequired:true},
+        {id:'dc1b2',text:'Level & deviation repairs completed',done:false,file:null,fileRequired:false},
+       ]},
+      {id:'c1c',text:'Surface repair & sealing',resp:'Crew',
+       deliverables:[
+        {id:'dc1c1',text:'Surface sealed & ready to receive coating',done:false,file:null,fileRequired:true},
+       ]},
+      {id:'c1d',text:'Rubberized coating application (per spec)',resp:'Crew',
+       deliverables:[
+        {id:'dc1d1',text:'Rubberized coating applied',done:false,file:null,fileRequired:true},
+        {id:'dc1d2',text:'Coverage photos uploaded',done:false,file:null,fileRequired:false},
+       ]},
+      {id:'c1e',text:'MILESTONE — Floor cured & finish verified (Day 4)',resp:'Site Lead',
+       deliverables:[
+        {id:'dc1e1',text:'Floor finish accepted — stage milestone signed',done:false,file:null,fileRequired:true},
+       ]},
+     ]},
+    {id:2,name:'Stage 2 — Wall Modification & Enclosure',status:'wait',startDay:3,endDay:8,color:'#A78BFA',
+     budget:{labor:0,materials:0,equipment:0,other:0},
+     tasks:[
+      {id:'c2a',text:'Remove existing glass wall',resp:'Crew',
+       deliverables:[
+        {id:'dc2a1',text:'Glass wall removed — before/after photos',done:false,file:null,fileRequired:true},
+       ]},
+      {id:'c2b',text:'Framing & structure for new enclosure',resp:'Crew',
+       deliverables:[
+        {id:'dc2b1',text:'Framing installed & door rough opening set',done:false,file:null,fileRequired:true},
+       ]},
+      {id:'c2c',text:'Drywall installation (both faces) & opening reinforcement',resp:'Crew',
+       deliverables:[
+        {id:'dc2c1',text:'Drywall installed both faces',done:false,file:null,fileRequired:true},
+        {id:'dc2c2',text:'Door opening reinforced',done:false,file:null,fileRequired:false},
+       ]},
+      {id:'c2d',text:'Mudding, sanding & joint finish',resp:'Crew',
+       deliverables:[
+        {id:'dc2d1',text:'Joints taped, sanded & finished',done:false,file:null,fileRequired:true},
+       ]},
+      {id:'c2e',text:'MILESTONE — Full drywall enclosure & opening ready (Day 8)',resp:'Site Lead',
+       deliverables:[
+        {id:'dc2e1',text:'Enclosure complete — stage milestone signed',done:false,file:null,fileRequired:true},
+       ]},
+     ]},
+    {id:3,name:'Stage 3 — Doors, Window & Entry Frame Closure',status:'wait',startDay:7,endDay:12,color:'#F97316',
+     budget:{labor:0,materials:0,equipment:0,other:0},
+     tasks:[
+      {id:'c3a',text:'Install fire-rated door — oven room',resp:'Crew',
+       deliverables:[
+        {id:'dc3a1',text:'Fire-rated door installed & rated label verified',done:false,file:null,fileRequired:true},
+       ]},
+      {id:'c3b',text:'Fabricate / install door with window',resp:'Crew',
+       deliverables:[
+        {id:'dc3b1',text:'Door with window installed',done:false,file:null,fileRequired:true},
+       ]},
+      {id:'c3c',text:'Close entry frame to the room',resp:'Crew',
+       deliverables:[
+        {id:'dc3c1',text:'Entry frame closed per approved design',done:false,file:null,fileRequired:true},
+       ]},
+      {id:'c3d',text:'Hardware, seals & access alignment',resp:'Crew',
+       deliverables:[
+        {id:'dc3d1',text:'Hardware set, seals & alignment checked',done:false,file:null,fileRequired:false},
+       ]},
+      {id:'c3e',text:'MILESTONE — Accesses configured & operational (Day 12)',resp:'Site Lead',
+       deliverables:[
+        {id:'dc3e1',text:'Accesses operational — stage milestone signed',done:false,file:null,fileRequired:true},
+       ]},
+     ]},
+    {id:4,name:'Stage 4 — Final Adjustments & Handover',status:'wait',startDay:11,endDay:15,color:'#22C55E',
+     budget:{labor:0,materials:0,equipment:0,other:0},
+     tasks:[
+      {id:'c4a',text:'Final finishing adjustments & touch-ups',resp:'Crew',
+       deliverables:[
+        {id:'dc4a1',text:'Final touch-ups completed',done:false,file:null,fileRequired:false},
+       ]},
+      {id:'c4b',text:'General review of executed work (internal walkthrough)',resp:'Site Lead',
+       deliverables:[
+        {id:'dc4b1',text:'Internal walkthrough & punch list completed',done:false,file:null,fileRequired:true},
+       ]},
+      {id:'c4c',text:'Reasonable cleanup of the intervened area',resp:'Crew',
+       deliverables:[
+        {id:'dc4c1',text:'Area cleaned & ready for client review',done:false,file:null,fileRequired:false},
+       ]},
+      {id:'c4d',text:'Handover of scope for client review',resp:'Site Lead',
+       deliverables:[
+        {id:'dc4d1',text:'Scope delivered for client review',done:false,file:null,fileRequired:true},
+       ]},
+      {id:'c4e',text:'MILESTONE — Client final acceptance (Day 15 · Aug 8)',resp:'Client + SHEMS',
+       deliverables:[
+        {id:'dc4e1',text:'Client final acceptance signed — project closeout',done:false,file:null,fileRequired:true},
+       ]},
+     ]},
+  ]
+}];
+
+// ════════════════════════════════════════════════════════════
+//  CLOUD SYNC — guarda en Supabase (nube) + cache local
+// ════════════════════════════════════════════════════════════
+const SUPABASE_URL = 'https://lkznbpymhncqspdpatps.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_5B1Ua-YHN8QsbXE4eCOosA_uWaf7iZ7';
+const STORAGE_KEY  = 'shems_pm_data_v1';   // local cache fallback
+const CLOUD_ROW_ID = 'main';               // single shared workspace row
+
+const SB_HEADERS = {
+  'apikey': SUPABASE_KEY,
+  'Authorization': 'Bearer ' + SUPABASE_KEY,
+  'Content-Type': 'application/json',
+  'Prefer': 'resolution=merge-duplicates'
+};
+
+let _saveTimer = null;
+let _syncState = 'idle'; // idle | saving | saved | error | offline
+
+// Debounced save → cloud + local cache
+function saveData(){
+  // always cache locally immediately (instant, offline-safe)
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(PROJECTS)); }catch(e){}
+  // debounce cloud write so rapid edits = one network call
+  clearTimeout(_saveTimer);
+  setSyncState('saving');
+  _saveTimer = setTimeout(cloudSave, 700);
+}
+
+async function cloudSave(){
+  try{
+    const res = await fetch(SUPABASE_URL + '/rest/v1/projects?on_conflict=id', {
+      method: 'POST',
+      headers: SB_HEADERS,
+      body: JSON.stringify({ id: CLOUD_ROW_ID, data: PROJECTS, updated_at: new Date().toISOString() })
+    });
+    if(!res.ok) throw new Error('HTTP ' + res.status);
+    setSyncState('saved');
+  }catch(e){
+    console.warn('Cloud save failed (data is safe locally):', e);
+    setSyncState('error');
+  }
+}
+
+// Load from cloud first; fall back to local cache; fall back to built-in defaults
+async function loadData(){
+  // 1) try cloud
+  try{
+    const res = await fetch(SUPABASE_URL + '/rest/v1/projects?id=eq.' + CLOUD_ROW_ID + '&select=data', {
+      headers: SB_HEADERS
+    });
+    if(res.ok){
+      const rows = await res.json();
+      if(Array.isArray(rows) && rows.length && Array.isArray(rows[0].data) && rows[0].data.length){
+        const cloud = rows[0].data;
+        if(cloud.every(p => p && Array.isArray(p.phases))){
+          PROJECTS.length = 0;
+          cloud.forEach(p => PROJECTS.push(p));
+          try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(PROJECTS)); }catch(e){}
+          setSyncState('saved');
+          return true;
+        }
+      }
+      // cloud reachable but empty → push current defaults up as the initial state
+      setSyncState('saving'); cloudSave();
+      return false;
+    }
+  }catch(e){
+    console.warn('Cloud load failed, trying local cache:', e);
+    setSyncState('offline');
+  }
+  // 2) fall back to local cache
+  try{
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if(saved){
+      const parsed = JSON.parse(saved);
+      if(Array.isArray(parsed) && parsed.length && parsed.every(p => p && Array.isArray(p.phases))){
+        PROJECTS.length = 0;
+        parsed.forEach(p => PROJECTS.push(p));
+        return true;
+      }
+    }
+  }catch(e){}
+  // 3) built-in defaults (do nothing, PROJECTS already has them)
+  return false;
+}
+
+// Manual refresh — pull latest from cloud (e.g. another teammate edited)
+async function refreshFromCloud(){
+  setSyncState('saving');
+  const ok = await loadData();
+  renderSidebar();
+  if(PROJECTS.length>0) openProject(activeProjId && PROJECTS.find(p=>p.id===activeProjId) ? activeProjId : PROJECTS[0].id);
+  showToast('Synced with cloud');
+}
+
+function setSyncState(state){
+  _syncState = state;
+  let el=document.getElementById('sync-indicator');
+  if(!el){
+    el=document.createElement('div');
+    el.id='sync-indicator';
+    el.style.cssText='position:fixed;bottom:46px;left:24px;border-radius:8px;padding:7px 13px;font-size:11px;font-weight:600;z-index:400;display:flex;align-items:center;gap:7px;font-family:Inter,sans-serif;transition:all .3s;cursor:pointer;';
+    el.onclick=refreshFromCloud;
+    el.title='Click to sync with cloud';
+    document.body.appendChild(el);
+  }
+  const cfg={
+    idle:   ['var(--bg2)','var(--text3)','var(--text3)','Cloud ready'],
+    saving: ['var(--bg2)','var(--amber)','var(--amber)','Saving to cloud...'],
+    saved:  ['var(--bg2)','var(--green)','var(--green)','Saved to cloud ✓'],
+    error:  ['var(--bg2)','var(--amber)','var(--amber)','Saved locally (cloud retry)'],
+    offline:['var(--bg2)','var(--red)','var(--red)','Offline — saved locally']
+  };
+  const [bg,border,color,label]=cfg[state]||cfg.idle;
+  el.style.background=bg; el.style.border='1px solid '+border; el.style.color=color;
+  el.innerHTML='<span style="width:7px;height:7px;border-radius:50%;background:'+color+';display:inline-block;"></span>'+label;
+  el.style.opacity='1';
+  if(state==='saved'){ clearTimeout(el._t); el._t=setTimeout(()=>{ el.style.opacity='0.55'; },2000); }
+}
+
+function resetData(){
+  if(confirm('Reset ALL data to the original example? This erases the shared cloud data for everyone. This cannot be undone.')){
+    PROJECTS.length=0;
+    location.reload();
+  }
+}
+
+
+function addDays(d,n){const r=new Date(d);if(isNaN(r.getTime()))return new Date();r.setDate(r.getDate()+(parseInt(n)||0));return r;}
+function fmtDate(d){return d instanceof Date?d.toLocaleDateString('en-US',{month:'short',day:'2-digit',year:'numeric'}):d;}
+function fmtMoney(n){return '$'+Math.round(n||0).toLocaleString('en-US');}
+
+// ── PROGRESS FROM DELIVERABLES (objective) ──
+function taskPct(task){
+  if(!task.deliverables||!task.deliverables.length) return 0;
+  const done=task.deliverables.filter(d=>d.done).length;
+  return Math.round(done/task.deliverables.length*100);
+}
+function phasePct(ph){
+  if(!ph.tasks.length) return 0;
+  return Math.round(ph.tasks.reduce((s,t)=>s+taskPct(t),0)/ph.tasks.length);
+}
+function projPct(proj){
+  const all=proj.phases.flatMap(p=>p.tasks);
+  if(!all.length) return 0;
+  return Math.round(all.reduce((s,t)=>s+taskPct(t),0)/all.length);
+}
+function phaseTotal(ph){return(ph.budget.labor||0)+(ph.budget.materials||0)+(ph.budget.equipment||0)+(ph.budget.other||0);}
+function projTotal(proj){return proj.phases.reduce((s,p)=>s+phaseTotal(p),0);}
+
+// ── SEMAPHORE ──
+function semClass(pct, status){
+  if(status==='done') return 'sem-green';
+  if(status==='blocked') return 'sem-red';
+  if(status==='buffer') return 'sem-amber';
+  if(pct>=75) return 'sem-green';
+  if(pct>=30) return 'sem-amber';
+  return 'sem-red';
+}
+function barColor(pct){
+  if(pct>=75) return 'var(--green)';
+  if(pct>=30) return 'var(--amber)';
+  return 'var(--red)';
+}
+function statusLabel(s){return{active:'Active',done:'Done',wait:'Pending',blocked:'Blocked',buffer:'Buffer'}[s]||'Pending';}
+function statusClass(s){return{active:'st-active',done:'st-done',wait:'st-wait',blocked:'st-blocked',buffer:'st-buffer'}[s]||'st-wait';}
+// Report-facing status: derived from real progress so it never contradicts the % shown.
+// Manual Blocked/Buffer states are preserved (they are not progress-driven).
+function effStatus(ph){
+  if(ph.status==='blocked') return 'Blocked';
+  if(ph.status==='buffer')  return 'Buffer';
+  const p=phasePct(ph);
+  if(p>=100) return 'Complete';
+  if(p>0)    return 'In Progress';
+  return 'Pending';
+}
+
+// ── SIDEBAR ──
+function renderSidebar(filter=''){
+  const list=document.getElementById('proj-list');
+  list.innerHTML='';
+  PROJECTS.filter(p=>p.name.toLowerCase().includes(filter.toLowerCase())).forEach(proj=>{
+    const pct=projPct(proj);
+    const isActive=proj.id===activeProjId;
+    const div=document.createElement('div');
+    div.className='proj-item'+(isActive?' active':'');
+    div.onclick=()=>openProject(proj.id);
+    const activeCount=proj.phases.filter(ph=>ph.status==='active').length;
+    div.innerHTML=`
+      <div class="proj-item-top">
+        <div class="proj-dot" style="background:${proj.color};"></div>
+        <div class="proj-name">${proj.name}</div>
+        <span style="font-size:10px;font-weight:700;font-family:'JetBrains Mono',monospace;color:${barColor(pct)};">${pct}%</span>
+      </div>
+      <div class="proj-bar-wrap"><div class="proj-bar-fill" style="width:${pct}%;background:${barColor(pct)};"></div></div>
+      <div class="proj-meta"><span>${proj.client||'—'}</span><span>${activeCount} active phases</span></div>`;
+    list.appendChild(div);
+  });
+}
+function filterProjs(v){renderSidebar(v);}
+
+// ── OPEN PROJECT ──
+function openProject(id){
+  activeProjId=id;
+  document.getElementById('empty-state').style.display='none';
+  document.getElementById('proj-view').style.display='block';
+  if(!openPhases[id]) openPhases[id]=new Set(['1','2','3']);
+  if(!openTasks[id]) openTasks[id]=new Set();
+  renderSidebar();
+  renderProjView();
+}
+
+function renderProjView(){
+  const proj=PROJECTS.find(p=>p.id===activeProjId);
+  if(!proj) return;
+  const pct=projPct(proj);
+  const gt=projTotal(proj);
+  document.getElementById('ph-name').innerHTML=`
+    <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:${proj.color};margin-right:8px;vertical-align:middle;flex-shrink:0;"></span>${proj.name}`;
+  document.getElementById('ph-meta').innerHTML=`
+    <span>📅 ${proj.start||'—'}</span><span>→ ${proj.end||'—'}</span>
+    <span>📍 ${proj.client||'—'}</span><span>💰 ${fmtMoney(gt)}</span>`;
+  const active=proj.phases.filter(p=>p.status==='active').length;
+  const done=proj.phases.filter(p=>p.status==='done').length;
+  const totalTasks=proj.phases.reduce((s,p)=>s+p.tasks.length,0);
+  const doneTasks=proj.phases.flatMap(p=>p.tasks).filter(t=>taskPct(t)>=100).length;
+  const totalDel=proj.phases.flatMap(p=>p.tasks.flatMap(t=>t.deliverables||[])).length;
+  const doneDel=proj.phases.flatMap(p=>p.tasks.flatMap(t=>(t.deliverables||[]).filter(d=>d.done))).length;
+  document.getElementById('metrics-row').innerHTML=`
+    <div class="metric"><div class="metric-label">Phases</div><div class="metric-val mv-blue">${proj.phases.length}</div></div>
+    <div class="metric"><div class="metric-label">Active</div><div class="metric-val mv-amber">${active}</div></div>
+    <div class="metric"><div class="metric-label">Tasks done</div><div class="metric-val mv-green">${doneTasks}/${totalTasks}</div></div>
+    <div class="metric"><div class="metric-label">Deliverables</div><div class="metric-val mv-purple">${doneDel}/${totalDel}</div></div>
+    <div class="metric"><div class="metric-label">Total budget</div><div class="metric-val mv-blue">${fmtMoney(gt)}</div></div>`;
+  document.getElementById('ov-lbl').textContent=pct+'%';
+  const ovBar=document.getElementById('ov-bar');
+  ovBar.style.width=pct+'%'; ovBar.style.background=barColor(pct);
+  if(activeTab==='phases') renderPhases();
+  else if(activeTab==='gantt') renderGantt();
+  else renderBudget();
+}
+
+// ── RENDER PHASES ──
+function renderPhases(){
+  const proj=PROJECTS.find(p=>p.id===activeProjId);
+  if(!proj) return;
+  const list=document.getElementById('phase-list');
+  list.innerHTML='';
+  const op=openPhases[activeProjId]||new Set();
+  const ot=openTasks[activeProjId]||new Set();
+
+  proj.phases.forEach(phase=>{
+    const pp=phasePct(phase);
+    const isOpen=op.has(String(phase.id));
+    const sd=proj.start?fmtDate(addDays(proj.start,phase.startDay)):'—';
+    const ed=String(phase.id)==='9'?(proj.end?fmtDate(new Date(proj.end)):'—'):(proj.start?fmtDate(addDays(proj.start,phase.endDay)):'—');
+    const totalDel=phase.tasks.reduce((s,t)=>s+(t.deliverables||[]).length,0);
+    const doneDel=phase.tasks.reduce((s,t)=>s+(t.deliverables||[]).filter(d=>d.done).length,0);
+
+    const card=document.createElement('div');
+    card.className='phase-card';
+    card.style.borderLeft=`3px solid ${phase.color}`;
+
+    let tasksHTML='';
+    if(isOpen){
+      phase.tasks.forEach(task=>{
+        const tp=taskPct(task);
+        const tDone=(task.deliverables||[]).filter(d=>d.done).length;
+        const tTotal=(task.deliverables||[]).length;
+        const taskOpen=ot.has(task.id);
+        const sc=semClass(tp,phase.status);
+
+        let delivHTML='';
+        if(taskOpen){
+          const delivRows=(task.deliverables||[]).map((d,di)=>{
+            const reqBadge=d.fileRequired?`<span style="font-size:9px;padding:1px 6px;border-radius:3px;background:rgba(59,123,232,.15);color:var(--blue);font-weight:600;margin-left:6px;">FILE REQUIRED</span>`:'';
+            const fileSection=d.fileRequired?`
+              <div class="upload-zone ${d.file?'has-file':''}" onclick="triggerUpload('${task.id}','${d.id}')">
+                <div class="upload-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                </div>
+                <div class="upload-text">
+                  <div class="upload-title">${d.file?'✓ File uploaded: '+d.file:'📎 Upload supporting document / evidence'}</div>
+                  <div class="upload-sub">${d.file?'Click to replace file':'PDF, photo, CAD, ZIP — drag or click to upload'}</div>
+                </div>
+                <span class="upload-badge">${d.file?'Uploaded':'Upload'}</span>
+                <input type="file" id="fu-${task.id}-${d.id}" onchange="handleFileUpload('${task.id}','${d.id}',this)" />
+              </div>`:
+              `<div style="font-size:10px;color:var(--text3);margin-top:4px;padding:4px 8px;background:var(--bg3);border-radius:5px;">ℹ No document required for this deliverable</div>`;
+            return `
+              <div class="deliverable-row">
+                <div class="deliv-check ${d.done?'done':''}" onclick="toggleDeliverable('${task.id}','${d.id}')"></div>
+                <div class="deliv-info">
+                  <div class="deliv-name ${d.done?'struck':''}">${d.text}${reqBadge}
+                    <span class="row-edit" title="Edit deliverable" onclick="event.stopPropagation();editDeliverable('${task.id}','${d.id}')">✎</span>
+                    <span class="row-del" title="Delete deliverable" onclick="event.stopPropagation();deleteDeliverable('${task.id}','${d.id}')">✕</span>
+                  </div>
+                  ${fileSection}
+                </div>
+              </div>`;
+          }).join('');
+
+          delivHTML=`
+            <div class="deliverables-panel">
+              <div class="deliv-section-label">Deliverables & Evidence — ${tDone}/${tTotal} verified</div>
+              ${delivRows}
+              <div class="add-deliv-row">
+                <input class="deliv-input" id="newdeliv-${task.id}" placeholder="Add deliverable..."/>
+                <button class="btn sm blue" onclick="addDeliverable('${task.id}','${phase.id}')">+ Add</button>
+                <button class="btn sm" style="color:var(--red);border-color:var(--red-bg);" onclick="deleteTask('${task.id}','${phase.id}')" title="Delete task">✕ Delete task</button>
+              </div>
+            </div>`;
+        }
+
+        tasksHTML+=`
+          <div class="task-block">
+            <div class="task-header" onclick="toggleTask('${task.id}')">
+              <div class="semaphore ${sc}"></div>
+              <div class="task-expand-btn">${taskOpen?'−':'+'}</div>
+              <div class="task-name ${tp>=100?'struck':''}">${task.text}</div>
+              <span class="row-edit" title="Edit task" onclick="event.stopPropagation();editTask('${task.id}','${phase.id}')">✎</span>
+              <div class="task-resp">${task.resp}</div>
+              <div style="font-size:10px;color:var(--text3);min-width:60px;text-align:right;">${tDone}/${tTotal} deliverables</div>
+              <div class="task-pct-lbl" style="color:${barColor(tp)};">${tp}%</div>
+            </div>
+            ${delivHTML}
+          </div>`;
+      });
+    }
+
+    card.innerHTML=`
+      <div class="phase-head" onclick="togglePhase('${phase.id}')">
+        <div class="phase-num" style="background:${phase.color}22;color:${phase.color};">${phase.id}</div>
+        <div class="phase-info">
+          <div class="phase-name">${phase.name}</div>
+          <div class="phase-sub">
+            <span>${sd} → ${ed}</span>
+            <span>${doneDel}/${totalDel} deliverables verified</span>
+            <span>${fmtMoney(phaseTotal(phase))}</span>
+          </div>
+        </div>
+        <div class="phase-right">
+          <div class="semaphore ${semClass(pp,phase.status)}"></div>
+          <div class="mini-bar"><div class="mini-fill" style="width:${pp}%;background:${barColor(pp)};"></div></div>
+          <div class="phase-pct" style="color:${barColor(pp)};">${pp}%</div>
+          <span class="st-badge ${statusClass(phase.status)}">${statusLabel(phase.status)}</span>
+          <span class="row-edit" title="Edit phase" onclick="event.stopPropagation();editPhase('${phase.id}')">✎</span>
+          <span class="row-del" title="Delete phase" onclick="event.stopPropagation();deletePhase('${phase.id}')">✕</span>
+          <span class="chev ${isOpen?'open':''}">▾</span>
+        </div>
+      </div>
+      ${isOpen?`
+      <div class="phase-body">
+        ${tasksHTML}
+        <div class="cost-section">
+          <div class="cost-section-label">Phase Budget</div>
+          <div class="cost-grid">
+            <div class="cost-field"><label>Labor ($)</label><input class="cost-inp" type="text" inputmode="decimal" value="${phase.budget.labor}" onfocus="this.select()" onchange="updateCost('${phase.id}','labor',this.value)"/></div>
+            <div class="cost-field"><label>Materials ($)</label><input class="cost-inp" type="text" inputmode="decimal" value="${phase.budget.materials}" onfocus="this.select()" onchange="updateCost('${phase.id}','materials',this.value)"/></div>
+            <div class="cost-field"><label>Equipment ($)</label><input class="cost-inp" type="text" inputmode="decimal" value="${phase.budget.equipment}" onfocus="this.select()" onchange="updateCost('${phase.id}','equipment',this.value)"/></div>
+            <div class="cost-field"><label>Permits / Other ($)</label><input class="cost-inp" type="text" inputmode="decimal" value="${phase.budget.other}" onfocus="this.select()" onchange="updateCost('${phase.id}','other',this.value)"/></div>
+          </div>
+          <div class="cost-total-row">
+            <span style="font-size:11px;color:var(--text3);">Phase subtotal</span>
+            <span class="cost-total-val" id="ctot-${phase.id}">${fmtMoney(phaseTotal(phase))}</span>
+          </div>
+        </div>
+        <div class="task-footer-row">
+          <input class="new-task-inp" id="ni-${phase.id}" placeholder="New task name..."/>
+          <button class="btn sm blue" onclick="addTask('${phase.id}')">+ Add Task</button>
+          <select class="st-select" onchange="updatePhaseStatus('${phase.id}',this.value)">
+            <option value="active" ${phase.status==='active'?'selected':''}>Active</option>
+            <option value="done"   ${phase.status==='done'  ?'selected':''}>Done</option>
+            <option value="wait"   ${phase.status==='wait'  ?'selected':''}>Pending</option>
+            <option value="blocked"${phase.status==='blocked'?'selected':''}>Blocked</option>
+            <option value="buffer" ${phase.status==='buffer'?'selected':''}>Buffer</option>
+          </select>
+        </div>
+      </div>`:''}`;
+    list.appendChild(card);
+  });
+}
+
+// ── INTERACTIONS ──
+function togglePhase(pid){
+  pid=String(pid);
+  const op=openPhases[activeProjId]||new Set();
+  if(op.has(pid)) op.delete(pid); else op.add(pid);
+  openPhases[activeProjId]=op;
+  renderPhases();
+}
+function toggleTask(tid){
+  const ot=openTasks[activeProjId]||new Set();
+  if(ot.has(tid)) ot.delete(tid); else ot.add(tid);
+  openTasks[activeProjId]=ot;
+  renderPhases();
+}
+function toggleDeliverable(taskId,delivId){
+  const proj=PROJECTS.find(p=>p.id===activeProjId);
+  proj.phases.forEach(ph=>{
+    const task=ph.tasks.find(t=>t.id===taskId);
+    if(task){
+      const d=task.deliverables.find(d=>d.id===delivId);
+      if(d) d.done=!d.done;
+    }
+  });
+  saveData();
+  renderPhases(); renderProjView();
+}
+function triggerUpload(taskId,delivId){
+  document.getElementById(`fu-${taskId}-${delivId}`)?.click();
+}
+function handleFileUpload(taskId,delivId,input){
+  if(!input.files||!input.files[0]) return;
+  const fname=input.files[0].name;
+  const proj=PROJECTS.find(p=>p.id===activeProjId);
+  proj.phases.forEach(ph=>{
+    const task=ph.tasks.find(t=>t.id===taskId);
+    if(task){
+      const d=task.deliverables.find(d=>d.id===delivId);
+      if(d){ d.file=fname; d.done=true; }
+    }
+  });
+  saveData();
+  renderPhases(); renderProjView();
+  showToast('File "'+fname+'" uploaded — deliverable marked complete!');
+}
+function addDeliverable(taskId,phaseId){
+  const inp=document.getElementById('newdeliv-'+taskId);
+  const text=inp.value.trim();
+  if(!text) return;
+  const proj=PROJECTS.find(p=>p.id===activeProjId);
+  proj.phases.forEach(ph=>{
+    const task=ph.tasks.find(t=>t.id===taskId);
+    if(task) task.deliverables.push({id:'d'+Date.now(),text,done:false,file:null,fileRequired:false});
+  });
+  inp.value='';
+  saveData();
+  renderPhases(); renderProjView();
+  showToast('Deliverable added!');
+}
+function addTask(pid){
+  const inp=document.getElementById('ni-'+pid);
+  const text=inp.value.trim();
+  if(!text) return;
+  const proj=PROJECTS.find(p=>p.id===activeProjId);
+  const phase=proj.phases.find(p=>String(p.id)===String(pid));
+  phase.tasks.push({id:pid+'_'+Date.now(),text,resp:'—',deliverables:[
+    {id:'d'+Date.now()+'_1',text:'Task complete — upload evidence',done:false,file:null,fileRequired:true}
+  ]});
+  inp.value='';
+  saveData();
+  renderPhases(); renderProjView();
+  showToast('Task added: "'+text+'"');
+}
+function deleteTask(tid,pid){
+  const proj=PROJECTS.find(p=>p.id===activeProjId);
+  const phase=proj.phases.find(p=>String(p.id)===String(pid));
+  const task=phase.tasks.find(t=>t.id===tid);
+  if(!task||!confirm('Delete task "'+task.text+'"?')) return;
+  phase.tasks=phase.tasks.filter(t=>t.id!==tid);
+  saveData();
+  renderPhases(); renderProjView();
+  showToast('Task deleted.');
+}
+function updateCost(pid,field,val){
+  const proj=PROJECTS.find(p=>p.id===activeProjId);
+  const phase=proj.phases.find(p=>String(p.id)===String(pid));
+  // strip commas, $, spaces so "21,400" or "$21,400" both work
+  const clean=String(val).replace(/[^0-9.]/g,'');
+  phase.budget[field]=parseFloat(clean)||0;
+  const tot=phaseTotal(phase);
+  const el=document.getElementById('ctot-'+pid);
+  if(el) el.textContent=fmtMoney(tot);
+  saveData();
+  // update only the metrics + sidebar, NOT the whole phase panel (keeps cursor/focus stable)
+  renderMetricsOnly();
+}
+function renderMetricsOnly(){
+  const proj=PROJECTS.find(p=>p.id===activeProjId);
+  if(!proj) return;
+  const gt=projTotal(proj);
+  const metricEls=document.querySelectorAll('#metrics-row .metric-val');
+  if(metricEls.length){ metricEls[metricEls.length-1].textContent=fmtMoney(gt); }
+  renderSidebar();
+}
+function updatePhaseStatus(pid,val){
+  const proj=PROJECTS.find(p=>p.id===activeProjId);
+  proj.phases.find(p=>String(p.id)===String(pid)).status=val;
+  saveData();
+  renderPhases(); renderProjView();
+}
+function addPhase(){
+  const name=prompt('New phase name:'); if(!name) return;
+  const proj=PROJECTS.find(p=>p.id===activeProjId);
+  const nid=proj.phases.length+1;
+  proj.phases.push({id:nid,name,status:'wait',startDay:0,endDay:30,
+    color:COLORS[nid%COLORS.length],budget:{labor:0,materials:0,equipment:0,other:0},tasks:[]});
+  saveData();
+  renderPhases(); renderProjView();
+  showToast('Phase added!');
+}
+
+// ════════════════════════════════════════════════════════════
+//  EDICIÓN UNIVERSAL — proyecto, fase, tarea, entregable
+//  Modal genérico: recibe una lista de campos y un callback de guardado
+// ════════════════════════════════════════════════════════════
+let _editSave = null;
+
+function openEditModal(title, fields, onSave){
+  document.getElementById('edit-title').textContent = title;
+  const wrap = document.getElementById('edit-fields');
+  wrap.innerHTML = '';
+  fields.forEach(f=>{
+    const fld = document.createElement('div');
+    fld.className = 'form-field';
+    if(f.type === 'select'){
+      const opts = f.options.map(o=>`<option value="${o.value}" ${String(o.value)===String(f.value)?'selected':''}>${o.label}</option>`).join('');
+      fld.innerHTML = `<label>${f.label}</label><select class="form-inp" id="ef-${f.key}">${opts}</select>`;
+    } else if(f.type === 'color'){
+      const sw = COLORS.map(c=>`<div class="edit-color-sw" data-c="${c}" style="width:26px;height:26px;border-radius:7px;background:${c};cursor:pointer;border:2px solid ${c===f.value?'#fff':'transparent'};" onclick="pickEditColor(this)"></div>`).join('');
+      fld.innerHTML = `<label>${f.label}</label><div style="display:flex;gap:8px;flex-wrap:wrap;" id="ef-${f.key}" data-val="${f.value}">${sw}</div>`;
+    } else {
+      const attrs = f.type==='number' ? 'type="number" min="0"' : (f.type==='date' ? 'type="date"' : 'type="text"');
+      fld.innerHTML = `<label>${f.label}</label><input class="form-inp" id="ef-${f.key}" ${attrs} value="${f.value ?? ''}" placeholder="${f.placeholder||''}"/>`;
+    }
+    wrap.appendChild(fld);
+  });
+  _editSave = onSave;
+  document.getElementById('edit-overlay').classList.add('open');
+}
+function pickEditColor(el){
+  const parent = el.parentElement;
+  parent.setAttribute('data-val', el.getAttribute('data-c'));
+  parent.querySelectorAll('.edit-color-sw').forEach(s=>s.style.border='2px solid transparent');
+  el.style.border='2px solid #fff';
+}
+function readEditField(key, type){
+  const el = document.getElementById('ef-'+key);
+  if(!el) return null;
+  if(type === 'color') return el.getAttribute('data-val');
+  if(type === 'number') return parseFloat(String(el.value).replace(/[^0-9.]/g,''))||0;
+  return el.value;
+}
+function closeEditModal(){
+  document.getElementById('edit-overlay').classList.remove('open');
+  _editSave = null;
+}
+function saveEditModal(){
+  if(_editSave) _editSave();
+  closeEditModal();
+  saveData();
+  renderPhases(); renderProjView(); renderSidebar();
+  showToast('Changes saved.');
+}
+
+// ── EDITAR PROYECTO (nombre, cliente, fechas, color) ──
+function editProject(){
+  const proj = PROJECTS.find(p=>p.id===activeProjId);
+  if(!proj) return;
+  openEditModal('Edit project', [
+    {key:'name',   label:'Project name',       type:'text',  value:proj.name},
+    {key:'client', label:'Client / Location',  type:'text',  value:proj.client},
+    {key:'start',  label:'Start date',         type:'date',  value:proj.start},
+    {key:'end',    label:'End date',           type:'date',  value:proj.end},
+    {key:'color',  label:'Project color',      type:'color', value:proj.color},
+  ], ()=>{
+    proj.name   = readEditField('name','text')   || proj.name;
+    proj.client = readEditField('client','text');
+    proj.start  = readEditField('start','date')  || proj.start;
+    proj.end    = readEditField('end','date')    || proj.end;
+    proj.color  = readEditField('color','color') || proj.color;
+  });
+}
+
+// ── EDITAR FASE (nombre, días, color, status) ──
+function editPhase(pid){
+  const proj = PROJECTS.find(p=>p.id===activeProjId);
+  const phase = proj.phases.find(p=>String(p.id)===String(pid));
+  if(!phase) return;
+  openEditModal('Edit phase / stage', [
+    {key:'name',    label:'Phase name',            type:'text',   value:phase.name},
+    {key:'startDay',label:'Start (day # from project start)', type:'number', value:phase.startDay},
+    {key:'endDay',  label:'End (day # from project start)',   type:'number', value:phase.endDay},
+    {key:'status',  label:'Status', type:'select', value:phase.status, options:[
+      {value:'active',label:'Active'},{value:'done',label:'Done'},{value:'wait',label:'Pending'},
+      {value:'blocked',label:'Blocked'},{value:'buffer',label:'Buffer'}]},
+    {key:'color',   label:'Phase color',           type:'color',  value:phase.color},
+  ], ()=>{
+    phase.name     = readEditField('name','text') || phase.name;
+    phase.startDay = readEditField('startDay','number');
+    phase.endDay   = readEditField('endDay','number');
+    phase.status   = readEditField('status','select');
+    phase.color    = readEditField('color','color') || phase.color;
+  });
+}
+
+// ── ELIMINAR FASE ──
+function deletePhase(pid){
+  const proj = PROJECTS.find(p=>p.id===activeProjId);
+  const phase = proj.phases.find(p=>String(p.id)===String(pid));
+  if(!phase || !confirm('Delete phase "'+phase.name+'" and all its tasks?')) return;
+  proj.phases = proj.phases.filter(p=>String(p.id)!==String(pid));
+  saveData(); renderPhases(); renderProjView(); renderSidebar();
+  showToast('Phase deleted.');
+}
+
+// ── EDITAR TAREA (nombre + responsable) ──
+function editTask(tid, pid){
+  const proj = PROJECTS.find(p=>p.id===activeProjId);
+  const phase = proj.phases.find(p=>String(p.id)===String(pid));
+  const task = phase.tasks.find(t=>t.id===tid);
+  if(!task) return;
+  openEditModal('Edit task', [
+    {key:'text', label:'Task name',   type:'text', value:task.text},
+    {key:'resp', label:'Responsible', type:'text', value:task.resp, placeholder:'e.g. Crew, Site Lead, Elec. Eng.'},
+  ], ()=>{
+    task.text = readEditField('text','text') || task.text;
+    task.resp = readEditField('resp','text') || '—';
+  });
+}
+
+// ── EDITAR ENTREGABLE (texto + si requiere archivo) ──
+function editDeliverable(taskId, delivId){
+  const proj = PROJECTS.find(p=>p.id===activeProjId);
+  let target=null;
+  proj.phases.forEach(ph=>ph.tasks.forEach(t=>{ if(t.id===taskId){ const d=t.deliverables.find(d=>d.id===delivId); if(d) target=d; }}));
+  if(!target) return;
+  openEditModal('Edit deliverable', [
+    {key:'text', label:'Deliverable text', type:'text', value:target.text},
+    {key:'req',  label:'Requires file upload?', type:'select', value:target.fileRequired?'1':'0', options:[
+      {value:'1',label:'Yes — file required'},{value:'0',label:'No — checkbox only'}]},
+  ], ()=>{
+    target.text = readEditField('text','text') || target.text;
+    target.fileRequired = readEditField('req','select')==='1';
+  });
+}
+
+// ── ELIMINAR ENTREGABLE ──
+function deleteDeliverable(taskId, delivId){
+  const proj = PROJECTS.find(p=>p.id===activeProjId);
+  proj.phases.forEach(ph=>ph.tasks.forEach(t=>{
+    if(t.id===taskId) t.deliverables = t.deliverables.filter(d=>d.id!==delivId);
+  }));
+  saveData(); renderPhases(); renderProjView();
+  showToast('Deliverable removed.');
+}
+
+// ── GANTT ──
+function renderGantt(){
+  const proj=PROJECTS.find(p=>p.id===activeProjId);
+  if(!proj) return;
+  const wrap=document.getElementById('gantt-wrap');
+  const startD=new Date(proj.start);
+  const endD=new Date(proj.end);
+  const bufD=new Date(endD); bufD.setDate(bufD.getDate()+20);
+  const total=(bufD-startD)/86400000;
+  const today=new Date();
+  const todayPct=Math.max(0,Math.min(100,((today-startD)/86400000/total*100))).toFixed(1);
+  const months=[];
+  let cur=new Date(startD); cur.setDate(1);
+  while(cur<=bufD){months.push(new Date(cur));cur=new Date(cur.getFullYear(),cur.getMonth()+1,1);}
+  let html=`<div style="font-size:12px;color:var(--text3);margin-bottom:12px;">Timeline: ${fmtDate(startD)} → ${fmtDate(endD)} · Buffer until ${fmtDate(bufD)}</div>`;
+  html+=`<div class="gantt-months">`;
+  months.forEach(m=>{
+    const dim=new Date(m.getFullYear(),m.getMonth()+1,0).getDate();
+    html+=`<div class="gantt-month-lbl" style="width:${(dim/total*100).toFixed(1)}%;">${m.toLocaleString('en-US',{month:'short'})} '${String(m.getFullYear()).slice(2)}</div>`;
+  });
+  html+=`</div>`;
+  proj.phases.forEach(ph=>{
+    const sd=addDays(proj.start,ph.startDay);
+    const ed=String(ph.id)==='9'?endD:addDays(proj.start,ph.endDay);
+    const pp=phasePct(ph);
+    const lp=Math.max(0,((sd-startD)/86400000/total*100)).toFixed(1);
+    const wp=Math.max(.5,((ed-sd)/86400000/total*100)).toFixed(1);
+    const fw=(parseFloat(wp)*pp/100).toFixed(1);
+    const ib=ph.status==='buffer';
+    html+=`<div style="display:flex;align-items:center;gap:0;margin-bottom:6px;">
+      <div class="gantt-label-col" title="${ph.name}">${ph.id}. ${ph.name}</div>
+      <div class="gantt-track">
+        <div class="g-bg" style="left:${lp}%;width:${wp}%;background:${ph.color}18;border:1px solid ${ph.color}33;${ib?'background:repeating-linear-gradient(45deg,transparent,transparent 3px,'+ph.color+'22 3px,'+ph.color+'22 6px);':''}"></div>
+        <div class="g-fill" style="left:${lp}%;width:${fw}%;background:${ph.color};"></div>
+        <div class="g-today" style="left:${todayPct}%;"></div>
+      </div>
+      <div class="gantt-pct" style="color:${barColor(pp)};">${pp}%</div>
+    </div>`;
+  });
+  html+=`<div style="display:flex;gap:18px;margin-top:14px;font-size:11px;color:var(--text3);flex-wrap:wrap;">
+    <span><span style="display:inline-block;width:12px;height:3px;background:var(--red);vertical-align:middle;margin-right:5px;"></span>Today</span>
+    <span style="margin-left:auto;">Target: <strong style="color:var(--text);">${fmtDate(endD)}</strong> &nbsp;·&nbsp; Buffer: <strong style="color:var(--purple);">${fmtDate(bufD)}</strong></span>
+  </div>`;
+  wrap.innerHTML=html;
+}
+
+// ── BUDGET ──
+function renderBudget(){
+  const proj=PROJECTS.find(p=>p.id===activeProjId);
+  if(!proj) return;
+  const wrap=document.getElementById('budget-wrap');
+  const gt=projTotal(proj);
+  const tL=proj.phases.reduce((s,p)=>s+(p.budget.labor||0),0);
+  const tM=proj.phases.reduce((s,p)=>s+(p.budget.materials||0),0);
+  const tE=proj.phases.reduce((s,p)=>s+(p.budget.equipment||0),0);
+  const tO=proj.phases.reduce((s,p)=>s+(p.budget.other||0),0);
+  let html=`<div class="budget-cards">
+    <div class="bcard"><div class="bcard-label">Total Budget</div><div class="bcard-val mv-blue">${fmtMoney(gt)}</div></div>
+    <div class="bcard"><div class="bcard-label">Total Labor</div><div class="bcard-val mv-amber">${fmtMoney(tL)}</div></div>
+    <div class="bcard"><div class="bcard-label">Total Materials</div><div class="bcard-val mv-purple">${fmtMoney(tM)}</div></div>
+    <div class="bcard"><div class="bcard-label">Equipment + Other</div><div class="bcard-val mv-green">${fmtMoney(tE+tO)}</div></div>
+  </div>
+  <table class="btable"><thead><tr>
+    <th>Phase</th><th>Status</th><th class="num">Labor</th>
+    <th class="num">Materials</th><th class="num">Equipment</th>
+    <th class="num">Other</th><th class="num">Total</th><th style="width:110px;">Share</th>
+  </tr></thead><tbody>`;
+  proj.phases.forEach(ph=>{
+    const tot=phaseTotal(ph);
+    const share=gt>0?(tot/gt*100).toFixed(1):0;
+    html+=`<tr>
+      <td><span class="phase-dot" style="background:${ph.color};"></span>${ph.name}</td>
+      <td><span class="st-badge ${statusClass(ph.status)}">${statusLabel(ph.status)}</span></td>
+      <td class="num">${fmtMoney(ph.budget.labor||0)}</td>
+      <td class="num">${fmtMoney(ph.budget.materials||0)}</td>
+      <td class="num">${fmtMoney(ph.budget.equipment||0)}</td>
+      <td class="num">${fmtMoney(ph.budget.other||0)}</td>
+      <td class="num" style="color:var(--blue);font-weight:700;">${fmtMoney(tot)}</td>
+      <td><div style="font-size:10px;color:var(--text3);">${share}%</div>
+        <div class="bb-track"><div class="bb-fill" style="width:${share}%;background:${ph.color};"></div></div></td>
+    </tr>`;
+  });
+  html+=`</tbody><tfoot><tr>
+    <td colspan="2"><strong>Total</strong></td>
+    <td class="num"><strong>${fmtMoney(tL)}</strong></td>
+    <td class="num"><strong>${fmtMoney(tM)}</strong></td>
+    <td class="num"><strong>${fmtMoney(tE)}</strong></td>
+    <td class="num"><strong>${fmtMoney(tO)}</strong></td>
+    <td class="num" style="color:var(--blue);font-size:14px;"><strong>${fmtMoney(gt)}</strong></td>
+    <td><strong>100%</strong></td>
+  </tr></tfoot></table>`;
+  wrap.innerHTML=html;
+}
+
+// ── TABS ──
+function switchTab(tab,el){
+  activeTab=tab;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('panel-'+tab).classList.add('active');
+  if(tab==='gantt') renderGantt();
+  if(tab==='budget') renderBudget();
+  if(tab==='phases') renderPhases();
+}
+
+// ── MODAL ──
+function buildColorPicker(){
+  const cp=document.getElementById('color-picker');
+  cp.innerHTML='';
+  COLORS.forEach(c=>{
+    const d=document.createElement('div');
+    d.className='color-opt'+(c===selColor?' sel':'');
+    d.style.background=c;
+    d.onclick=()=>{selColor=c;buildColorPicker();};
+    cp.appendChild(d);
+  });
+}
+function openModal(){
+  document.getElementById('m-name').value='';
+  document.getElementById('m-client').value='';
+  document.getElementById('m-start').value=new Date().toISOString().split('T')[0];
+  document.getElementById('m-end').value='';
+  buildColorPicker();
+  document.getElementById('modal-overlay').classList.add('open');
+  setTimeout(()=>document.getElementById('m-name').focus(),100);
+}
+function closeModal(){document.getElementById('modal-overlay').classList.remove('open');}
+function createProject(){
+  const name=document.getElementById('m-name').value.trim();
+  if(!name){document.getElementById('m-name').focus();return;}
+  const proj={id:Date.now(),name,client:document.getElementById('m-client').value.trim()||'—',
+    color:selColor,start:document.getElementById('m-start').value,
+    end:document.getElementById('m-end').value,phases:[]};
+  PROJECTS.push(proj);
+  saveData();
+  closeModal(); renderSidebar(); openProject(proj.id);
+  showToast('Project "'+name+'" created!');
+}
+
+// ── EXPORTS ──
+function exportExcel(){
+  const proj=PROJECTS.find(p=>p.id===activeProjId);
+  if(!proj){alert('Select a project first.');return;}
+  const gt=projTotal(proj);
+  const today=new Date().toLocaleDateString('en-US');
+  const rows=[];
+  rows.push(['SHEMS Global Projects LLC','','','','','','','','']);
+  rows.push(['TRACKING REPORT — '+proj.name.toUpperCase(),'','','','','','','','']);
+  rows.push(['Generated:',today,'','Client:',proj.client||'—','','','','']);
+  rows.push(['Start:',proj.start||'—','','End:',proj.end||'—','','','','']);
+  rows.push(['Overall Progress:',projPct(proj)+'%','','Total Budget:',gt,'','','','']);
+  rows.push([]);
+  rows.push(['PHASE SUMMARY','','','','','','','','']);
+  rows.push(['#','Phase','Status','Progress','Labor','Materials','Equipment','Other','Total']);
+  proj.phases.forEach((ph,i)=>{
+    rows.push([i+1,ph.name,statusLabel(ph.status),phasePct(ph)+'%',
+      ph.budget.labor,ph.budget.materials,ph.budget.equipment,ph.budget.other,phaseTotal(ph)]);
+  });
+  rows.push([]);
+  rows.push(['DELIVERABLE DETAIL — OBJECTIVE PROGRESS TRACKING','','','','','','','','']);
+  rows.push(['Phase','Task','Deliverable','Done','File Uploaded','File Required','','','']);
+  proj.phases.forEach(ph=>{
+    ph.tasks.forEach(t=>{
+      (t.deliverables||[]).forEach(d=>{
+        rows.push([ph.name,t.text,d.text,d.done?'YES':'NO',d.file||'—',d.fileRequired?'YES':'NO','','','']);
+      });
+    });
+  });
+  rows.push([]);
+  rows.push(['SHEMS Global Projects LLC — Confidential','','','','','','','','']);
+  const csv=rows.map(r=>r.map(v=>{
+    const s=String(v===undefined?'':v);
+    return s.includes(',')||s.includes('"')?'"'+s.replace(/"/g,'""')+'"':s;
+  }).join(',')).join('\n');
+  const blob=new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8;'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download=`SHEMS_Tracking_${proj.name.replace(/[^a-z0-9]/gi,'_')}.csv`;
+  a.click();
+  showToast('Excel tracking report downloaded!');
+}
+
+function exportPDF(){
+  const proj=PROJECTS.find(p=>p.id===activeProjId);
+  if(!proj){alert('Select a project first.');return;}
+  const pct=projPct(proj);
+  const gt=projTotal(proj);
+  const today=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+  function bc(p){return p>=75?'#22C55E':p>=30?'#F59E0B':'#EF4444';}
+  function bar(p,w){return `<div style="width:${w||'100%'};height:7px;background:#1E2436;border-radius:4px;overflow:hidden;"><div style="width:${p}%;height:100%;background:${bc(p)};border-radius:4px;"></div></div>`;}
+  let phasesHTML='';
+  proj.phases.forEach((ph,idx)=>{
+    const pp=phasePct(ph);
+    const tot=phaseTotal(ph);
+    const totalDel=ph.tasks.reduce((s,t)=>s+(t.deliverables||[]).length,0);
+    const doneDel=ph.tasks.reduce((s,t)=>s+(t.deliverables||[]).filter(d=>d.done).length,0);
+    let taskRows='';
+    ph.tasks.forEach(t=>{
+      const tp=taskPct(t);
+      const tDone=(t.deliverables||[]).filter(d=>d.done).length;
+      const tTotal=(t.deliverables||[]).length;
+      let delivRows=(t.deliverables||[]).map(d=>{
+        const fileStatus=d.fileRequired?(d.file?`<span style="color:#22C55E;font-size:10px;">✓ ${d.file}</span>`:`<span style="color:#EF4444;font-size:10px;">⚠ File required — pending upload</span>`):'';
+        return `<tr style="border-bottom:1px solid #1E2436;">
+          <td style="padding:4px 8px 4px 24px;font-size:10px;color:#ccc;">${d.done?'✓':'○'} ${d.text}</td>
+          <td style="padding:4px 8px;font-size:10px;text-align:center;">${d.done?'<span style="color:#22C55E;font-weight:700;">✓ Done</span>':'<span style="color:#F59E0B;">Pending</span>'}</td>
+          <td style="padding:4px 8px;font-size:10px;">${fileStatus}</td>
+        </tr>`;
+      }).join('');
+      taskRows+=`<tr style="border-bottom:1px solid #252A3A;background:#151922;">
+        <td style="padding:7px 10px;font-size:11px;font-weight:600;color:#E8EBF4;">${t.text}</td>
+        <td style="padding:7px 10px;font-size:10px;color:#8892AB;">${t.resp}</td>
+        <td style="padding:7px 10px;font-size:11px;color:#8892AB;text-align:center;">${tDone}/${tTotal}</td>
+        <td style="padding:7px 10px;text-align:center;"><span style="font-size:12px;font-weight:800;color:${bc(tp)};">${tp}%</span><br/>${bar(tp,'70px')}</td>
+      </tr>
+      <tr><td colspan="4" style="padding:0 0 8px 0;">${delivRows?`<table style="width:100%;border-collapse:collapse;">${delivRows}</table>`:''}</td></tr>`;
+    });
+    phasesHTML+=`
+    <div style="margin-bottom:20px;border:1px solid #252A3A;border-radius:10px;overflow:hidden;border-left:4px solid ${ph.color};">
+      <div style="background:#151922;padding:11px 16px;display:flex;justify-content:space-between;align-items:center;">
+        <div>
+          <span style="font-size:13px;font-weight:700;color:#E8EBF4;">${idx+1}. ${ph.name}</span>
+          <span style="margin-left:10px;font-size:10px;padding:2px 8px;border-radius:4px;background:${ph.color}22;color:${ph.color};font-weight:700;">${statusLabel(ph.status)}</span>
+        </div>
+        <div style="display:flex;gap:20px;align-items:center;">
+          <div style="text-align:center;"><div style="font-size:10px;color:#4A5270;">DELIVERABLES</div><div style="font-size:13px;font-weight:700;color:#E8EBF4;">${doneDel}/${totalDel}</div></div>
+          <div style="text-align:center;"><div style="font-size:10px;color:#4A5270;">BUDGET</div><div style="font-size:13px;font-weight:700;color:#3B7BE8;">${fmtMoney(tot)}</div></div>
+          <div style="text-align:center;"><div style="font-size:10px;color:#4A5270;">PROGRESS</div><div style="font-size:18px;font-weight:800;color:${bc(pp)};">${pp}%</div></div>
+        </div>
+      </div>
+      ${bar(pp,'100%')}
+      <table style="width:100%;border-collapse:collapse;">
+        <thead><tr style="background:#0F1117;">
+          <th style="padding:6px 10px;text-align:left;font-size:10px;color:#4A5270;font-weight:700;text-transform:uppercase;letter-spacing:.5px;">Task</th>
+          <th style="padding:6px 10px;font-size:10px;color:#4A5270;font-weight:700;text-transform:uppercase;letter-spacing:.5px;">Responsible</th>
+          <th style="padding:6px 10px;text-align:center;font-size:10px;color:#4A5270;font-weight:700;text-transform:uppercase;letter-spacing:.5px;">Deliverables</th>
+          <th style="padding:6px 10px;text-align:center;font-size:10px;color:#4A5270;font-weight:700;text-transform:uppercase;letter-spacing:.5px;width:90px;">Progress</th>
+        </tr></thead>
+        <tbody>${taskRows}</tbody>
+      </table>
+    </div>`;
+  });
+  const html=`<!DOCTYPE html><html><head><meta charset="UTF-8"/>
+  <title>SHEMS — Executive Report — ${proj.name}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>*{box-sizing:border-box;margin:0;padding:0;}body{font-family:'Inter',sans-serif;background:#0F1117;color:#E8EBF4;}
+  @media print{.no-print{display:none!important;}body{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}</style>
+  </head><body>
+  <div class="no-print" style="position:fixed;top:16px;right:16px;z-index:100;display:flex;gap:8px;">
+    <button onclick="window.print()" style="padding:10px 20px;background:#3B7BE8;color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">🖨 Print / Save as PDF</button>
+    <button onclick="window.close()" style="padding:10px 14px;background:#1E2436;color:#8892AB;border:1px solid #252A3A;border-radius:8px;font-size:13px;cursor:pointer;font-family:inherit;">✕ Close</button>
+  </div>
+  <div style="background:linear-gradient(135deg,#0D1B3E 0%,#0F2456 50%,#1A3A8B 100%);padding:42px 50px 32px;">
+    <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#4A7FD4;margin-bottom:6px;">SHEMS Global Projects LLC</div>
+    <div style="font-size:28px;font-weight:800;color:#fff;letter-spacing:.5px;margin-bottom:4px;">EXECUTIVE REPORT</div>
+    <div style="font-size:17px;color:#90B8DC;margin-bottom:22px;">${proj.name}</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
+      ${[['START',proj.start||'—'],['END',proj.end||'—'],['BUDGET',fmtMoney(gt)],['PROGRESS',pct+'%']].map(([l,v])=>`
+      <div style="background:rgba(255,255,255,.08);border-radius:9px;padding:11px 14px;">
+        <div style="font-size:10px;color:#4A7FD4;margin-bottom:4px;">${l}</div>
+        <div style="font-size:15px;font-weight:700;color:#fff;">${v}</div>
+      </div>`).join('')}
+    </div>
+  </div>
+  <div style="padding:28px 50px 40px;">
+    <div style="font-size:13px;font-weight:700;color:#3B7BE8;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #252A3A;padding-bottom:8px;margin-bottom:16px;">Phase Detail & Deliverables</div>
+    ${phasesHTML}
+  </div>
+  <div style="background:#0B0E14;padding:14px 50px;display:flex;justify-content:space-between;align-items:center;font-size:11px;border-top:1px solid #252A3A;">
+    <span style="font-weight:700;color:#3B7BE8;">SHEMS Global Projects LLC</span>
+    <span style="color:#4A5270;">${proj.name} · Executive Report · ${today}</span>
+    <span style="color:#4A5270;">Confidential</span>
+  </div></body></html>`;
+  const w=window.open('','_blank','width=1100,height=850,scrollbars=yes');
+  w.document.write(html); w.document.close();
+  showToast('PDF report ready — press Print to save!');
+}
+
+// ── WORD REPORT (downloads a .doc that opens in Microsoft Word) ──
+function exportWord(){
+  const proj=PROJECTS.find(p=>p.id===activeProjId);
+  if(!proj){alert('Select a project first.');return;}
+  const pct=projPct(proj);
+  const gt=projTotal(proj);
+  const today=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+  // Document code: derive from project (PRP keeps its code; others get a generic project code)
+  const DOC_CODE = (proj.name||'').toUpperCase().includes('PUNK') ? 'INF-PRP-2026-002'
+                 : (proj.name||'').toUpperCase().includes('CALABRESE') ? 'INF-CAL-2026-001'
+                 : 'INF-'+String(proj.id).padStart(3,'0')+'-2026';
+  const BLUE='#1A3A8B', BLUE2='#1565C0', DARK='#0D1117', MED='#2C3E6B', GRAY='#5A6480', LIGHT='#EBF4FD', LIGHT2='#F0F6FD', BORDER='#90B8DC';
+  const GREEN='#1F9D6B', AMBER='#B4820E', RED='#C0392B';
+  const logoImg=document.querySelector('.brand-logo-img');
+  const logoSrc=logoImg?logoImg.getAttribute('src'):'';
+
+  // FULL detail: include ALL phases (not only those already started),
+  // so a brand-new project at 0% still exports its complete plan.
+  const allPhases=proj.phases;
+
+  const tLabor=proj.phases.reduce((s,p)=>s+(p.budget.labor||0),0);
+  const tMat=proj.phases.reduce((s,p)=>s+(p.budget.materials||0),0);
+  const tEquip=proj.phases.reduce((s,p)=>s+(p.budget.equipment||0),0);
+  const tOther=proj.phases.reduce((s,p)=>s+(p.budget.other||0),0);
+
+  const stFor=(tp)=>tp>=100?'Complete':tp>0?'In Progress':'Pending';
+  const stColorFor=(tp)=>tp>=100?GREEN:tp>0?AMBER:GRAY;
+
+  // ── Budget rows (ALL phases) ──
+  let budgetRows='';
+  allPhases.forEach((ph)=>{
+    budgetRows+=`<tr>
+      <td style="padding:3px 7px;border:1px solid ${BORDER};font-size:9pt;">${ph.id}. ${ph.name}</td>
+      <td style="padding:3px 7px;border:1px solid ${BORDER};font-size:9pt;text-align:center;font-weight:bold;color:${BLUE};">${phasePct(ph)}%</td>
+      <td style="padding:3px 7px;border:1px solid ${BORDER};font-size:9pt;text-align:right;">${fmtMoney(ph.budget.labor||0)}</td>
+      <td style="padding:3px 7px;border:1px solid ${BORDER};font-size:9pt;text-align:right;">${fmtMoney(ph.budget.materials||0)}</td>
+      <td style="padding:3px 7px;border:1px solid ${BORDER};font-size:9pt;text-align:right;">${fmtMoney(ph.budget.equipment||0)}</td>
+      <td style="padding:3px 7px;border:1px solid ${BORDER};font-size:9pt;text-align:right;">${fmtMoney(ph.budget.other||0)}</td>
+      <td style="padding:3px 7px;border:1px solid ${BORDER};font-size:9pt;text-align:right;font-weight:bold;color:${BLUE};">${fmtMoney(phaseTotal(ph))}</td>
+    </tr>`;
+  });
+
+  // ── GANTT (ALL phases) — day-precise grid, weekly labels ──
+  // Each column = 1 day. A phase is shaded from its startDay to its endDay inclusive,
+  // so every bar lines up exactly with the dates shown in the phase detail below.
+  const startD=new Date(proj.start), endD=new Date(proj.end);
+  const totalDays=Math.max(1,Math.round((endD-startD)/86400000));
+  // Cap the phase span to the project window so nothing overflows the grid.
+  const clampDay=(d)=>Math.max(0,Math.min(totalDays,d));
+  // Weekly header labels (Week 1, Week 2 …) spanning 7 day-columns each.
+  const totalWeeks=Math.max(1,Math.ceil(totalDays/7));
+  let ganttHead='<th rowspan="1" style="padding:3px 6px;border:1px solid '+BLUE+';font-size:7.5pt;text-align:left;background:'+BLUE+';color:#fff;">Phase</th>';
+  for(let w=0;w<totalWeeks;w++){
+    const span=Math.min(7,totalDays-w*7);
+    ganttHead+='<th colspan="'+span+'" style="padding:2px 2px;border:1px solid '+BORDER+';font-size:6.5pt;background:'+BLUE+';color:#fff;">W'+(w+1)+'</th>';
+  }
+  let ganttRows='';
+  allPhases.forEach(ph=>{
+    const pStart=clampDay(ph.startDay);
+    let pEndRaw=ph.endDay;
+    if(pEndRaw<=pStart) pEndRaw=pStart+1;      // guarantee at least one day of bar
+    const pEnd=clampDay(pEndRaw);
+    const pp=phasePct(ph);
+    const barColor2=pp>=75?GREEN:pp>=30?AMBER:RED;
+    let cells='';
+    for(let d=0;d<totalDays;d++){
+      const inRange=(d>=pStart && d<pEnd);
+      const weekEdge=((d+1)%7===0)?'border-right:1px solid '+BORDER+';':'';
+      cells+='<td style="padding:0;border-top:1px solid '+BORDER+';border-bottom:1px solid '+BORDER+';'+weekEdge+'height:15px;min-width:5px;'+(inRange?'background:'+ph.color+';':'background:#fff;')+'"></td>';
+    }
+    ganttRows+='<tr><td style="padding:3px 6px;border:1px solid '+BORDER+';font-size:7.5pt;white-space:nowrap;">'+ph.id+'. '+ph.name+' <b style="color:'+barColor2+';">('+pp+'%)</b></td>'+cells+'</tr>';
+  });
+
+  // ── Milestones table (end date of each phase = milestone target) ──
+  let milestoneRows='';
+  allPhases.forEach(ph=>{
+    const ed=proj.start?fmtDate(addDays(proj.start,ph.endDay)):'—';
+    const pp=phasePct(ph);
+    milestoneRows+=`<tr>
+      <td style="padding:3px 7px;border:1px solid ${BORDER};font-size:8.5pt;font-weight:bold;color:${BLUE};white-space:nowrap;">${ed}</td>
+      <td style="padding:3px 7px;border:1px solid ${BORDER};font-size:8.5pt;">Completion of Phase ${ph.id} — ${ph.name}</td>
+      <td style="padding:3px 7px;border:1px solid ${BORDER};font-size:8pt;text-align:center;color:${stColorFor(pp)};font-weight:bold;">${effStatus(ph)}</td>
+    </tr>`;
+  });
+
+  // ── Phase detail: phases + tasks with progress %, NO deliverables ──
+  let phaseSections='';
+  allPhases.forEach((ph)=>{
+    const sd=proj.start?fmtDate(addDays(proj.start,ph.startDay)):'—';
+    const ed=proj.start?fmtDate(addDays(proj.start,ph.endDay)):'—';
+    let taskRows='';
+    ph.tasks.forEach(t=>{
+      const tp=taskPct(t);
+      const st=stFor(tp), stColor=stColorFor(tp);
+      taskRows+=`<tr>
+        <td style="padding:3px 8px;border:1px solid ${BORDER};font-size:8.5pt;color:${DARK};">${t.text}</td>
+        <td style="padding:3px 8px;border:1px solid ${BORDER};font-size:8pt;text-align:center;color:${MED};width:120px;">${t.resp||'—'}</td>
+        <td style="padding:3px 8px;border:1px solid ${BORDER};font-size:8.5pt;text-align:center;font-weight:bold;color:${BLUE};width:70px;">${tp}%</td>
+        <td style="padding:3px 8px;border:1px solid ${BORDER};font-size:8pt;text-align:center;font-weight:bold;color:${stColor};width:90px;">${st}</td>
+      </tr>`;
+    });
+    if(!ph.tasks.length){
+      taskRows=`<tr><td colspan="4" style="padding:4px 8px;border:1px solid ${BORDER};font-size:8pt;color:${GRAY};font-style:italic;">No tasks recorded for this phase yet.</td></tr>`;
+    }
+    phaseSections+=`
+    <table style="width:100%;border-collapse:collapse;margin:0 0 3px 0;page-break-inside:avoid;">
+      <tr><td style="padding:5px 8px;background:${BLUE};color:#fff;font-size:10pt;font-weight:bold;border:1px solid ${BLUE};">
+        PHASE ${ph.id} — ${ph.name}
+      </td></tr>
+      <tr><td style="padding:3px 8px;background:${LIGHT};border:1px solid ${BORDER};font-size:8pt;color:${MED};">
+        Start: <b>${sd}</b> &nbsp;·&nbsp; End: <b>${ed}</b> &nbsp;·&nbsp; Status: <b style="color:${stColorFor(phasePct(ph))};">${effStatus(ph)}</b> &nbsp;·&nbsp; Progress: <b style="color:${BLUE};">${phasePct(ph)}%</b> &nbsp;·&nbsp; Budget: <b style="color:${BLUE};">${fmtMoney(phaseTotal(ph))}</b>
+      </td></tr>
+    </table>
+    <table style="width:100%;border-collapse:collapse;margin:0 0 10px 0;page-break-inside:avoid;">
+      <tr style="background:${LIGHT2};">
+        <th style="padding:3px 8px;border:1px solid ${BORDER};font-size:7.5pt;text-align:left;color:${BLUE};">Task</th>
+        <th style="padding:3px 8px;border:1px solid ${BORDER};font-size:7.5pt;color:${BLUE};width:120px;">Responsible</th>
+        <th style="padding:3px 8px;border:1px solid ${BORDER};font-size:7.5pt;color:${BLUE};width:70px;">Progress</th>
+        <th style="padding:3px 8px;border:1px solid ${BORDER};font-size:7.5pt;color:${BLUE};width:90px;">Status</th>
+      </tr>
+      ${taskRows}
+    </table>`;
+  });
+
+  // Scope note: only PRP carries the GPR/restroom note; other projects omit section 5.
+  const isPRP=(proj.name||'').toUpperCase().includes('PUNK');
+  const scopeNote = isPRP ? `
+<h2>5. Scope Note — Additional Work Identified</h2>
+<table style="width:100%;border-collapse:collapse;margin-bottom:10px;">
+  <tr><td style="padding:8px 12px;border:1px solid ${BLUE};border-left:5px solid ${BLUE};background:${LIGHT};font-size:9pt;color:${MED};text-align:justify;">
+    During execution of the Survey &amp; Diagnostics phase, it was determined that the location of the existing underground piping had <b>not been contemplated in the original project scope</b>. Identifying the actual routing and condition of the existing lines proved essential before proceeding with the plumbing works. As a result, <b>two additional tasks were incorporated</b> that were not foreseen at the start of the project:
+    <br/><br/>
+    &nbsp;&nbsp;<b>1.</b> Piping adaptation for the PRP restroom.<br/>
+    &nbsp;&nbsp;<b>2.</b> Pipe locating services using Ground Penetrating Radar (GPR).
+    <br/><br/>
+    These additional activities were necessary to accurately map the existing installations and to prevent unforeseen conflicts during subsequent construction stages. They are reflected in the deliverables of the Survey &amp; Diagnostics phase.
+  </td></tr>
+</table>` : '';
+
+  const doc=`<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">
+<head><meta charset="utf-8"><title>Executive Report ${DOC_CODE}</title>
+<!--[if gte mso 9]><xml><w:WordDocument><w:View>Print</w:View><w:Zoom>100</w:Zoom></w:WordDocument></xml><![endif]-->
+<style>
+  @page { size: 21cm 29.7cm; margin: 1.5cm 1.5cm; }
+  body { font-family: Arial, sans-serif; color: ${DARK}; font-size: 9pt; margin:0; }
+  table { border-collapse: collapse; }
+  h2 { font-size:12pt; color:${BLUE}; border-bottom:2px solid ${BLUE}; padding-bottom:3px; margin:12px 0 7px 0; }
+</style></head>
+<body>
+
+<table style="width:100%;border:none;margin-bottom:6px;"><tr>
+  <td style="border:none;vertical-align:middle;width:230px;">${logoSrc?'<img src="'+logoSrc+'" style="width:220px;"/>':''}</td>
+  <td style="border:none;vertical-align:middle;text-align:right;font-size:8.5pt;color:${GRAY};">
+    <div style="font-size:11pt;font-weight:bold;color:${BLUE};">SHEMS Global Projects LLC</div>
+    <div>Construction &amp; Development</div>
+    <div>Farmers Branch, Texas &middot; USA</div>
+    <div>Tel: (214) 477-7303 &middot; (469) 465-1226</div>
+    <div>business@shemsgp.com</div>
+  </td>
+</tr></table>
+<div style="border-bottom:2.5px solid ${BLUE};margin-bottom:10px;"></div>
+
+<h1 style="font-size:17pt;color:${BLUE};text-align:center;margin:0 0 1px 0;">EXECUTIVE PROGRESS REPORT</h1>
+<p style="text-align:center;font-size:11pt;color:${DARK};margin:0 0 10px 0;font-weight:bold;">${proj.name}</p>
+
+<table style="width:100%;border-collapse:collapse;margin-bottom:10px;">
+  <tr>
+    <td style="padding:4px 8px;border:1px solid ${BORDER};background:${BLUE};color:#fff;font-size:8pt;font-weight:bold;width:22%;">Document Code</td>
+    <td style="padding:4px 8px;border:1px solid ${BORDER};font-size:9pt;width:28%;font-weight:bold;color:${BLUE};">${DOC_CODE}</td>
+    <td style="padding:4px 8px;border:1px solid ${BORDER};background:${BLUE};color:#fff;font-size:8pt;font-weight:bold;width:22%;">Report Date</td>
+    <td style="padding:4px 8px;border:1px solid ${BORDER};font-size:9pt;width:28%;">${today}</td>
+  </tr>
+  <tr>
+    <td style="padding:4px 8px;border:1px solid ${BORDER};background:${LIGHT2};font-size:8pt;font-weight:bold;">Location</td>
+    <td style="padding:4px 8px;border:1px solid ${BORDER};font-size:9pt;">${proj.client||'—'}</td>
+    <td style="padding:4px 8px;border:1px solid ${BORDER};background:${LIGHT2};font-size:8pt;font-weight:bold;">Overall Progress</td>
+    <td style="padding:4px 8px;border:1px solid ${BORDER};font-size:9pt;font-weight:bold;color:${BLUE};">${pct}%</td>
+  </tr>
+  <tr>
+    <td style="padding:4px 8px;border:1px solid ${BORDER};background:${LIGHT2};font-size:8pt;font-weight:bold;">Period</td>
+    <td style="padding:4px 8px;border:1px solid ${BORDER};font-size:9pt;">${proj.start||'—'} &rarr; ${proj.end||'—'}</td>
+    <td style="padding:4px 8px;border:1px solid ${BORDER};background:${LIGHT2};font-size:8pt;font-weight:bold;">Total Budget</td>
+    <td style="padding:4px 8px;border:1px solid ${BORDER};font-size:9pt;font-weight:bold;color:${BLUE};">${fmtMoney(gt)}</td>
+  </tr>
+</table>
+
+<h2>1. Executive Summary</h2>
+<p style="margin:0 0 8px 0;text-align:justify;font-size:9pt;color:${MED};">
+This document constitutes the official executive report for the ${proj.name} project. The overall completion, calculated objectively from verified deliverables, stands at ${pct}%. The sections below present the complete project structure: timeline, budget allocation by phase and category, key milestones, and task-level progress with the full list of supporting deliverables and their evidence status.
+</p>
+
+<h2>2. Project Timeline (Gantt)</h2>
+<table style="width:100%;border-collapse:collapse;margin-bottom:6px;">
+  <tr>${ganttHead}</tr>
+  ${ganttRows}
+</table>
+<p style="font-size:7.5pt;color:${GRAY};margin:0 0 8px 0;">Timeline in weeks (W1, W2 …) relative to project start (${proj.start||'—'}). Each colored segment spans the exact scheduled duration of its phase, from start to end date.</p>
+
+<h2>3. Budget Summary by Phase</h2>
+<table style="width:100%;border-collapse:collapse;margin-bottom:10px;">
+  <tr style="background:${BLUE};color:#fff;">
+    <th style="padding:3px 7px;border:1px solid ${BLUE};font-size:8pt;text-align:left;">Phase</th>
+    <th style="padding:3px 7px;border:1px solid ${BLUE};font-size:8pt;">Progress</th>
+    <th style="padding:3px 7px;border:1px solid ${BLUE};font-size:8pt;">Labor</th>
+    <th style="padding:3px 7px;border:1px solid ${BLUE};font-size:8pt;">Materials</th>
+    <th style="padding:3px 7px;border:1px solid ${BLUE};font-size:8pt;">Equipment</th>
+    <th style="padding:3px 7px;border:1px solid ${BLUE};font-size:8pt;">Other</th>
+    <th style="padding:3px 7px;border:1px solid ${BLUE};font-size:8pt;">Total</th>
+  </tr>
+  ${budgetRows}
+  <tr style="background:${LIGHT};font-weight:bold;">
+    <td style="padding:3px 7px;border:1px solid ${BORDER};font-size:9pt;">PROJECT TOTAL (all phases)</td>
+    <td style="padding:3px 7px;border:1px solid ${BORDER};font-size:9pt;text-align:center;">${pct}%</td>
+    <td style="padding:3px 7px;border:1px solid ${BORDER};font-size:9pt;text-align:right;">${fmtMoney(tLabor)}</td>
+    <td style="padding:3px 7px;border:1px solid ${BORDER};font-size:9pt;text-align:right;">${fmtMoney(tMat)}</td>
+    <td style="padding:3px 7px;border:1px solid ${BORDER};font-size:9pt;text-align:right;">${fmtMoney(tEquip)}</td>
+    <td style="padding:3px 7px;border:1px solid ${BORDER};font-size:9pt;text-align:right;">${fmtMoney(tOther)}</td>
+    <td style="padding:3px 7px;border:1px solid ${BORDER};font-size:9.5pt;text-align:right;color:${BLUE};">${fmtMoney(gt)}</td>
+  </tr>
+</table>
+
+<h2>4. Key Project Milestones</h2>
+<table style="width:100%;border-collapse:collapse;margin-bottom:10px;">
+  <tr style="background:${BLUE};color:#fff;">
+    <th style="padding:3px 7px;border:1px solid ${BLUE};font-size:8pt;text-align:left;width:90px;">Target Date</th>
+    <th style="padding:3px 7px;border:1px solid ${BLUE};font-size:8pt;text-align:left;">Milestone</th>
+    <th style="padding:3px 7px;border:1px solid ${BLUE};font-size:8pt;width:80px;">Status</th>
+  </tr>
+  ${milestoneRows}
+</table>
+
+<h2>5. Phase Detail &amp; Tasks</h2>
+${phaseSections}
+
+${scopeNote}
+
+<table style="width:100%;border:none;margin-top:22px;page-break-inside:avoid;"><tr>
+  <td style="border:none;width:55%;vertical-align:bottom;">
+    <div style="border-bottom:1px solid ${DARK};width:230px;height:28px;"></div>
+    <div style="font-size:10pt;font-weight:bold;color:${DARK};margin-top:3px;">José Vigil</div>
+    <div style="font-size:8.5pt;color:${MED};">Director of Operations</div>
+    <div style="font-size:8.5pt;color:${BLUE};font-weight:bold;">SHEMS Global Projects LLC</div>
+    <div style="font-size:8pt;color:${GRAY};margin-top:2px;">Date: ${today}</div>
+  </td>
+  <td style="border:none;width:45%;"></td>
+</tr></table>
+
+<div style="border-top:1.5px solid ${BLUE};margin-top:16px;padding-top:5px;font-size:7.5pt;color:${GRAY};">
+  SHEMS Global Projects LLC &nbsp;&middot;&nbsp; Executive Progress Report ${DOC_CODE} &nbsp;&middot;&nbsp; Cut-off: ${today} &nbsp;&middot;&nbsp; Confidential
+</div>
+
+</body></html>`;
+
+  const blob=new Blob(['\ufeff'+doc], {type:'application/msword'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='SHEMS_GlobalProjects_'+DOC_CODE+'_'+proj.name.replace(/[^a-z0-9]/gi,'_')+'.doc';
+  a.click();
+  showToast('Word report '+DOC_CODE+' downloaded!');
+}
+
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent='✓  '+msg; t.style.display='flex';
+  clearTimeout(window._tt);
+  window._tt=setTimeout(()=>{t.style.display='none';},3200);
+}
+
+// ── INIT ──
+document.getElementById('modal-overlay').addEventListener('click',function(e){if(e.target===this)closeModal();});
+document.getElementById('edit-overlay').addEventListener('click',function(e){if(e.target===this)closeEditModal();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+
+// Show loading state, then load from cloud (async), then render
+// Snapshot of the built-in Calabrese project (id:2) BEFORE cloud load overwrites PROJECTS.
+// This lets us seed it into an existing cloud workspace that only has Punk Rock Pizza,
+// without touching or overwriting any other project.
+const CALABRESE_SEED = JSON.parse(JSON.stringify(
+  PROJECTS.find(p => p && p.id === 2) || null
+));
+
+function ensureCalabrese(){
+  if(!CALABRESE_SEED) return false;
+  // already present? (match by id OR by name, so we never duplicate)
+  const exists = PROJECTS.some(p =>
+    p && (p.id === CALABRESE_SEED.id ||
+      (typeof p.name === 'string' && p.name.toUpperCase().includes('CALABRESE')))
+  );
+  if(exists) return false;
+  PROJECTS.push(JSON.parse(JSON.stringify(CALABRESE_SEED)));
+  return true;
+}
+
+(async function init(){
+  setSyncState('saving');
+  await loadData();
+  // Seed Calabrese into the workspace if the cloud/cache didn't already have it,
+  // then persist so it stays available on every device from now on.
+  if(ensureCalabrese()){ saveData(); }
+  renderSidebar();
+  if(PROJECTS.length>0){ openProject(PROJECTS[0].id); }
+  else { document.getElementById('empty-state').style.display='block'; document.getElementById('proj-view').style.display='none'; }
+})();
+</script><div id="sync-indicator" title="Click to sync with cloud" style="position: fixed; bottom: 46px; left: 24px; border-radius: 8px; padding: 7px 13px; font-size: 11px; font-weight: 600; z-index: 400; display: flex; align-items: center; gap: 7px; font-family: Inter, sans-serif; transition: 0.3s; cursor: pointer; background: var(--bg2); border: 1px solid var(--red); color: var(--red); opacity: 1;"><span style="width:7px;height:7px;border-radius:50%;background:var(--red);display:inline-block;"></span>Offline — saved locally</div>
+
+
+</body></html>
