@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<!-- saved from url=(0216)file:///C:/Users/newky/AppData/Local/Packages/5319275A.WhatsAppDesktop_cv1g1gvanyjgm/LocalState/sessions/117A4B241F88C1D40386AF61F434B8F5EB9F63C8/transfers/2026-30/SHEMS_GlobalProjects_PunkRockPizza_PM_CLOUD_8_1.html -->
+<!-- saved from url=(0081)file:///C:/Users/newky/Downloads/SHEMS_GlobalProjects_PunkRockPizza_PM_CLOUD.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>SHEMS Global Projects LLC — Project Management</title>
-<link href="./SHEMS Global Projects LLC — Project Management_files/css2" rel="stylesheet">
+<link href="./index_files/css2" rel="stylesheet">
 <style>
 :root{
   --bg:#0B0E14;--bg2:#111520;--bg3:#181D2A;--bg4:#1E2436;
@@ -63,21 +63,6 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 .btn.green{background:rgba(34,197,94,0.15);border-color:rgba(34,197,94,0.3);color:var(--green);}
 .btn.sm{padding:5px 10px;font-size:11px;}
 .btn svg{width:13px;height:13px;flex-shrink:0;}
-
-/* ── INLINE EDIT / DELETE CONTROLS ── */
-.row-edit,.row-del{
-  display:inline-flex;align-items:center;justify-content:center;
-  width:20px;height:20px;border-radius:5px;font-size:11px;cursor:pointer;
-  margin-left:6px;flex-shrink:0;opacity:.45;transition:all .15s;
-  border:1px solid transparent;vertical-align:middle;user-select:none;
-}
-.row-edit{color:var(--blue);}
-.row-edit:hover{opacity:1;background:var(--blue-bg);border-color:var(--blue2);}
-.row-del{color:var(--red);}
-.row-del:hover{opacity:1;background:var(--red-bg);border-color:var(--red);}
-.phase-head:hover .row-edit,.phase-head:hover .row-del,
-.task-header:hover .row-edit,.deliverable-row:hover .row-edit,.deliverable-row:hover .row-del{opacity:.8;}
-#edit-fields .form-field{margin-bottom:12px;}
 
 /* ── LAYOUT ── */
 .layout{display:flex;height:calc(100vh - 64px);}
@@ -330,6 +315,7 @@ input[type=number]{-moz-appearance:textfield;}
   display:none;align-items:center;gap:8px;animation:slideUp .3s ease;}
 @keyframes slideUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
 
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
 /* ── FOOTER ── */
 .app-footer{position:fixed;bottom:0;left:0;right:0;height:30px;background:var(--bg2);
   border-top:1px solid var(--border);display:flex;align-items:center;
@@ -399,9 +385,9 @@ input[type=number]{-moz-appearance:textfield;}
       <div class="proj-item-top">
         <div class="proj-dot" style="background:#3B7BE8;"></div>
         <div class="proj-name">PUNK ROCK PIZZA — Dallas TX</div>
-        <span style="font-size:10px;font-weight:700;font-family:&#39;JetBrains Mono&#39;,monospace;color:var(--red);">13%</span>
+        <span style="font-size:10px;font-weight:700;font-family:&#39;JetBrains Mono&#39;,monospace;color:var(--amber);">32%</span>
       </div>
-      <div class="proj-bar-wrap"><div class="proj-bar-fill" style="width:13%;background:var(--red);"></div></div>
+      <div class="proj-bar-wrap"><div class="proj-bar-fill" style="width:32%;background:var(--amber);"></div></div>
       <div class="proj-meta"><span>Dallas, TX</span><span>3 active phases</span></div></div><div class="proj-item active">
       <div class="proj-item-top">
         <div class="proj-dot" style="background:#F59E0B;"></div>
@@ -431,10 +417,9 @@ input[type=number]{-moz-appearance:textfield;}
     <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#F59E0B;margin-right:8px;vertical-align:middle;flex-shrink:0;"></span>CALABRESE — PASTA ROOM · Southlake TX</div>
             <div class="proj-meta-row" id="ph-meta">
     <span>📅 2026-07-24</span><span>→ 2026-08-08</span>
-    <span>📍 Southlake, TX</span><span>💰 $16,500</span></div>
+    <span>📍 Southlake, TX</span><span>💰 $1,500</span></div>
           </div>
           <div class="hdr-actions">
-            <button class="btn sm" onclick="editProject()" title="Edit project details">✎ Edit project</button>
             <button class="btn sm" onclick="addPhase()">+ Add Phase</button>
             <button class="btn sm" onclick="exportExcel()">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18M9 21V9"></path></svg>Excel
@@ -450,7 +435,7 @@ input[type=number]{-moz-appearance:textfield;}
     <div class="metric"><div class="metric-label">Active</div><div class="metric-val mv-amber">0</div></div>
     <div class="metric"><div class="metric-label">Tasks done</div><div class="metric-val mv-green">0/20</div></div>
     <div class="metric"><div class="metric-label">Deliverables</div><div class="metric-val mv-purple">0/24</div></div>
-    <div class="metric"><div class="metric-label">Total budget</div><div class="metric-val mv-blue">$16,500</div></div></div>
+    <div class="metric"><div class="metric-label">Total budget</div><div class="metric-val mv-blue">$1,500</div></div></div>
       <div class="ov-wrap">
         <div class="ov-labels"><span>Overall Project Progress — calculated from verified deliverables</span><span id="ov-lbl">0%</span></div>
         <div class="ov-track"><div class="ov-fill" id="ov-bar" style="width: 0%; background: var(--red);"></div></div>
@@ -468,7 +453,7 @@ input[type=number]{-moz-appearance:textfield;}
           <div class="phase-sub">
             <span>Jul 23, 2026 → Jul 27, 2026</span>
             <span>0/8 deliverables verified</span>
-            <span>$1,700</span>
+            <span>$1,500</span>
           </div>
         </div>
         <div class="phase-right">
@@ -476,8 +461,6 @@ input[type=number]{-moz-appearance:textfield;}
           <div class="mini-bar"><div class="mini-fill" style="width:0%;background:var(--red);"></div></div>
           <div class="phase-pct" style="color:var(--red);">0%</div>
           <span class="st-badge st-wait">Pending</span>
-          <span class="row-edit" title="Edit phase" onclick="event.stopPropagation();editPhase(&#39;1&#39;)">✎</span>
-          <span class="row-del" title="Delete phase" onclick="event.stopPropagation();deletePhase(&#39;1&#39;)">✕</span>
           <span class="chev open">▾</span>
         </div>
       </div>
@@ -489,7 +472,6 @@ input[type=number]{-moz-appearance:textfield;}
               <div class="semaphore sem-red"></div>
               <div class="task-expand-btn">+</div>
               <div class="task-name ">Measurement verification &amp; existing substrate check</div>
-              <span class="row-edit" title="Edit task" onclick="event.stopPropagation();editTask(&#39;c1a&#39;,&#39;1&#39;)">✎</span>
               <div class="task-resp">Site Lead</div>
               <div style="font-size:10px;color:var(--text3);min-width:60px;text-align:right;">0/2 deliverables</div>
               <div class="task-pct-lbl" style="color:var(--red);">0%</div>
@@ -501,7 +483,6 @@ input[type=number]{-moz-appearance:textfield;}
               <div class="semaphore sem-red"></div>
               <div class="task-expand-btn">+</div>
               <div class="task-name ">Substrate prep, leveling &amp; removal of prior finish</div>
-              <span class="row-edit" title="Edit task" onclick="event.stopPropagation();editTask(&#39;c1b&#39;,&#39;1&#39;)">✎</span>
               <div class="task-resp">Crew</div>
               <div style="font-size:10px;color:var(--text3);min-width:60px;text-align:right;">0/2 deliverables</div>
               <div class="task-pct-lbl" style="color:var(--red);">0%</div>
@@ -513,7 +494,6 @@ input[type=number]{-moz-appearance:textfield;}
               <div class="semaphore sem-red"></div>
               <div class="task-expand-btn">+</div>
               <div class="task-name ">Surface repair &amp; sealing</div>
-              <span class="row-edit" title="Edit task" onclick="event.stopPropagation();editTask(&#39;c1c&#39;,&#39;1&#39;)">✎</span>
               <div class="task-resp">Crew</div>
               <div style="font-size:10px;color:var(--text3);min-width:60px;text-align:right;">0/1 deliverables</div>
               <div class="task-pct-lbl" style="color:var(--red);">0%</div>
@@ -525,7 +505,6 @@ input[type=number]{-moz-appearance:textfield;}
               <div class="semaphore sem-red"></div>
               <div class="task-expand-btn">+</div>
               <div class="task-name ">Rubberized coating application (per spec)</div>
-              <span class="row-edit" title="Edit task" onclick="event.stopPropagation();editTask(&#39;c1d&#39;,&#39;1&#39;)">✎</span>
               <div class="task-resp">Crew</div>
               <div style="font-size:10px;color:var(--text3);min-width:60px;text-align:right;">0/2 deliverables</div>
               <div class="task-pct-lbl" style="color:var(--red);">0%</div>
@@ -537,7 +516,6 @@ input[type=number]{-moz-appearance:textfield;}
               <div class="semaphore sem-red"></div>
               <div class="task-expand-btn">+</div>
               <div class="task-name ">MILESTONE — Floor cured &amp; finish verified (Day 4)</div>
-              <span class="row-edit" title="Edit task" onclick="event.stopPropagation();editTask(&#39;c1e&#39;,&#39;1&#39;)">✎</span>
               <div class="task-resp">Site Lead</div>
               <div style="font-size:10px;color:var(--text3);min-width:60px;text-align:right;">0/1 deliverables</div>
               <div class="task-pct-lbl" style="color:var(--red);">0%</div>
@@ -547,14 +525,14 @@ input[type=number]{-moz-appearance:textfield;}
         <div class="cost-section">
           <div class="cost-section-label">Phase Budget</div>
           <div class="cost-grid">
-            <div class="cost-field"><label>Labor ($)</label><input class="cost-inp" type="text" inputmode="decimal" value="700" onfocus="this.select()" onchange="updateCost(&#39;1&#39;,&#39;labor&#39;,this.value)"></div>
-            <div class="cost-field"><label>Materials ($)</label><input class="cost-inp" type="text" inputmode="decimal" value="1000" onfocus="this.select()" onchange="updateCost(&#39;1&#39;,&#39;materials&#39;,this.value)"></div>
+            <div class="cost-field"><label>Labor ($)</label><input class="cost-inp" type="text" inputmode="decimal" value="1000" onfocus="this.select()" onchange="updateCost(&#39;1&#39;,&#39;labor&#39;,this.value)"></div>
+            <div class="cost-field"><label>Materials ($)</label><input class="cost-inp" type="text" inputmode="decimal" value="500" onfocus="this.select()" onchange="updateCost(&#39;1&#39;,&#39;materials&#39;,this.value)"></div>
             <div class="cost-field"><label>Equipment ($)</label><input class="cost-inp" type="text" inputmode="decimal" value="0" onfocus="this.select()" onchange="updateCost(&#39;1&#39;,&#39;equipment&#39;,this.value)"></div>
             <div class="cost-field"><label>Permits / Other ($)</label><input class="cost-inp" type="text" inputmode="decimal" value="0" onfocus="this.select()" onchange="updateCost(&#39;1&#39;,&#39;other&#39;,this.value)"></div>
           </div>
           <div class="cost-total-row">
             <span style="font-size:11px;color:var(--text3);">Phase subtotal</span>
-            <span class="cost-total-val" id="ctot-1">$1,700</span>
+            <span class="cost-total-val" id="ctot-1">$1,500</span>
           </div>
         </div>
         <div class="task-footer-row">
@@ -576,7 +554,7 @@ input[type=number]{-moz-appearance:textfield;}
           <div class="phase-sub">
             <span>Jul 26, 2026 → Jul 31, 2026</span>
             <span>0/6 deliverables verified</span>
-            <span>$5,100</span>
+            <span>$0</span>
           </div>
         </div>
         <div class="phase-right">
@@ -584,8 +562,6 @@ input[type=number]{-moz-appearance:textfield;}
           <div class="mini-bar"><div class="mini-fill" style="width:0%;background:var(--red);"></div></div>
           <div class="phase-pct" style="color:var(--red);">0%</div>
           <span class="st-badge st-wait">Pending</span>
-          <span class="row-edit" title="Edit phase" onclick="event.stopPropagation();editPhase(&#39;2&#39;)">✎</span>
-          <span class="row-del" title="Delete phase" onclick="event.stopPropagation();deletePhase(&#39;2&#39;)">✕</span>
           <span class="chev open">▾</span>
         </div>
       </div>
@@ -597,7 +573,6 @@ input[type=number]{-moz-appearance:textfield;}
               <div class="semaphore sem-red"></div>
               <div class="task-expand-btn">+</div>
               <div class="task-name ">Remove existing glass wall</div>
-              <span class="row-edit" title="Edit task" onclick="event.stopPropagation();editTask(&#39;c2a&#39;,&#39;2&#39;)">✎</span>
               <div class="task-resp">Crew</div>
               <div style="font-size:10px;color:var(--text3);min-width:60px;text-align:right;">0/1 deliverables</div>
               <div class="task-pct-lbl" style="color:var(--red);">0%</div>
@@ -609,7 +584,6 @@ input[type=number]{-moz-appearance:textfield;}
               <div class="semaphore sem-red"></div>
               <div class="task-expand-btn">+</div>
               <div class="task-name ">Framing &amp; structure for new enclosure</div>
-              <span class="row-edit" title="Edit task" onclick="event.stopPropagation();editTask(&#39;c2b&#39;,&#39;2&#39;)">✎</span>
               <div class="task-resp">Crew</div>
               <div style="font-size:10px;color:var(--text3);min-width:60px;text-align:right;">0/1 deliverables</div>
               <div class="task-pct-lbl" style="color:var(--red);">0%</div>
@@ -621,7 +595,6 @@ input[type=number]{-moz-appearance:textfield;}
               <div class="semaphore sem-red"></div>
               <div class="task-expand-btn">+</div>
               <div class="task-name ">Drywall installation (both faces) &amp; opening reinforcement</div>
-              <span class="row-edit" title="Edit task" onclick="event.stopPropagation();editTask(&#39;c2c&#39;,&#39;2&#39;)">✎</span>
               <div class="task-resp">Crew</div>
               <div style="font-size:10px;color:var(--text3);min-width:60px;text-align:right;">0/2 deliverables</div>
               <div class="task-pct-lbl" style="color:var(--red);">0%</div>
@@ -633,7 +606,6 @@ input[type=number]{-moz-appearance:textfield;}
               <div class="semaphore sem-red"></div>
               <div class="task-expand-btn">+</div>
               <div class="task-name ">Mudding, sanding &amp; joint finish</div>
-              <span class="row-edit" title="Edit task" onclick="event.stopPropagation();editTask(&#39;c2d&#39;,&#39;2&#39;)">✎</span>
               <div class="task-resp">Crew</div>
               <div style="font-size:10px;color:var(--text3);min-width:60px;text-align:right;">0/1 deliverables</div>
               <div class="task-pct-lbl" style="color:var(--red);">0%</div>
@@ -645,7 +617,6 @@ input[type=number]{-moz-appearance:textfield;}
               <div class="semaphore sem-red"></div>
               <div class="task-expand-btn">+</div>
               <div class="task-name ">MILESTONE — Full drywall enclosure &amp; opening ready (Day 8)</div>
-              <span class="row-edit" title="Edit task" onclick="event.stopPropagation();editTask(&#39;c2e&#39;,&#39;2&#39;)">✎</span>
               <div class="task-resp">Site Lead</div>
               <div style="font-size:10px;color:var(--text3);min-width:60px;text-align:right;">0/1 deliverables</div>
               <div class="task-pct-lbl" style="color:var(--red);">0%</div>
@@ -655,14 +626,14 @@ input[type=number]{-moz-appearance:textfield;}
         <div class="cost-section">
           <div class="cost-section-label">Phase Budget</div>
           <div class="cost-grid">
-            <div class="cost-field"><label>Labor ($)</label><input class="cost-inp" type="text" inputmode="decimal" value="1000" onfocus="this.select()" onchange="updateCost(&#39;2&#39;,&#39;labor&#39;,this.value)"></div>
-            <div class="cost-field"><label>Materials ($)</label><input class="cost-inp" type="text" inputmode="decimal" value="4100" onfocus="this.select()" onchange="updateCost(&#39;2&#39;,&#39;materials&#39;,this.value)"></div>
+            <div class="cost-field"><label>Labor ($)</label><input class="cost-inp" type="text" inputmode="decimal" value="0" onfocus="this.select()" onchange="updateCost(&#39;2&#39;,&#39;labor&#39;,this.value)"></div>
+            <div class="cost-field"><label>Materials ($)</label><input class="cost-inp" type="text" inputmode="decimal" value="0" onfocus="this.select()" onchange="updateCost(&#39;2&#39;,&#39;materials&#39;,this.value)"></div>
             <div class="cost-field"><label>Equipment ($)</label><input class="cost-inp" type="text" inputmode="decimal" value="0" onfocus="this.select()" onchange="updateCost(&#39;2&#39;,&#39;equipment&#39;,this.value)"></div>
             <div class="cost-field"><label>Permits / Other ($)</label><input class="cost-inp" type="text" inputmode="decimal" value="0" onfocus="this.select()" onchange="updateCost(&#39;2&#39;,&#39;other&#39;,this.value)"></div>
           </div>
           <div class="cost-total-row">
             <span style="font-size:11px;color:var(--text3);">Phase subtotal</span>
-            <span class="cost-total-val" id="ctot-2">$5,100</span>
+            <span class="cost-total-val" id="ctot-2">$0</span>
           </div>
         </div>
         <div class="task-footer-row">
@@ -684,7 +655,7 @@ input[type=number]{-moz-appearance:textfield;}
           <div class="phase-sub">
             <span>Jul 30, 2026 → Aug 04, 2026</span>
             <span>0/5 deliverables verified</span>
-            <span>$8,600</span>
+            <span>$0</span>
           </div>
         </div>
         <div class="phase-right">
@@ -692,8 +663,6 @@ input[type=number]{-moz-appearance:textfield;}
           <div class="mini-bar"><div class="mini-fill" style="width:0%;background:var(--red);"></div></div>
           <div class="phase-pct" style="color:var(--red);">0%</div>
           <span class="st-badge st-wait">Pending</span>
-          <span class="row-edit" title="Edit phase" onclick="event.stopPropagation();editPhase(&#39;3&#39;)">✎</span>
-          <span class="row-del" title="Delete phase" onclick="event.stopPropagation();deletePhase(&#39;3&#39;)">✕</span>
           <span class="chev open">▾</span>
         </div>
       </div>
@@ -705,7 +674,6 @@ input[type=number]{-moz-appearance:textfield;}
               <div class="semaphore sem-red"></div>
               <div class="task-expand-btn">+</div>
               <div class="task-name ">Install fire-rated door — oven room</div>
-              <span class="row-edit" title="Edit task" onclick="event.stopPropagation();editTask(&#39;c3a&#39;,&#39;3&#39;)">✎</span>
               <div class="task-resp">Crew</div>
               <div style="font-size:10px;color:var(--text3);min-width:60px;text-align:right;">0/1 deliverables</div>
               <div class="task-pct-lbl" style="color:var(--red);">0%</div>
@@ -717,7 +685,6 @@ input[type=number]{-moz-appearance:textfield;}
               <div class="semaphore sem-red"></div>
               <div class="task-expand-btn">+</div>
               <div class="task-name ">Fabricate / install door with window</div>
-              <span class="row-edit" title="Edit task" onclick="event.stopPropagation();editTask(&#39;c3b&#39;,&#39;3&#39;)">✎</span>
               <div class="task-resp">Crew</div>
               <div style="font-size:10px;color:var(--text3);min-width:60px;text-align:right;">0/1 deliverables</div>
               <div class="task-pct-lbl" style="color:var(--red);">0%</div>
@@ -729,7 +696,6 @@ input[type=number]{-moz-appearance:textfield;}
               <div class="semaphore sem-red"></div>
               <div class="task-expand-btn">+</div>
               <div class="task-name ">Close entry frame to the room</div>
-              <span class="row-edit" title="Edit task" onclick="event.stopPropagation();editTask(&#39;c3c&#39;,&#39;3&#39;)">✎</span>
               <div class="task-resp">Crew</div>
               <div style="font-size:10px;color:var(--text3);min-width:60px;text-align:right;">0/1 deliverables</div>
               <div class="task-pct-lbl" style="color:var(--red);">0%</div>
@@ -741,7 +707,6 @@ input[type=number]{-moz-appearance:textfield;}
               <div class="semaphore sem-red"></div>
               <div class="task-expand-btn">+</div>
               <div class="task-name ">Hardware, seals &amp; access alignment</div>
-              <span class="row-edit" title="Edit task" onclick="event.stopPropagation();editTask(&#39;c3d&#39;,&#39;3&#39;)">✎</span>
               <div class="task-resp">Crew</div>
               <div style="font-size:10px;color:var(--text3);min-width:60px;text-align:right;">0/1 deliverables</div>
               <div class="task-pct-lbl" style="color:var(--red);">0%</div>
@@ -753,7 +718,6 @@ input[type=number]{-moz-appearance:textfield;}
               <div class="semaphore sem-red"></div>
               <div class="task-expand-btn">+</div>
               <div class="task-name ">MILESTONE — Accesses configured &amp; operational (Day 12)</div>
-              <span class="row-edit" title="Edit task" onclick="event.stopPropagation();editTask(&#39;c3e&#39;,&#39;3&#39;)">✎</span>
               <div class="task-resp">Site Lead</div>
               <div style="font-size:10px;color:var(--text3);min-width:60px;text-align:right;">0/1 deliverables</div>
               <div class="task-pct-lbl" style="color:var(--red);">0%</div>
@@ -763,14 +727,14 @@ input[type=number]{-moz-appearance:textfield;}
         <div class="cost-section">
           <div class="cost-section-label">Phase Budget</div>
           <div class="cost-grid">
-            <div class="cost-field"><label>Labor ($)</label><input class="cost-inp" type="text" inputmode="decimal" value="2600" onfocus="this.select()" onchange="updateCost(&#39;3&#39;,&#39;labor&#39;,this.value)"></div>
-            <div class="cost-field"><label>Materials ($)</label><input class="cost-inp" type="text" inputmode="decimal" value="6000" onfocus="this.select()" onchange="updateCost(&#39;3&#39;,&#39;materials&#39;,this.value)"></div>
+            <div class="cost-field"><label>Labor ($)</label><input class="cost-inp" type="text" inputmode="decimal" value="0" onfocus="this.select()" onchange="updateCost(&#39;3&#39;,&#39;labor&#39;,this.value)"></div>
+            <div class="cost-field"><label>Materials ($)</label><input class="cost-inp" type="text" inputmode="decimal" value="0" onfocus="this.select()" onchange="updateCost(&#39;3&#39;,&#39;materials&#39;,this.value)"></div>
             <div class="cost-field"><label>Equipment ($)</label><input class="cost-inp" type="text" inputmode="decimal" value="0" onfocus="this.select()" onchange="updateCost(&#39;3&#39;,&#39;equipment&#39;,this.value)"></div>
             <div class="cost-field"><label>Permits / Other ($)</label><input class="cost-inp" type="text" inputmode="decimal" value="0" onfocus="this.select()" onchange="updateCost(&#39;3&#39;,&#39;other&#39;,this.value)"></div>
           </div>
           <div class="cost-total-row">
             <span style="font-size:11px;color:var(--text3);">Phase subtotal</span>
-            <span class="cost-total-val" id="ctot-3">$8,600</span>
+            <span class="cost-total-val" id="ctot-3">$0</span>
           </div>
         </div>
         <div class="task-footer-row">
@@ -792,7 +756,7 @@ input[type=number]{-moz-appearance:textfield;}
           <div class="phase-sub">
             <span>Aug 03, 2026 → Aug 07, 2026</span>
             <span>0/5 deliverables verified</span>
-            <span>$1,100</span>
+            <span>$0</span>
           </div>
         </div>
         <div class="phase-right">
@@ -800,99 +764,10 @@ input[type=number]{-moz-appearance:textfield;}
           <div class="mini-bar"><div class="mini-fill" style="width:0%;background:var(--red);"></div></div>
           <div class="phase-pct" style="color:var(--red);">0%</div>
           <span class="st-badge st-wait">Pending</span>
-          <span class="row-edit" title="Edit phase" onclick="event.stopPropagation();editPhase(&#39;4&#39;)">✎</span>
-          <span class="row-del" title="Delete phase" onclick="event.stopPropagation();deletePhase(&#39;4&#39;)">✕</span>
-          <span class="chev open">▾</span>
+          <span class="chev ">▾</span>
         </div>
       </div>
-      
-      <div class="phase-body">
-        
-          <div class="task-block">
-            <div class="task-header" onclick="toggleTask(&#39;c4a&#39;)">
-              <div class="semaphore sem-red"></div>
-              <div class="task-expand-btn">+</div>
-              <div class="task-name ">Final finishing adjustments &amp; touch-ups</div>
-              <span class="row-edit" title="Edit task" onclick="event.stopPropagation();editTask(&#39;c4a&#39;,&#39;4&#39;)">✎</span>
-              <div class="task-resp">Crew</div>
-              <div style="font-size:10px;color:var(--text3);min-width:60px;text-align:right;">0/1 deliverables</div>
-              <div class="task-pct-lbl" style="color:var(--red);">0%</div>
-            </div>
-            
-          </div>
-          <div class="task-block">
-            <div class="task-header" onclick="toggleTask(&#39;c4b&#39;)">
-              <div class="semaphore sem-red"></div>
-              <div class="task-expand-btn">+</div>
-              <div class="task-name ">General review of executed work (internal walkthrough)</div>
-              <span class="row-edit" title="Edit task" onclick="event.stopPropagation();editTask(&#39;c4b&#39;,&#39;4&#39;)">✎</span>
-              <div class="task-resp">Site Lead</div>
-              <div style="font-size:10px;color:var(--text3);min-width:60px;text-align:right;">0/1 deliverables</div>
-              <div class="task-pct-lbl" style="color:var(--red);">0%</div>
-            </div>
-            
-          </div>
-          <div class="task-block">
-            <div class="task-header" onclick="toggleTask(&#39;c4c&#39;)">
-              <div class="semaphore sem-red"></div>
-              <div class="task-expand-btn">+</div>
-              <div class="task-name ">Reasonable cleanup of the intervened area</div>
-              <span class="row-edit" title="Edit task" onclick="event.stopPropagation();editTask(&#39;c4c&#39;,&#39;4&#39;)">✎</span>
-              <div class="task-resp">Crew</div>
-              <div style="font-size:10px;color:var(--text3);min-width:60px;text-align:right;">0/1 deliverables</div>
-              <div class="task-pct-lbl" style="color:var(--red);">0%</div>
-            </div>
-            
-          </div>
-          <div class="task-block">
-            <div class="task-header" onclick="toggleTask(&#39;c4d&#39;)">
-              <div class="semaphore sem-red"></div>
-              <div class="task-expand-btn">+</div>
-              <div class="task-name ">Handover of scope for client review</div>
-              <span class="row-edit" title="Edit task" onclick="event.stopPropagation();editTask(&#39;c4d&#39;,&#39;4&#39;)">✎</span>
-              <div class="task-resp">Site Lead</div>
-              <div style="font-size:10px;color:var(--text3);min-width:60px;text-align:right;">0/1 deliverables</div>
-              <div class="task-pct-lbl" style="color:var(--red);">0%</div>
-            </div>
-            
-          </div>
-          <div class="task-block">
-            <div class="task-header" onclick="toggleTask(&#39;c4e&#39;)">
-              <div class="semaphore sem-red"></div>
-              <div class="task-expand-btn">+</div>
-              <div class="task-name ">MILESTONE — Client final acceptance (Day 15 · Aug 8)</div>
-              <span class="row-edit" title="Edit task" onclick="event.stopPropagation();editTask(&#39;c4e&#39;,&#39;4&#39;)">✎</span>
-              <div class="task-resp">Client + SHEMS</div>
-              <div style="font-size:10px;color:var(--text3);min-width:60px;text-align:right;">0/1 deliverables</div>
-              <div class="task-pct-lbl" style="color:var(--red);">0%</div>
-            </div>
-            
-          </div>
-        <div class="cost-section">
-          <div class="cost-section-label">Phase Budget</div>
-          <div class="cost-grid">
-            <div class="cost-field"><label>Labor ($)</label><input class="cost-inp" type="text" inputmode="decimal" value="600" onfocus="this.select()" onchange="updateCost(&#39;4&#39;,&#39;labor&#39;,this.value)"></div>
-            <div class="cost-field"><label>Materials ($)</label><input class="cost-inp" type="text" inputmode="decimal" value="500" onfocus="this.select()" onchange="updateCost(&#39;4&#39;,&#39;materials&#39;,this.value)"></div>
-            <div class="cost-field"><label>Equipment ($)</label><input class="cost-inp" type="text" inputmode="decimal" value="0" onfocus="this.select()" onchange="updateCost(&#39;4&#39;,&#39;equipment&#39;,this.value)"></div>
-            <div class="cost-field"><label>Permits / Other ($)</label><input class="cost-inp" type="text" inputmode="decimal" value="0" onfocus="this.select()" onchange="updateCost(&#39;4&#39;,&#39;other&#39;,this.value)"></div>
-          </div>
-          <div class="cost-total-row">
-            <span style="font-size:11px;color:var(--text3);">Phase subtotal</span>
-            <span class="cost-total-val" id="ctot-4">$1,100</span>
-          </div>
-        </div>
-        <div class="task-footer-row">
-          <input class="new-task-inp" id="ni-4" placeholder="New task name...">
-          <button class="btn sm blue" onclick="addTask(&#39;4&#39;)">+ Add Task</button>
-          <select class="st-select" onchange="updatePhaseStatus(&#39;4&#39;,this.value)">
-            <option value="active">Active</option>
-            <option value="done">Done</option>
-            <option value="wait" selected="">Pending</option>
-            <option value="blocked">Blocked</option>
-            <option value="buffer">Buffer</option>
-          </select>
-        </div>
-      </div></div></div></div>
+      </div></div></div>
       <div class="panel" id="panel-gantt"><div class="gantt-wrap" id="gantt-wrap"></div></div>
       <div class="panel" id="panel-budget"><div class="budget-wrap" id="budget-wrap"></div></div>
     </div>
@@ -909,7 +784,7 @@ input[type=number]{-moz-appearance:textfield;}
       <div class="form-field"><label>End Date</label><input class="form-inp" id="m-end" type="date"></div>
     </div>
     <div class="form-field"><label>Client / Location</label><input class="form-inp" id="m-client" placeholder="e.g. Dallas, TX"></div>
-    <div class="form-field"><label>Project Color</label><div class="color-picker" id="color-picker"><div class="color-opt sel" style="background: rgb(59, 123, 232);"></div><div class="color-opt" style="background: rgb(34, 197, 94);"></div><div class="color-opt" style="background: rgb(245, 158, 11);"></div><div class="color-opt" style="background: rgb(239, 68, 68);"></div><div class="color-opt" style="background: rgb(167, 139, 250);"></div><div class="color-opt" style="background: rgb(236, 72, 153);"></div><div class="color-opt" style="background: rgb(20, 184, 166);"></div><div class="color-opt" style="background: rgb(249, 115, 22);"></div><div class="color-opt" style="background: rgb(6, 182, 212);"></div><div class="color-opt" style="background: rgb(132, 204, 22);"></div></div></div>
+    <div class="form-field"><label>Project Color</label><div class="color-picker" id="color-picker"></div></div>
     <div class="modal-actions">
       <button class="btn" onclick="closeModal()">Cancel</button>
       <button class="btn blue" onclick="createProject()">Create Project</button>
@@ -917,19 +792,7 @@ input[type=number]{-moz-appearance:textfield;}
   </div>
 </div>
 
-<!-- UNIVERSAL EDIT MODAL -->
-<div class="overlay" id="edit-overlay">
-  <div class="modal">
-    <h3 id="edit-title">Edit project</h3>
-    <div id="edit-fields"><div class="form-field"><label>Project name</label><input class="form-inp" id="ef-name" type="text" value="CALABRESE — PASTA ROOM · Southlake TX" placeholder=""></div><div class="form-field"><label>Client / Location</label><input class="form-inp" id="ef-client" type="text" value="Southlake, TX" placeholder=""></div><div class="form-field"><label>Start date</label><input class="form-inp" id="ef-start" type="date" value="2026-07-24" placeholder=""></div><div class="form-field"><label>End date</label><input class="form-inp" id="ef-end" type="date" value="2026-08-08" placeholder=""></div><div class="form-field"><label>Project color</label><div style="display:flex;gap:8px;flex-wrap:wrap;" id="ef-color" data-val="#F59E0B"><div class="edit-color-sw" data-c="#3B7BE8" style="width:26px;height:26px;border-radius:7px;background:#3B7BE8;cursor:pointer;border:2px solid transparent;" onclick="pickEditColor(this)"></div><div class="edit-color-sw" data-c="#22C55E" style="width:26px;height:26px;border-radius:7px;background:#22C55E;cursor:pointer;border:2px solid transparent;" onclick="pickEditColor(this)"></div><div class="edit-color-sw" data-c="#F59E0B" style="width:26px;height:26px;border-radius:7px;background:#F59E0B;cursor:pointer;border:2px solid #fff;" onclick="pickEditColor(this)"></div><div class="edit-color-sw" data-c="#EF4444" style="width:26px;height:26px;border-radius:7px;background:#EF4444;cursor:pointer;border:2px solid transparent;" onclick="pickEditColor(this)"></div><div class="edit-color-sw" data-c="#A78BFA" style="width:26px;height:26px;border-radius:7px;background:#A78BFA;cursor:pointer;border:2px solid transparent;" onclick="pickEditColor(this)"></div><div class="edit-color-sw" data-c="#EC4899" style="width:26px;height:26px;border-radius:7px;background:#EC4899;cursor:pointer;border:2px solid transparent;" onclick="pickEditColor(this)"></div><div class="edit-color-sw" data-c="#14B8A6" style="width:26px;height:26px;border-radius:7px;background:#14B8A6;cursor:pointer;border:2px solid transparent;" onclick="pickEditColor(this)"></div><div class="edit-color-sw" data-c="#F97316" style="width:26px;height:26px;border-radius:7px;background:#F97316;cursor:pointer;border:2px solid transparent;" onclick="pickEditColor(this)"></div><div class="edit-color-sw" data-c="#06B6D4" style="width:26px;height:26px;border-radius:7px;background:#06B6D4;cursor:pointer;border:2px solid transparent;" onclick="pickEditColor(this)"></div><div class="edit-color-sw" data-c="#84CC16" style="width:26px;height:26px;border-radius:7px;background:#84CC16;cursor:pointer;border:2px solid transparent;" onclick="pickEditColor(this)"></div></div></div></div>
-    <div class="modal-actions">
-      <button class="btn" onclick="closeEditModal()">Cancel</button>
-      <button class="btn blue" onclick="saveEditModal()">Save changes</button>
-    </div>
-  </div>
-</div>
-
-<div class="toast" id="toast" style="display: none;">✓  Synced with cloud</div>
+<div class="toast" id="toast"></div>
 <div class="app-footer">
   <div class="footer-left" style="display:flex;align-items:center;gap:8px;">
     <span style="font-weight:900;letter-spacing:1.5px;color:var(--text);font-size:11px;">SHEMS</span>
@@ -1239,112 +1102,6 @@ const PROJECTS=[{
        ]},
      ]},
   ]
-},
-{
-  id:2, name:'CALABRESE — PASTA ROOM · Southlake TX', client:'Southlake, TX',
-  color:'#F59E0B', start:'2026-07-24', end:'2026-08-08',
-  phases:[
-    {id:1,name:'Stage 1 — Floor Adaptation',status:'wait',startDay:0,endDay:4,color:'#3B7BE8',
-     budget:{labor:0,materials:0,equipment:0,other:0},
-     tasks:[
-      {id:'c1a',text:'Measurement verification & existing substrate check',resp:'Site Lead',
-       deliverables:[
-        {id:'dc1a1',text:'Substrate condition & measurement report',done:false,file:null,fileRequired:true},
-        {id:'dc1a2',text:'Before photos of existing floor uploaded',done:false,file:null,fileRequired:false},
-       ]},
-      {id:'c1b',text:'Substrate prep, leveling & removal of prior finish',resp:'Crew',
-       deliverables:[
-        {id:'dc1b1',text:'Existing finish removed & substrate exposed',done:false,file:null,fileRequired:true},
-        {id:'dc1b2',text:'Level & deviation repairs completed',done:false,file:null,fileRequired:false},
-       ]},
-      {id:'c1c',text:'Surface repair & sealing',resp:'Crew',
-       deliverables:[
-        {id:'dc1c1',text:'Surface sealed & ready to receive coating',done:false,file:null,fileRequired:true},
-       ]},
-      {id:'c1d',text:'Rubberized coating application (per spec)',resp:'Crew',
-       deliverables:[
-        {id:'dc1d1',text:'Rubberized coating applied',done:false,file:null,fileRequired:true},
-        {id:'dc1d2',text:'Coverage photos uploaded',done:false,file:null,fileRequired:false},
-       ]},
-      {id:'c1e',text:'MILESTONE — Floor cured & finish verified (Day 4)',resp:'Site Lead',
-       deliverables:[
-        {id:'dc1e1',text:'Floor finish accepted — stage milestone signed',done:false,file:null,fileRequired:true},
-       ]},
-     ]},
-    {id:2,name:'Stage 2 — Wall Modification & Enclosure',status:'wait',startDay:3,endDay:8,color:'#A78BFA',
-     budget:{labor:0,materials:0,equipment:0,other:0},
-     tasks:[
-      {id:'c2a',text:'Remove existing glass wall',resp:'Crew',
-       deliverables:[
-        {id:'dc2a1',text:'Glass wall removed — before/after photos',done:false,file:null,fileRequired:true},
-       ]},
-      {id:'c2b',text:'Framing & structure for new enclosure',resp:'Crew',
-       deliverables:[
-        {id:'dc2b1',text:'Framing installed & door rough opening set',done:false,file:null,fileRequired:true},
-       ]},
-      {id:'c2c',text:'Drywall installation (both faces) & opening reinforcement',resp:'Crew',
-       deliverables:[
-        {id:'dc2c1',text:'Drywall installed both faces',done:false,file:null,fileRequired:true},
-        {id:'dc2c2',text:'Door opening reinforced',done:false,file:null,fileRequired:false},
-       ]},
-      {id:'c2d',text:'Mudding, sanding & joint finish',resp:'Crew',
-       deliverables:[
-        {id:'dc2d1',text:'Joints taped, sanded & finished',done:false,file:null,fileRequired:true},
-       ]},
-      {id:'c2e',text:'MILESTONE — Full drywall enclosure & opening ready (Day 8)',resp:'Site Lead',
-       deliverables:[
-        {id:'dc2e1',text:'Enclosure complete — stage milestone signed',done:false,file:null,fileRequired:true},
-       ]},
-     ]},
-    {id:3,name:'Stage 3 — Doors, Window & Entry Frame Closure',status:'wait',startDay:7,endDay:12,color:'#F97316',
-     budget:{labor:0,materials:0,equipment:0,other:0},
-     tasks:[
-      {id:'c3a',text:'Install fire-rated door — oven room',resp:'Crew',
-       deliverables:[
-        {id:'dc3a1',text:'Fire-rated door installed & rated label verified',done:false,file:null,fileRequired:true},
-       ]},
-      {id:'c3b',text:'Fabricate / install door with window',resp:'Crew',
-       deliverables:[
-        {id:'dc3b1',text:'Door with window installed',done:false,file:null,fileRequired:true},
-       ]},
-      {id:'c3c',text:'Close entry frame to the room',resp:'Crew',
-       deliverables:[
-        {id:'dc3c1',text:'Entry frame closed per approved design',done:false,file:null,fileRequired:true},
-       ]},
-      {id:'c3d',text:'Hardware, seals & access alignment',resp:'Crew',
-       deliverables:[
-        {id:'dc3d1',text:'Hardware set, seals & alignment checked',done:false,file:null,fileRequired:false},
-       ]},
-      {id:'c3e',text:'MILESTONE — Accesses configured & operational (Day 12)',resp:'Site Lead',
-       deliverables:[
-        {id:'dc3e1',text:'Accesses operational — stage milestone signed',done:false,file:null,fileRequired:true},
-       ]},
-     ]},
-    {id:4,name:'Stage 4 — Final Adjustments & Handover',status:'wait',startDay:11,endDay:15,color:'#22C55E',
-     budget:{labor:0,materials:0,equipment:0,other:0},
-     tasks:[
-      {id:'c4a',text:'Final finishing adjustments & touch-ups',resp:'Crew',
-       deliverables:[
-        {id:'dc4a1',text:'Final touch-ups completed',done:false,file:null,fileRequired:false},
-       ]},
-      {id:'c4b',text:'General review of executed work (internal walkthrough)',resp:'Site Lead',
-       deliverables:[
-        {id:'dc4b1',text:'Internal walkthrough & punch list completed',done:false,file:null,fileRequired:true},
-       ]},
-      {id:'c4c',text:'Reasonable cleanup of the intervened area',resp:'Crew',
-       deliverables:[
-        {id:'dc4c1',text:'Area cleaned & ready for client review',done:false,file:null,fileRequired:false},
-       ]},
-      {id:'c4d',text:'Handover of scope for client review',resp:'Site Lead',
-       deliverables:[
-        {id:'dc4d1',text:'Scope delivered for client review',done:false,file:null,fileRequired:true},
-       ]},
-      {id:'c4e',text:'MILESTONE — Client final acceptance (Day 15 · Aug 8)',resp:'Client + SHEMS',
-       deliverables:[
-        {id:'dc4e1',text:'Client final acceptance signed — project closeout',done:false,file:null,fileRequired:true},
-       ]},
-     ]},
-  ]
 }];
 
 // ════════════════════════════════════════════════════════════
@@ -1448,23 +1205,33 @@ function setSyncState(state){
   if(!el){
     el=document.createElement('div');
     el.id='sync-indicator';
-    el.style.cssText='position:fixed;bottom:46px;left:24px;border-radius:8px;padding:7px 13px;font-size:11px;font-weight:600;z-index:400;display:flex;align-items:center;gap:7px;font-family:Inter,sans-serif;transition:all .3s;cursor:pointer;';
+    el.style.cssText='position:fixed;bottom:36px;left:24px;border-radius:8px;padding:7px 13px;font-size:11px;font-weight:600;z-index:9999;display:flex;align-items:center;gap:7px;font-family:Inter,sans-serif;transition:all .3s;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.4);';
     el.onclick=refreshFromCloud;
     el.title='Click to sync with cloud';
     document.body.appendChild(el);
   }
   const cfg={
-    idle:   ['var(--bg2)','var(--text3)','var(--text3)','Cloud ready'],
-    saving: ['var(--bg2)','var(--amber)','var(--amber)','Saving to cloud...'],
-    saved:  ['var(--bg2)','var(--green)','var(--green)','Saved to cloud ✓'],
-    error:  ['var(--bg2)','var(--amber)','var(--amber)','Saved locally (cloud retry)'],
-    offline:['var(--bg2)','var(--red)','var(--red)','Offline — saved locally']
+    idle:   ['#1E2436','#4A5270','#8892AB','Cloud ready — click to sync'],
+    saving: ['#1E2436','#F59E0B','#F59E0B','Saving to cloud...'],
+    saved:  ['#1E2436','#22C55E','#22C55E','Saved to cloud ✓'],
+    error:  ['#1E2436','#F59E0B','#F59E0B','Saved locally — retrying cloud...'],
+    offline:['#1E2436','#EF4444','#EF4444','Offline — saved locally (click to retry)']
   };
   const [bg,border,color,label]=cfg[state]||cfg.idle;
-  el.style.background=bg; el.style.border='1px solid '+border; el.style.color=color;
-  el.innerHTML='<span style="width:7px;height:7px;border-radius:50%;background:'+color+';display:inline-block;"></span>'+label;
+  el.style.background=bg;
+  el.style.border='1px solid '+border;
+  el.style.color=color;
   el.style.opacity='1';
-  if(state==='saved'){ clearTimeout(el._t); el._t=setTimeout(()=>{ el.style.opacity='0.55'; },2000); }
+  el.innerHTML='<span style="width:8px;height:8px;border-radius:50%;background:'+color+';display:inline-block;flex-shrink:0;'+(state==='saving'?'animation:pulse 1s infinite;':'')+'"></span><span>'+label+'</span>';
+  clearTimeout(el._t);
+  if(state==='saved'){
+    el._t=setTimeout(()=>{ el.style.opacity='0.7'; },3000);
+  }
+  if(state==='offline'||state==='error'){
+    // auto-retry cloud connection every 30 seconds
+    clearTimeout(window._retryTimer);
+    window._retryTimer=setTimeout(()=>{ cloudSave(); },30000);
+  }
 }
 
 function resetData(){
@@ -1513,16 +1280,6 @@ function barColor(pct){
 }
 function statusLabel(s){return{active:'Active',done:'Done',wait:'Pending',blocked:'Blocked',buffer:'Buffer'}[s]||'Pending';}
 function statusClass(s){return{active:'st-active',done:'st-done',wait:'st-wait',blocked:'st-blocked',buffer:'st-buffer'}[s]||'st-wait';}
-// Report-facing status: derived from real progress so it never contradicts the % shown.
-// Manual Blocked/Buffer states are preserved (they are not progress-driven).
-function effStatus(ph){
-  if(ph.status==='blocked') return 'Blocked';
-  if(ph.status==='buffer')  return 'Buffer';
-  const p=phasePct(ph);
-  if(p>=100) return 'Complete';
-  if(p>0)    return 'In Progress';
-  return 'Pending';
-}
 
 // ── SIDEBAR ──
 function renderSidebar(filter=''){
@@ -1640,10 +1397,7 @@ function renderPhases(){
               <div class="deliverable-row">
                 <div class="deliv-check ${d.done?'done':''}" onclick="toggleDeliverable('${task.id}','${d.id}')"></div>
                 <div class="deliv-info">
-                  <div class="deliv-name ${d.done?'struck':''}">${d.text}${reqBadge}
-                    <span class="row-edit" title="Edit deliverable" onclick="event.stopPropagation();editDeliverable('${task.id}','${d.id}')">✎</span>
-                    <span class="row-del" title="Delete deliverable" onclick="event.stopPropagation();deleteDeliverable('${task.id}','${d.id}')">✕</span>
-                  </div>
+                  <div class="deliv-name ${d.done?'struck':''}">${d.text}${reqBadge}</div>
                   ${fileSection}
                 </div>
               </div>`;
@@ -1667,7 +1421,6 @@ function renderPhases(){
               <div class="semaphore ${sc}"></div>
               <div class="task-expand-btn">${taskOpen?'−':'+'}</div>
               <div class="task-name ${tp>=100?'struck':''}">${task.text}</div>
-              <span class="row-edit" title="Edit task" onclick="event.stopPropagation();editTask('${task.id}','${phase.id}')">✎</span>
               <div class="task-resp">${task.resp}</div>
               <div style="font-size:10px;color:var(--text3);min-width:60px;text-align:right;">${tDone}/${tTotal} deliverables</div>
               <div class="task-pct-lbl" style="color:${barColor(tp)};">${tp}%</div>
@@ -1693,8 +1446,6 @@ function renderPhases(){
           <div class="mini-bar"><div class="mini-fill" style="width:${pp}%;background:${barColor(pp)};"></div></div>
           <div class="phase-pct" style="color:${barColor(pp)};">${pp}%</div>
           <span class="st-badge ${statusClass(phase.status)}">${statusLabel(phase.status)}</span>
-          <span class="row-edit" title="Edit phase" onclick="event.stopPropagation();editPhase('${phase.id}')">✎</span>
-          <span class="row-del" title="Delete phase" onclick="event.stopPropagation();deletePhase('${phase.id}')">✕</span>
           <span class="chev ${isOpen?'open':''}">▾</span>
         </div>
       </div>
@@ -1848,151 +1599,6 @@ function addPhase(){
   saveData();
   renderPhases(); renderProjView();
   showToast('Phase added!');
-}
-
-// ════════════════════════════════════════════════════════════
-//  EDICIÓN UNIVERSAL — proyecto, fase, tarea, entregable
-//  Modal genérico: recibe una lista de campos y un callback de guardado
-// ════════════════════════════════════════════════════════════
-let _editSave = null;
-
-function openEditModal(title, fields, onSave){
-  document.getElementById('edit-title').textContent = title;
-  const wrap = document.getElementById('edit-fields');
-  wrap.innerHTML = '';
-  fields.forEach(f=>{
-    const fld = document.createElement('div');
-    fld.className = 'form-field';
-    if(f.type === 'select'){
-      const opts = f.options.map(o=>`<option value="${o.value}" ${String(o.value)===String(f.value)?'selected':''}>${o.label}</option>`).join('');
-      fld.innerHTML = `<label>${f.label}</label><select class="form-inp" id="ef-${f.key}">${opts}</select>`;
-    } else if(f.type === 'color'){
-      const sw = COLORS.map(c=>`<div class="edit-color-sw" data-c="${c}" style="width:26px;height:26px;border-radius:7px;background:${c};cursor:pointer;border:2px solid ${c===f.value?'#fff':'transparent'};" onclick="pickEditColor(this)"></div>`).join('');
-      fld.innerHTML = `<label>${f.label}</label><div style="display:flex;gap:8px;flex-wrap:wrap;" id="ef-${f.key}" data-val="${f.value}">${sw}</div>`;
-    } else {
-      const attrs = f.type==='number' ? 'type="number" min="0"' : (f.type==='date' ? 'type="date"' : 'type="text"');
-      fld.innerHTML = `<label>${f.label}</label><input class="form-inp" id="ef-${f.key}" ${attrs} value="${f.value ?? ''}" placeholder="${f.placeholder||''}"/>`;
-    }
-    wrap.appendChild(fld);
-  });
-  _editSave = onSave;
-  document.getElementById('edit-overlay').classList.add('open');
-}
-function pickEditColor(el){
-  const parent = el.parentElement;
-  parent.setAttribute('data-val', el.getAttribute('data-c'));
-  parent.querySelectorAll('.edit-color-sw').forEach(s=>s.style.border='2px solid transparent');
-  el.style.border='2px solid #fff';
-}
-function readEditField(key, type){
-  const el = document.getElementById('ef-'+key);
-  if(!el) return null;
-  if(type === 'color') return el.getAttribute('data-val');
-  if(type === 'number') return parseFloat(String(el.value).replace(/[^0-9.]/g,''))||0;
-  return el.value;
-}
-function closeEditModal(){
-  document.getElementById('edit-overlay').classList.remove('open');
-  _editSave = null;
-}
-function saveEditModal(){
-  if(_editSave) _editSave();
-  closeEditModal();
-  saveData();
-  renderPhases(); renderProjView(); renderSidebar();
-  showToast('Changes saved.');
-}
-
-// ── EDITAR PROYECTO (nombre, cliente, fechas, color) ──
-function editProject(){
-  const proj = PROJECTS.find(p=>p.id===activeProjId);
-  if(!proj) return;
-  openEditModal('Edit project', [
-    {key:'name',   label:'Project name',       type:'text',  value:proj.name},
-    {key:'client', label:'Client / Location',  type:'text',  value:proj.client},
-    {key:'start',  label:'Start date',         type:'date',  value:proj.start},
-    {key:'end',    label:'End date',           type:'date',  value:proj.end},
-    {key:'color',  label:'Project color',      type:'color', value:proj.color},
-  ], ()=>{
-    proj.name   = readEditField('name','text')   || proj.name;
-    proj.client = readEditField('client','text');
-    proj.start  = readEditField('start','date')  || proj.start;
-    proj.end    = readEditField('end','date')    || proj.end;
-    proj.color  = readEditField('color','color') || proj.color;
-  });
-}
-
-// ── EDITAR FASE (nombre, días, color, status) ──
-function editPhase(pid){
-  const proj = PROJECTS.find(p=>p.id===activeProjId);
-  const phase = proj.phases.find(p=>String(p.id)===String(pid));
-  if(!phase) return;
-  openEditModal('Edit phase / stage', [
-    {key:'name',    label:'Phase name',            type:'text',   value:phase.name},
-    {key:'startDay',label:'Start (day # from project start)', type:'number', value:phase.startDay},
-    {key:'endDay',  label:'End (day # from project start)',   type:'number', value:phase.endDay},
-    {key:'status',  label:'Status', type:'select', value:phase.status, options:[
-      {value:'active',label:'Active'},{value:'done',label:'Done'},{value:'wait',label:'Pending'},
-      {value:'blocked',label:'Blocked'},{value:'buffer',label:'Buffer'}]},
-    {key:'color',   label:'Phase color',           type:'color',  value:phase.color},
-  ], ()=>{
-    phase.name     = readEditField('name','text') || phase.name;
-    phase.startDay = readEditField('startDay','number');
-    phase.endDay   = readEditField('endDay','number');
-    phase.status   = readEditField('status','select');
-    phase.color    = readEditField('color','color') || phase.color;
-  });
-}
-
-// ── ELIMINAR FASE ──
-function deletePhase(pid){
-  const proj = PROJECTS.find(p=>p.id===activeProjId);
-  const phase = proj.phases.find(p=>String(p.id)===String(pid));
-  if(!phase || !confirm('Delete phase "'+phase.name+'" and all its tasks?')) return;
-  proj.phases = proj.phases.filter(p=>String(p.id)!==String(pid));
-  saveData(); renderPhases(); renderProjView(); renderSidebar();
-  showToast('Phase deleted.');
-}
-
-// ── EDITAR TAREA (nombre + responsable) ──
-function editTask(tid, pid){
-  const proj = PROJECTS.find(p=>p.id===activeProjId);
-  const phase = proj.phases.find(p=>String(p.id)===String(pid));
-  const task = phase.tasks.find(t=>t.id===tid);
-  if(!task) return;
-  openEditModal('Edit task', [
-    {key:'text', label:'Task name',   type:'text', value:task.text},
-    {key:'resp', label:'Responsible', type:'text', value:task.resp, placeholder:'e.g. Crew, Site Lead, Elec. Eng.'},
-  ], ()=>{
-    task.text = readEditField('text','text') || task.text;
-    task.resp = readEditField('resp','text') || '—';
-  });
-}
-
-// ── EDITAR ENTREGABLE (texto + si requiere archivo) ──
-function editDeliverable(taskId, delivId){
-  const proj = PROJECTS.find(p=>p.id===activeProjId);
-  let target=null;
-  proj.phases.forEach(ph=>ph.tasks.forEach(t=>{ if(t.id===taskId){ const d=t.deliverables.find(d=>d.id===delivId); if(d) target=d; }}));
-  if(!target) return;
-  openEditModal('Edit deliverable', [
-    {key:'text', label:'Deliverable text', type:'text', value:target.text},
-    {key:'req',  label:'Requires file upload?', type:'select', value:target.fileRequired?'1':'0', options:[
-      {value:'1',label:'Yes — file required'},{value:'0',label:'No — checkbox only'}]},
-  ], ()=>{
-    target.text = readEditField('text','text') || target.text;
-    target.fileRequired = readEditField('req','select')==='1';
-  });
-}
-
-// ── ELIMINAR ENTREGABLE ──
-function deleteDeliverable(taskId, delivId){
-  const proj = PROJECTS.find(p=>p.id===activeProjId);
-  proj.phases.forEach(ph=>ph.tasks.forEach(t=>{
-    if(t.id===taskId) t.deliverables = t.deliverables.filter(d=>d.id!==delivId);
-  }));
-  saveData(); renderPhases(); renderProjView();
-  showToast('Deliverable removed.');
 }
 
 // ── GANTT ──
@@ -2281,30 +1887,22 @@ function exportWord(){
   const pct=projPct(proj);
   const gt=projTotal(proj);
   const today=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
-  // Document code: derive from project (PRP keeps its code; others get a generic project code)
-  const DOC_CODE = (proj.name||'').toUpperCase().includes('PUNK') ? 'INF-PRP-2026-002'
-                 : (proj.name||'').toUpperCase().includes('CALABRESE') ? 'INF-CAL-2026-001'
-                 : 'INF-'+String(proj.id).padStart(3,'0')+'-2026';
+  const DOC_CODE='INF-PRP-2026-002';
   const BLUE='#1A3A8B', BLUE2='#1565C0', DARK='#0D1117', MED='#2C3E6B', GRAY='#5A6480', LIGHT='#EBF4FD', LIGHT2='#F0F6FD', BORDER='#90B8DC';
-  const GREEN='#1F9D6B', AMBER='#B4820E', RED='#C0392B';
   const logoImg=document.querySelector('.brand-logo-img');
   const logoSrc=logoImg?logoImg.getAttribute('src'):'';
 
-  // FULL detail: include ALL phases (not only those already started),
-  // so a brand-new project at 0% still exports its complete plan.
-  const allPhases=proj.phases;
+  // Only phases with progress > 0
+  const activePhases=proj.phases.filter(ph=>phasePct(ph)>0);
 
   const tLabor=proj.phases.reduce((s,p)=>s+(p.budget.labor||0),0);
   const tMat=proj.phases.reduce((s,p)=>s+(p.budget.materials||0),0);
   const tEquip=proj.phases.reduce((s,p)=>s+(p.budget.equipment||0),0);
   const tOther=proj.phases.reduce((s,p)=>s+(p.budget.other||0),0);
 
-  const stFor=(tp)=>tp>=100?'Complete':tp>0?'In Progress':'Pending';
-  const stColorFor=(tp)=>tp>=100?GREEN:tp>0?AMBER:GRAY;
-
-  // ── Budget rows (ALL phases) ──
+  // ── Budget rows (only phases with progress) ──
   let budgetRows='';
-  allPhases.forEach((ph)=>{
+  activePhases.forEach((ph,i)=>{
     budgetRows+=`<tr>
       <td style="padding:3px 7px;border:1px solid ${BORDER};font-size:9pt;">${ph.id}. ${ph.name}</td>
       <td style="padding:3px 7px;border:1px solid ${BORDER};font-size:9pt;text-align:center;font-weight:bold;color:${BLUE};">${phasePct(ph)}%</td>
@@ -2316,102 +1914,61 @@ function exportWord(){
     </tr>`;
   });
 
-  // ── GANTT (ALL phases) — day-precise grid, weekly labels ──
-  // Each column = 1 day. A phase is shaded from its startDay to its endDay inclusive,
-  // so every bar lines up exactly with the dates shown in the phase detail below.
+  // ── GANTT (only phases with progress) ──
+  // Build a simple week-based grid
   const startD=new Date(proj.start), endD=new Date(proj.end);
-  const totalDays=Math.max(1,Math.round((endD-startD)/86400000));
-  // Cap the phase span to the project window so nothing overflows the grid.
-  const clampDay=(d)=>Math.max(0,Math.min(totalDays,d));
-  // Weekly header labels (Week 1, Week 2 …) spanning 7 day-columns each.
-  const totalWeeks=Math.max(1,Math.ceil(totalDays/7));
-  let ganttHead='<th rowspan="1" style="padding:3px 6px;border:1px solid '+BLUE+';font-size:7.5pt;text-align:left;background:'+BLUE+';color:#fff;">Phase</th>';
-  for(let w=0;w<totalWeeks;w++){
-    const span=Math.min(7,totalDays-w*7);
-    ganttHead+='<th colspan="'+span+'" style="padding:2px 2px;border:1px solid '+BORDER+';font-size:6.5pt;background:'+BLUE+';color:#fff;">W'+(w+1)+'</th>';
+  const totalDays=Math.max(1,(endD-startD)/86400000);
+  const totalWeeks=Math.ceil(totalDays/7);
+  let ganttHead='<th style="padding:3px 5px;border:1px solid '+BLUE+';font-size:7.5pt;text-align:left;background:'+BLUE+';color:#fff;">Phase</th>';
+  for(let w=1;w<=totalWeeks;w++){
+    ganttHead+='<th style="padding:2px 1px;border:1px solid '+BORDER+';font-size:6.5pt;background:'+BLUE+';color:#fff;width:14px;">'+w+'</th>';
   }
   let ganttRows='';
-  allPhases.forEach(ph=>{
-    const pStart=clampDay(ph.startDay);
-    let pEndRaw=ph.endDay;
-    if(pEndRaw<=pStart) pEndRaw=pStart+1;      // guarantee at least one day of bar
-    const pEnd=clampDay(pEndRaw);
+  activePhases.forEach(ph=>{
+    const pStart=ph.startDay/7, pEnd=(String(ph.id)==='9'?totalDays:ph.endDay)/7;
     const pp=phasePct(ph);
-    const barColor2=pp>=75?GREEN:pp>=30?AMBER:RED;
+    const barColor2=pp>=75?'#22C55E':pp>=30?'#F59E0B':'#EF4444';
     let cells='';
-    for(let d=0;d<totalDays;d++){
-      const inRange=(d>=pStart && d<pEnd);
-      const weekEdge=((d+1)%7===0)?'border-right:1px solid '+BORDER+';':'';
-      cells+='<td style="padding:0;border-top:1px solid '+BORDER+';border-bottom:1px solid '+BORDER+';'+weekEdge+'height:15px;min-width:5px;'+(inRange?'background:'+ph.color+';':'background:#fff;')+'"></td>';
+    for(let w=0;w<totalWeeks;w++){
+      const inRange=(w>=Math.floor(pStart)&&w<Math.ceil(pEnd));
+      cells+='<td style="padding:0;border:1px solid '+BORDER+';height:14px;'+(inRange?'background:'+ph.color+';':'background:#fff;')+'"></td>';
     }
-    ganttRows+='<tr><td style="padding:3px 6px;border:1px solid '+BORDER+';font-size:7.5pt;white-space:nowrap;">'+ph.id+'. '+ph.name+' <b style="color:'+barColor2+';">('+pp+'%)</b></td>'+cells+'</tr>';
+    ganttRows+='<tr><td style="padding:3px 5px;border:1px solid '+BORDER+';font-size:7.5pt;white-space:nowrap;">'+ph.id+'. '+ph.name+' <b style="color:'+barColor2+';">('+pp+'%)</b></td>'+cells+'</tr>';
   });
 
-  // ── Milestones table (end date of each phase = milestone target) ──
-  let milestoneRows='';
-  allPhases.forEach(ph=>{
-    const ed=proj.start?fmtDate(addDays(proj.start,ph.endDay)):'—';
-    const pp=phasePct(ph);
-    milestoneRows+=`<tr>
-      <td style="padding:3px 7px;border:1px solid ${BORDER};font-size:8.5pt;font-weight:bold;color:${BLUE};white-space:nowrap;">${ed}</td>
-      <td style="padding:3px 7px;border:1px solid ${BORDER};font-size:8.5pt;">Completion of Phase ${ph.id} — ${ph.name}</td>
-      <td style="padding:3px 7px;border:1px solid ${BORDER};font-size:8pt;text-align:center;color:${stColorFor(pp)};font-weight:bold;">${effStatus(ph)}</td>
-    </tr>`;
-  });
-
-  // ── Phase detail: phases + tasks with progress %, NO deliverables ──
+  // ── Phase detail (compact, only phases with progress) ──
   let phaseSections='';
-  allPhases.forEach((ph)=>{
-    const sd=proj.start?fmtDate(addDays(proj.start,ph.startDay)):'—';
-    const ed=proj.start?fmtDate(addDays(proj.start,ph.endDay)):'—';
+  activePhases.forEach((ph)=>{
     let taskRows='';
     ph.tasks.forEach(t=>{
       const tp=taskPct(t);
-      const st=stFor(tp), stColor=stColorFor(tp);
+      const tDone=(t.deliverables||[]).filter(d=>d.done).length;
+      const tTotal=(t.deliverables||[]).length;
+      const st=tp>=100?'Complete':tp>0?'In Progress':'Pending';
+      const stColor=tp>=100?'#1565C0':tp>0?'#1A3A8B':GRAY;
       taskRows+=`<tr>
-        <td style="padding:3px 8px;border:1px solid ${BORDER};font-size:8.5pt;color:${DARK};">${t.text}</td>
-        <td style="padding:3px 8px;border:1px solid ${BORDER};font-size:8pt;text-align:center;color:${MED};width:120px;">${t.resp||'—'}</td>
-        <td style="padding:3px 8px;border:1px solid ${BORDER};font-size:8.5pt;text-align:center;font-weight:bold;color:${BLUE};width:70px;">${tp}%</td>
-        <td style="padding:3px 8px;border:1px solid ${BORDER};font-size:8pt;text-align:center;font-weight:bold;color:${stColor};width:90px;">${st}</td>
+        <td style="padding:3px 7px;border:1px solid ${BORDER};font-size:8.5pt;">${t.text}</td>
+        <td style="padding:3px 7px;border:1px solid ${BORDER};font-size:8pt;color:${MED};">${t.resp}</td>
+        <td style="padding:3px 7px;border:1px solid ${BORDER};font-size:8pt;text-align:center;">${tDone}/${tTotal}</td>
+        <td style="padding:3px 7px;border:1px solid ${BORDER};font-size:8.5pt;text-align:center;font-weight:bold;">${tp}%</td>
+        <td style="padding:3px 7px;border:1px solid ${BORDER};font-size:8pt;text-align:center;color:${stColor};">${st}</td>
       </tr>`;
     });
-    if(!ph.tasks.length){
-      taskRows=`<tr><td colspan="4" style="padding:4px 8px;border:1px solid ${BORDER};font-size:8pt;color:${GRAY};font-style:italic;">No tasks recorded for this phase yet.</td></tr>`;
-    }
     phaseSections+=`
-    <table style="width:100%;border-collapse:collapse;margin:0 0 3px 0;page-break-inside:avoid;">
-      <tr><td style="padding:5px 8px;background:${BLUE};color:#fff;font-size:10pt;font-weight:bold;border:1px solid ${BLUE};">
-        PHASE ${ph.id} — ${ph.name}
+    <table style="width:100%;border-collapse:collapse;margin:0 0 7px 0;page-break-inside:avoid;">
+      <tr><td colspan="5" style="padding:4px 7px;background:${BLUE};color:#fff;font-size:9.5pt;font-weight:bold;border:1px solid ${BLUE};">
+        Phase ${ph.id} — ${ph.name} &nbsp;·&nbsp; ${phasePct(ph)}% &nbsp;·&nbsp; ${statusLabel(ph.status)} &nbsp;·&nbsp; ${fmtMoney(phaseTotal(ph))}
       </td></tr>
-      <tr><td style="padding:3px 8px;background:${LIGHT};border:1px solid ${BORDER};font-size:8pt;color:${MED};">
-        Start: <b>${sd}</b> &nbsp;·&nbsp; End: <b>${ed}</b> &nbsp;·&nbsp; Status: <b style="color:${stColorFor(phasePct(ph))};">${effStatus(ph)}</b> &nbsp;·&nbsp; Progress: <b style="color:${BLUE};">${phasePct(ph)}%</b> &nbsp;·&nbsp; Budget: <b style="color:${BLUE};">${fmtMoney(phaseTotal(ph))}</b>
-      </td></tr>
-    </table>
-    <table style="width:100%;border-collapse:collapse;margin:0 0 10px 0;page-break-inside:avoid;">
-      <tr style="background:${LIGHT2};">
-        <th style="padding:3px 8px;border:1px solid ${BORDER};font-size:7.5pt;text-align:left;color:${BLUE};">Task</th>
-        <th style="padding:3px 8px;border:1px solid ${BORDER};font-size:7.5pt;color:${BLUE};width:120px;">Responsible</th>
-        <th style="padding:3px 8px;border:1px solid ${BORDER};font-size:7.5pt;color:${BLUE};width:70px;">Progress</th>
-        <th style="padding:3px 8px;border:1px solid ${BORDER};font-size:7.5pt;color:${BLUE};width:90px;">Status</th>
+      <tr style="background:${LIGHT};">
+        <th style="padding:2px 7px;border:1px solid ${BORDER};font-size:7.5pt;text-align:left;color:${BLUE};">Task</th>
+        <th style="padding:2px 7px;border:1px solid ${BORDER};font-size:7.5pt;color:${BLUE};">Responsible</th>
+        <th style="padding:2px 7px;border:1px solid ${BORDER};font-size:7.5pt;color:${BLUE};">Deliv.</th>
+        <th style="padding:2px 7px;border:1px solid ${BORDER};font-size:7.5pt;color:${BLUE};">Progress</th>
+        <th style="padding:2px 7px;border:1px solid ${BORDER};font-size:7.5pt;color:${BLUE};">Status</th>
       </tr>
       ${taskRows}
     </table>`;
   });
-
-  // Scope note: only PRP carries the GPR/restroom note; other projects omit section 5.
-  const isPRP=(proj.name||'').toUpperCase().includes('PUNK');
-  const scopeNote = isPRP ? `
-<h2>5. Scope Note — Additional Work Identified</h2>
-<table style="width:100%;border-collapse:collapse;margin-bottom:10px;">
-  <tr><td style="padding:8px 12px;border:1px solid ${BLUE};border-left:5px solid ${BLUE};background:${LIGHT};font-size:9pt;color:${MED};text-align:justify;">
-    During execution of the Survey &amp; Diagnostics phase, it was determined that the location of the existing underground piping had <b>not been contemplated in the original project scope</b>. Identifying the actual routing and condition of the existing lines proved essential before proceeding with the plumbing works. As a result, <b>two additional tasks were incorporated</b> that were not foreseen at the start of the project:
-    <br/><br/>
-    &nbsp;&nbsp;<b>1.</b> Piping adaptation for the PRP restroom.<br/>
-    &nbsp;&nbsp;<b>2.</b> Pipe locating services using Ground Penetrating Radar (GPR).
-    <br/><br/>
-    These additional activities were necessary to accurately map the existing installations and to prevent unforeseen conflicts during subsequent construction stages. They are reflected in the deliverables of the Survey &amp; Diagnostics phase.
-  </td></tr>
-</table>` : '';
 
   const doc=`<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">
 <head><meta charset="utf-8"><title>Executive Report ${DOC_CODE}</title>
@@ -2462,15 +2019,15 @@ function exportWord(){
 
 <h2>1. Executive Summary</h2>
 <p style="margin:0 0 8px 0;text-align:justify;font-size:9pt;color:${MED};">
-This document constitutes the official executive report for the ${proj.name} project. The overall completion, calculated objectively from verified deliverables, stands at ${pct}%. The sections below present the complete project structure: timeline, budget allocation by phase and category, key milestones, and task-level progress with the full list of supporting deliverables and their evidence status.
+This report presents the progress of the ${proj.name} construction project as of ${today}. The overall completion, calculated objectively from verified deliverables, stands at ${pct}%. The sections below detail only the phases where work has commenced, including the project timeline, budget allocation, and task-level progress with supporting deliverables.
 </p>
 
 <h2>2. Project Timeline (Gantt)</h2>
-<table style="width:100%;border-collapse:collapse;margin-bottom:6px;">
+<table style="width:100%;border-collapse:collapse;margin-bottom:10px;">
   <tr>${ganttHead}</tr>
   ${ganttRows}
 </table>
-<p style="font-size:7.5pt;color:${GRAY};margin:0 0 8px 0;">Timeline in weeks (W1, W2 …) relative to project start (${proj.start||'—'}). Each colored segment spans the exact scheduled duration of its phase, from start to end date.</p>
+<p style="font-size:7.5pt;color:${GRAY};margin:0 0 8px 0;">Week numbers are relative to project start (${proj.start||'—'}). Colored cells indicate scheduled phase duration.</p>
 
 <h2>3. Budget Summary by Phase</h2>
 <table style="width:100%;border-collapse:collapse;margin-bottom:10px;">
@@ -2495,20 +2052,20 @@ This document constitutes the official executive report for the ${proj.name} pro
   </tr>
 </table>
 
-<h2>4. Key Project Milestones</h2>
-<table style="width:100%;border-collapse:collapse;margin-bottom:10px;">
-  <tr style="background:${BLUE};color:#fff;">
-    <th style="padding:3px 7px;border:1px solid ${BLUE};font-size:8pt;text-align:left;width:90px;">Target Date</th>
-    <th style="padding:3px 7px;border:1px solid ${BLUE};font-size:8pt;text-align:left;">Milestone</th>
-    <th style="padding:3px 7px;border:1px solid ${BLUE};font-size:8pt;width:80px;">Status</th>
-  </tr>
-  ${milestoneRows}
-</table>
-
-<h2>5. Phase Detail &amp; Tasks</h2>
+<h2>4. Phase Detail &amp; Deliverables</h2>
 ${phaseSections}
 
-${scopeNote}
+<h2>5. Scope Note — Additional Work Identified</h2>
+<table style="width:100%;border-collapse:collapse;margin-bottom:10px;">
+  <tr><td style="padding:8px 12px;border:1px solid ${BLUE};border-left:5px solid ${BLUE};background:${LIGHT};font-size:9pt;color:${MED};text-align:justify;">
+    During execution of the Survey &amp; Diagnostics phase, it was determined that the location of the existing underground piping had <b>not been contemplated in the original project scope</b>. Identifying the actual routing and condition of the existing lines proved essential before proceeding with the plumbing works. As a result, <b>two additional tasks were incorporated</b> that were not foreseen at the start of the project:
+    <br/><br/>
+    &nbsp;&nbsp;<b>1.</b> Piping adaptation for the PRP restroom.<br/>
+    &nbsp;&nbsp;<b>2.</b> Pipe locating services using Ground Penetrating Radar (GPR).
+    <br/><br/>
+    These additional activities were necessary to accurately map the existing installations and to prevent unforeseen conflicts during subsequent construction stages. They are reflected in the deliverables of the Survey &amp; Diagnostics phase.
+  </td></tr>
+</table>
 
 <table style="width:100%;border:none;margin-top:22px;page-break-inside:avoid;"><tr>
   <td style="border:none;width:55%;vertical-align:bottom;">
@@ -2544,40 +2101,17 @@ function showToast(msg){
 
 // ── INIT ──
 document.getElementById('modal-overlay').addEventListener('click',function(e){if(e.target===this)closeModal();});
-document.getElementById('edit-overlay').addEventListener('click',function(e){if(e.target===this)closeEditModal();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 
 // Show loading state, then load from cloud (async), then render
-// Snapshot of the built-in Calabrese project (id:2) BEFORE cloud load overwrites PROJECTS.
-// This lets us seed it into an existing cloud workspace that only has Punk Rock Pizza,
-// without touching or overwriting any other project.
-const CALABRESE_SEED = JSON.parse(JSON.stringify(
-  PROJECTS.find(p => p && p.id === 2) || null
-));
-
-function ensureCalabrese(){
-  if(!CALABRESE_SEED) return false;
-  // already present? (match by id OR by name, so we never duplicate)
-  const exists = PROJECTS.some(p =>
-    p && (p.id === CALABRESE_SEED.id ||
-      (typeof p.name === 'string' && p.name.toUpperCase().includes('CALABRESE')))
-  );
-  if(exists) return false;
-  PROJECTS.push(JSON.parse(JSON.stringify(CALABRESE_SEED)));
-  return true;
-}
-
 (async function init(){
   setSyncState('saving');
   await loadData();
-  // Seed Calabrese into the workspace if the cloud/cache didn't already have it,
-  // then persist so it stays available on every device from now on.
-  if(ensureCalabrese()){ saveData(); }
   renderSidebar();
   if(PROJECTS.length>0){ openProject(PROJECTS[0].id); }
   else { document.getElementById('empty-state').style.display='block'; document.getElementById('proj-view').style.display='none'; }
 })();
-</script><div id="sync-indicator" title="Click to sync with cloud" style="position: fixed; bottom: 46px; left: 24px; border-radius: 8px; padding: 7px 13px; font-size: 11px; font-weight: 600; z-index: 400; display: flex; align-items: center; gap: 7px; font-family: Inter, sans-serif; transition: 0.3s; cursor: pointer; background: var(--bg2); border: 1px solid var(--red); color: var(--red); opacity: 1;"><span style="width:7px;height:7px;border-radius:50%;background:var(--red);display:inline-block;"></span>Offline — saved locally</div>
+</script><div id="sync-indicator" title="Click to sync with cloud" style="position: fixed; bottom: 36px; left: 24px; border-radius: 8px; padding: 7px 13px; font-size: 11px; font-weight: 600; z-index: 9999; display: flex; align-items: center; gap: 7px; font-family: Inter, sans-serif; transition: 0.3s; cursor: pointer; box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 8px; background: rgb(30, 36, 54); border: 1px solid rgb(34, 197, 94); color: rgb(34, 197, 94); opacity: 0.7;"><span style="width:8px;height:8px;border-radius:50%;background:#22C55E;display:inline-block;flex-shrink:0;"></span><span>Saved to cloud ✓</span></div>
 
 
 </body></html>
