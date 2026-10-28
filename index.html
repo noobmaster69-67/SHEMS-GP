@@ -231,6 +231,18 @@ input[type=file]{display:none;}
 .deliv-input::placeholder{color:var(--text3);}
 .deliv-input:focus{outline:none;border-color:var(--blue);}
 
+/* EDIT CONTROLS */
+.icon-btn{width:22px;height:22px;border-radius:5px;border:1px solid transparent;background:transparent;
+  color:var(--text3);font-size:12px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;
+  flex-shrink:0;opacity:.75;transition:all .15s;padding:0;}
+.icon-btn:hover{opacity:1;background:var(--bg4);color:var(--blue);border-color:var(--border2);}
+.icon-btn.danger:hover{color:var(--red);}
+.edit-row{display:flex;flex-wrap:wrap;gap:6px;align-items:center;flex:1;}
+.edit-row .deliv-input{min-width:120px;}
+.edit-row .resp-inp{flex:0 0 140px;}
+.edit-row label{font-size:10px;color:var(--text3);display:flex;align-items:center;gap:4px;white-space:nowrap;}
+.deliv-actions{display:flex;gap:2px;flex-shrink:0;}
+
 /* TASK FOOTER */
 .task-footer-row{display:flex;gap:6px;align-items:center;
   padding:8px 16px 8px 52px;background:var(--bg);border-top:1px solid var(--border);}
@@ -806,6 +818,8 @@ input[type=number]{-moz-appearance:textfield;}
 const COLORS=['#3B7BE8','#22C55E','#F59E0B','#EF4444','#A78BFA','#EC4899','#14B8A6','#F97316','#06B6D4','#84CC16'];
 let selColor=COLORS[0], activeProjId=null, activeTab='phases';
 let openPhases={}, openTasks={};
+let editingTask=null, editingDeliv=null;
+function escAttr(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 
 const PROJECTS=[{
   id:1, name:'PUNK ROCK PIZZA — Dallas TX', client:'Dallas, TX',
@@ -1393,12 +1407,28 @@ function renderPhases(){
                 <input type="file" id="fu-${task.id}-${d.id}" onchange="handleFileUpload('${task.id}','${d.id}',this)" />
               </div>`:
               `<div style="font-size:10px;color:var(--text3);margin-top:4px;padding:4px 8px;background:var(--bg3);border-radius:5px;">ℹ No document required for this deliverable</div>`;
+            if(editingDeliv===d.id){
+              return `
+              <div class="deliverable-row">
+                <div class="deliv-check ${d.done?'done':''}" onclick="toggleDeliverable('${task.id}','${d.id}')"></div>
+                <div class="edit-row">
+                  <input class="deliv-input" id="ed-text-${d.id}" value="${escAttr(d.text)}" onkeydown="if(event.key==='Enter')saveDelivEdit('${task.id}','${d.id}');if(event.key==='Escape')cancelEdit();"/>
+                  <label><input type="checkbox" id="ed-req-${d.id}" ${d.fileRequired?'checked':''}/> File required</label>
+                  <button class="btn sm blue" onclick="saveDelivEdit('${task.id}','${d.id}')">Save</button>
+                  <button class="btn sm" onclick="cancelEdit()">Cancel</button>
+                </div>
+              </div>`;
+            }
             return `
               <div class="deliverable-row">
                 <div class="deliv-check ${d.done?'done':''}" onclick="toggleDeliverable('${task.id}','${d.id}')"></div>
                 <div class="deliv-info">
-                  <div class="deliv-name ${d.done?'struck':''}">${d.text}${reqBadge}</div>
+                  <div class="deliv-name ${d.done?'struck':''}">${escAttr(d.text)}${reqBadge}</div>
                   ${fileSection}
+                </div>
+                <div class="deliv-actions">
+                  <button class="icon-btn" title="Edit deliverable" onclick="startDelivEdit('${d.id}')">✎</button>
+                  <button class="icon-btn danger" title="Delete deliverable" onclick="deleteDeliverable('${task.id}','${d.id}')">✕</button>
                 </div>
               </div>`;
           }).join('');
@@ -1415,16 +1445,28 @@ function renderPhases(){
             </div>`;
         }
 
-        tasksHTML+=`
-          <div class="task-block">
+        const headerHTML=editingTask===task.id?`
+            <div class="task-header" style="cursor:default;">
+              <div class="semaphore ${sc}"></div>
+              <div class="edit-row">
+                <input class="deliv-input" id="et-text-${task.id}" value="${escAttr(task.text)}" placeholder="Task name" onkeydown="if(event.key==='Enter')saveTaskEdit('${task.id}','${phase.id}');if(event.key==='Escape')cancelEdit();"/>
+                <input class="deliv-input resp-inp" id="et-resp-${task.id}" value="${escAttr(task.resp==='—'?'':task.resp)}" placeholder="Responsible" onkeydown="if(event.key==='Enter')saveTaskEdit('${task.id}','${phase.id}');if(event.key==='Escape')cancelEdit();"/>
+                <button class="btn sm blue" onclick="saveTaskEdit('${task.id}','${phase.id}')">Save</button>
+                <button class="btn sm" onclick="cancelEdit()">Cancel</button>
+              </div>
+            </div>`:`
             <div class="task-header" onclick="toggleTask('${task.id}')">
               <div class="semaphore ${sc}"></div>
               <div class="task-expand-btn">${taskOpen?'−':'+'}</div>
-              <div class="task-name ${tp>=100?'struck':''}">${task.text}</div>
+              <div class="task-name ${tp>=100?'struck':''}">${escAttr(task.text)}</div>
+              <button class="icon-btn" title="Edit task" onclick="event.stopPropagation();startTaskEdit('${task.id}')">✎</button>
               <div class="task-resp">${task.resp}</div>
               <div style="font-size:10px;color:var(--text3);min-width:60px;text-align:right;">${tDone}/${tTotal} deliverables</div>
               <div class="task-pct-lbl" style="color:${barColor(tp)};">${tp}%</div>
-            </div>
+            </div>`;
+        tasksHTML+=`
+          <div class="task-block">
+            ${headerHTML}
             ${delivHTML}
           </div>`;
       });
@@ -1562,6 +1604,54 @@ function deleteTask(tid,pid){
   saveData();
   renderPhases(); renderProjView();
   showToast('Task deleted.');
+}
+// ── EDIT TASKS & DELIVERABLES ──
+function findTask(tid){
+  const proj=PROJECTS.find(p=>p.id===activeProjId);
+  for(const ph of proj.phases){ const t=ph.tasks.find(t=>t.id===tid); if(t) return t; }
+  return null;
+}
+function startTaskEdit(tid){
+  editingTask=tid; editingDeliv=null;
+  renderPhases();
+  const el=document.getElementById('et-text-'+tid); if(el){el.focus();el.select();}
+}
+function startDelivEdit(did){
+  editingDeliv=did; editingTask=null;
+  renderPhases();
+  const el=document.getElementById('ed-text-'+did); if(el){el.focus();el.select();}
+}
+function cancelEdit(){ editingTask=null; editingDeliv=null; renderPhases(); }
+function saveTaskEdit(tid,pid){
+  const task=findTask(tid); if(!task) return;
+  const text=document.getElementById('et-text-'+tid).value.trim();
+  const resp=document.getElementById('et-resp-'+tid).value.trim();
+  if(!text){ showToast('Task name cannot be empty.'); return; }
+  task.text=text; task.resp=resp||'—';
+  editingTask=null;
+  saveData();
+  renderPhases(); renderProjView();
+  showToast('Task updated.');
+}
+function saveDelivEdit(tid,did){
+  const task=findTask(tid); if(!task) return;
+  const d=(task.deliverables||[]).find(d=>d.id===did); if(!d) return;
+  const text=document.getElementById('ed-text-'+did).value.trim();
+  if(!text){ showToast('Deliverable name cannot be empty.'); return; }
+  d.text=text; d.fileRequired=document.getElementById('ed-req-'+did).checked;
+  editingDeliv=null;
+  saveData();
+  renderPhases(); renderProjView();
+  showToast('Deliverable updated.');
+}
+function deleteDeliverable(tid,did){
+  const task=findTask(tid); if(!task) return;
+  const d=(task.deliverables||[]).find(d=>d.id===did); if(!d) return;
+  if(!confirm('Delete deliverable "'+d.text+'"?')) return;
+  task.deliverables=task.deliverables.filter(x=>x.id!==did);
+  saveData();
+  renderPhases(); renderProjView();
+  showToast('Deliverable deleted.');
 }
 function updateCost(pid,field,val){
   const proj=PROJECTS.find(p=>p.id===activeProjId);
