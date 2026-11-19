@@ -1924,32 +1924,46 @@ function rptPhaseStatus(ph){
 
 function rptModel(proj,cfg){
   const pct=projPct(proj), total=projTotal(proj);
+  const d0=new Date((proj.start||'')+'T12:00:00'), d1=new Date((proj.end||'')+'T12:00:00');
+  const totalDays=(isNaN(d0)||isNaN(d1))?0:Math.max(1,Math.round((d1-d0)/86400000));
+  const weeks=Math.max(1,Math.ceil(totalDays/7)), bucket=Math.max(1,Math.ceil(weeks/26)), cols=Math.ceil(weeks/bucket);
+  const weekLabels=Array.from({length:cols},(_,c)=>String(c*bucket+1));
   const phases=proj.phases.map((ph,i)=>{
     const full=/^phase\b/i.test(ph.name)?ph.name:('Phase '+ph.id+' — '+ph.name);
     const short=ph.short||ph.name.replace(/^phase\s+[^—–-]+[—–-]\s*/i,'');
-    const st=rptPhaseStatus(ph);
+    const st=rptPhaseStatus(ph), pp=phasePct(ph);
+    const s=(ph.startDay||0)/7, e=(String(ph.id)==='9'&&totalDays?totalDays:(ph.endDay||0))/7;
+    const gantt=Array.from({length:cols},(_,c)=>{const a=c*bucket,b=(c+1)*bucket;return totalDays>0&&a<Math.ceil(e)&&b>Math.floor(s);});
     return {
-      num:i+2,
-      heading:full.toUpperCase(),
+      id:ph.id, num:'4.'+(i+1), heading:full.toUpperCase(), label:ph.id+'. '+short, pct:pp, status:st,
+      fill:pp>=100?RPT_NAVY:(st==='IN PROGRESS'?RPT_BLUE:RPT_LIGHT), gantt,
+      budget:{labor:ph.budget.labor||0,materials:ph.budget.materials||0,equipment:ph.budget.equipment||0,other:ph.budget.other||0},
       desc:ph.desc||'',
-      rows:ph.tasks.map((t,j)=>({
-        code:t.code||(ph.id+'.'+(j+1)),
-        desc:t.desc||t.text,
-        sub:(!t.desc&&cfg.showDeliv)?(t.deliverables||[]).map(d=>d.text):[],
-        status:rptTaskStatus(t,ph)
-      })),
+      rows:ph.tasks.map((t,j)=>{
+        const dl=t.deliverables||[];
+        return {code:t.code||(ph.id+'.'+(j+1)), desc:t.desc||t.text,
+          sub:(!t.desc&&cfg.showDeliv)?dl.map(d=>(d.done?'✓ ':'○ ')+d.text):[],
+          resp:t.resp&&t.resp!=='—'?t.resp:'—', deliv:dl.filter(d=>d.done).length+'/'+dl.length, pct:taskPct(t)+'%',
+          status:rptTaskStatus(t,ph)};
+      }),
       totalLabel:'TOTAL PHASE '+ph.id+' — '+short.toUpperCase()+'  ('+st+')',
       total:phaseTotal(ph)
     };
   });
+  const sum=k=>phases.reduce((s,p)=>s+p.budget[k],0);
   const parts=String(cfg.closing||'').split('{TOTAL}');
+  const dateTxt=rptFmtDate(cfg.date);
   return {
-    cfg, pct, total, phases,
+    cfg, pct, total, phases, weekLabels, bucket,
+    totals:{labor:sum('labor'),materials:sum('materials'),equipment:sum('equipment'),other:sum('other')},
     subtitle:cfg.projectName+' — '+cfg.address+'  ·  '+cfg.docNo,
     info:[['Project',cfg.projectName],['Location',cfg.address],['General Contractor','SHEMS Global Projects LLC'],
-          ['Report No.',cfg.docNo],['Report Date',rptFmtDate(cfg.date)],['Report Type',cfg.reportType],
-          ['Overall Progress',pct+'%']],
-    closing:parts.map((p,i)=>({text:p,bold:false})).flatMap((p,i)=>i<parts.length-1?[p,{text:rptMoney(total),bold:true}]:[p]).filter(p=>p.text),
+          ['Report No.',cfg.docNo],['Report Date',dateTxt],['Report Type',cfg.reportType],
+          ['Period',(rptFmtDate(proj.start)||'—')+'  →  '+(rptFmtDate(proj.end)||'—')],
+          ['Overall Progress',pct+'%'],['Total Budget',rptMoney(total)]],
+    summary2:'As of '+dateTxt+', the overall completion of the project, calculated objectively from verified deliverables, stands at '+pct+'%, with a total budget of '+rptMoney(total)+'. The sections below present the project timeline, the budget allocation by phase, and the task-level progress with its supporting deliverables.',
+    ganttNote:'Week numbers are relative to the project start ('+(rptFmtDate(proj.start)||'—')+')'+(bucket>1?', in groups of '+bucket+' weeks':'')+'. Navy = completed · Blue = in progress · Light blue = pending.',
+    closing:parts.flatMap((p,i)=>i<parts.length-1?[{text:p},{text:rptMoney(total),bold:true}]:[{text:p}]).filter(p=>p.text),
     footer:'SHEMS Global Projects LLC  |  '+cfg.docNo+'  |  Project: '+cfg.projectName+(cfg.city?', '+cfg.city:''),
     signers:[
       {name:'Fernando Jiménez',title:'Director of Planning & Project Manager SHEMS GLOBAL PROJECTS LLC',company:'',sig:'sigFJ'},
@@ -1977,7 +1991,7 @@ function rptEnsureModal(){
     </div>
     <div class="form-field"><label>Location / Address</label><input class="form-inp" id="rpt-address"></div>
     <div class="form-field"><label>Report Type</label><input class="form-inp" id="rpt-reportType"></div>
-    <div class="form-field"><label>1. Purpose of the Report</label><textarea class="form-inp" id="rpt-purpose" rows="3" style="resize:vertical;"></textarea></div>
+    <div class="form-field"><label>1. Executive Summary (intro paragraph)</label><textarea class="form-inp" id="rpt-purpose" rows="3" style="resize:vertical;"></textarea></div>
     <div class="form-field"><label>Closing paragraph — {TOTAL} = project total (leave empty to omit)</label><textarea class="form-inp" id="rpt-closing" rows="2" style="resize:vertical;"></textarea></div>
     <div class="modal-row">
       <div class="form-field"><label>Client signer</label><input class="form-inp" id="rpt-s3name"></div>
@@ -2036,24 +2050,28 @@ function exportWord(){openReportModal('word');}
 
 // ── HTML / PDF ──
 function rptHTML(m){
-  const c=m.cfg, A=SHEMS_RPT_ASSETS, N='#'+RPT_NAVY, L='#'+RPT_LIGHT, B='#'+RPT_BLUE;
-  const info=m.info.map(([k,v])=>`<tr><td class="ik">${rptEsc(k)}</td><td class="iv">${rptEsc(v)}</td></tr>`).join('');
+  const c=m.cfg, A=SHEMS_RPT_ASSETS, N='#'+RPT_NAVY, L='#'+RPT_LIGHT, B='#'+RPT_BLUE, E=rptEsc, $=rptMoney;
+  const info=m.info.map(([k,v])=>`<tr><td class="ik">${E(k)}</td><td class="iv">${E(v)}</td></tr>`).join('');
+  const gHead=`<tr><th class="gl">Phase</th>${m.weekLabels.map(w=>`<th class="gw">${w}</th>`).join('')}</tr>`;
+  const gRows=m.phases.map(p=>`<tr><td class="gl">${E(p.label)} <b>(${p.pct}%)</b></td>${p.gantt.map(on=>`<td class="gc"${on?` style="background:#${p.fill}"`:''}></td>`).join('')}</tr>`).join('');
+  const bRows=m.phases.map(p=>`<tr><td>${E(p.label)}</td><td class="c b">${p.pct}%</td><td class="r">${$(p.budget.labor)}</td><td class="r">${$(p.budget.materials)}</td><td class="r">${$(p.budget.equipment)}</td><td class="r">${$(p.budget.other)}</td><td class="r b">${$(p.total)}</td></tr>`).join('');
+  const T=m.totals;
   const phases=m.phases.map(ph=>`<div class="${ph.rows.length<=8?'keep':''}">
-    <h2>${ph.num}. ${rptEsc(ph.heading)}</h2>
-    ${ph.desc?`<p class="body">${rptEsc(ph.desc)}</p>`:''}
+    <h3>${ph.num} ${E(ph.heading)}</h3>
+    ${ph.desc?`<p class="body">${E(ph.desc)}</p>`:''}
     <table class="act">
-      <thead><tr><th style="width:11%">Item</th><th>Activity Description</th><th style="width:25%">Status</th></tr></thead>
+      <thead><tr><th style="width:8%">Item</th><th>Activity Description</th><th style="width:13%">Responsible</th><th style="width:8%">Deliv.</th><th style="width:9%">Progress</th><th style="width:17%">Status</th></tr></thead>
       <tbody>
-      ${ph.rows.map(r=>`<tr><td class="code">${rptEsc(r.code)}</td><td class="desc">${rptEsc(r.desc)}${r.sub.length?`<div class="sub">${r.sub.map(s=>'• '+rptEsc(s)).join('<br>')}</div>`:''}</td><td class="st">${rptEsc(r.status)}</td></tr>`).join('')}
-      <tr class="tot"><td colspan="2">${rptEsc(ph.totalLabel)}</td><td>${rptMoney(ph.total)}</td></tr>
+      ${ph.rows.map(r=>`<tr><td class="code">${E(r.code)}</td><td class="desc">${E(r.desc)}${r.sub.length?`<div class="sub">${r.sub.map(E).join('<br>')}</div>`:''}</td><td class="c sm">${E(r.resp)}</td><td class="c">${E(r.deliv)}</td><td class="c b">${E(r.pct)}</td><td class="st">${E(r.status)}</td></tr>`).join('')}
+      <tr class="tot"><td colspan="5">${E(ph.totalLabel)}</td><td>${$(ph.total)}</td></tr>
       </tbody>
     </table></div>`).join('');
-  const closing=m.closing.length?`<p class="body" style="margin-top:14px;">${m.closing.map(p=>p.bold?`<b style="color:${N}">${rptEsc(p.text)}</b>`:rptEsc(p.text)).join('')}</p>`:'';
+  const closing=m.closing.length?`<p class="body" style="margin-top:14px;">${m.closing.map(p=>p.bold?`<b style="color:${N}">${E(p.text)}</b>`:E(p.text)).join('')}</p>`:'';
   const sigs=m.signers.map(s=>`<td class="sg"><div class="sgimg">${s.sig?`<img src="${A[s.sig]}">`:''}</div><div class="sgline"></div>
-      <div class="sgn">${rptEsc(s.name)}</div><div class="sgt">${rptEsc(s.title)}</div>${s.company?`<div class="sgt">${rptEsc(s.company)}</div>`:''}<div class="sgt" style="margin-top:6px;">Date: ____________________</div></td>`).join('');
-  const footer=rptEsc(m.footer).replace(/"/g,'\\"');
+      <div class="sgn">${E(s.name)}</div><div class="sgt">${E(s.title)}</div>${s.company?`<div class="sgt">${E(s.company)}</div>`:''}<div class="sgt" style="margin-top:6px;">Date: ____________________</div></td>`).join('');
+  const footer=E(m.footer).replace(/"/g,'\\"');
   return `<!DOCTYPE html><html><head><meta charset="UTF-8"/>
-<title>SHEMS Global Projects LLC — ${rptEsc(c.docNo)} — ${rptEsc(c.projectName)}</title>
+<title>SHEMS Global Projects LLC — ${E(c.docNo)} — ${E(c.projectName)}</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 @page{size:letter;margin:1.3cm 2.2cm 2cm 2.2cm;
@@ -2073,21 +2091,33 @@ table.info{width:100%;border-collapse:collapse;margin-bottom:12pt;font-size:8.5p
 .info td{border:0.6pt solid ${N};padding:2pt 5pt;}
 .ik{background:${N};color:#fff;font-weight:700;width:24%;}
 h2{font-size:10.5pt;color:${N};font-weight:800;border-bottom:0.8pt solid ${N};padding-bottom:2pt;margin:14pt 0 5pt;page-break-after:avoid;}
+h3{font-size:9.5pt;color:${N};font-weight:800;margin:10pt 0 4pt;page-break-after:avoid;}
 p.body{text-align:justify;hyphens:auto;line-height:1.4;margin:0 0 7pt;}
+.note{font-size:7.5pt;color:#555;margin:3pt 0 8pt;}
+table.grid{width:100%;border-collapse:collapse;font-size:8pt;margin-bottom:6pt;}
+.grid th{background:${N};color:#fff;font-weight:700;padding:3pt 5pt;border:0.6pt solid ${N};}
+.grid td{border:0.6pt solid ${N};padding:2.5pt 5pt;}
+.grid tr.sum td{background:${L};color:${N};font-weight:800;}
+table.gantt{width:100%;border-collapse:collapse;table-layout:fixed;font-size:7pt;margin-bottom:2pt;}
+.gantt th{background:${N};color:#fff;font-weight:700;border:0.5pt solid ${N};padding:2pt 0;text-align:center;}
+.gantt th.gl,.gantt td.gl{width:31%;text-align:left;padding:2pt 4pt;line-height:1.25;}
+.gantt td{border:0.5pt solid #B8C7D8;height:12pt;}
+.gantt td.gl b{color:${N};}
 table.act{width:100%;border-collapse:collapse;font-size:8pt;margin-bottom:6pt;}
-.act th{background:${N};color:#fff;font-weight:700;padding:3pt 5pt;border:0.6pt solid ${N};}
-.act td{border:0.6pt solid ${N};padding:3pt 5pt;vertical-align:middle;}
-.act tr{page-break-inside:avoid;}
+.act th{background:${N};color:#fff;font-weight:700;padding:3pt 4pt;border:0.6pt solid ${N};}
+.act td{border:0.6pt solid ${N};padding:3pt 4pt;vertical-align:middle;}
+.act tr,.grid tr{page-break-inside:avoid;}
 .keep{break-inside:avoid;page-break-inside:avoid;}
+.c{text-align:center;} .r{text-align:right;} .b{font-weight:700;color:${N};} .sm{font-size:7.5pt;}
 .code{text-align:center;font-weight:700;color:${N};}
 .desc{text-align:justify;}
-.sub{color:#444;font-size:7.5pt;margin-top:2pt;line-height:1.35;text-align:left;}
+.sub{color:#444;font-size:7.3pt;margin-top:2pt;line-height:1.35;text-align:left;}
 .st{background:${L};color:${N};font-weight:700;text-align:center;}
 .tot td{background:${N};color:#fff;font-weight:800;}
 .tot td:first-child{text-align:right;padding-right:10pt;}
-.tot td:last-child{text-align:center;font-size:10pt;}
+.tot td:last-child{text-align:center;font-size:9.5pt;}
 .sigblock{page-break-inside:avoid;margin-top:16pt;}
-.sigblock h3{font-size:9.5pt;color:${N};font-weight:800;margin:0 0 6pt;}
+.sigblock h4{font-size:9.5pt;color:${N};font-weight:800;margin:0 0 6pt;}
 table.sigs{width:100%;border-collapse:collapse;}
 .sg{width:33.3%;vertical-align:top;padding-right:14pt;font-size:8pt;}
 .sgimg{height:0.7in;display:flex;align-items:flex-end;}
@@ -2104,16 +2134,25 @@ table.sigs{width:100%;border-collapse:collapse;}
 <div class="bar"><button onclick="window.print()">Print / Save as PDF</button><button class="g" onclick="window.close()">Close</button></div>
 <div class="wrap"><table class="page"><thead><tr><td>
   <div class="hdr"><img src="${A.logo}" alt="SHEMS Global Projects">
-    <div class="hr"><div class="co">SHEMS GLOBAL PROJECTS LLC</div><div>Farmers Branch, Texas · USA</div><div>Tel: (214) 477-7303 · (469) 465-1226</div><div>www.shemsgp.com</div><div class="dn">Document No. ${rptEsc(c.docNo)}</div></div></div>
+    <div class="hr"><div class="co">SHEMS GLOBAL PROJECTS LLC</div><div>Farmers Branch, Texas · USA</div><div>Tel: (214) 477-7303 · (469) 465-1226</div><div>www.shemsgp.com</div><div class="dn">Document No. ${E(c.docNo)}</div></div></div>
 </td></tr></thead><tbody><tr><td>
-  <h1>${rptEsc(c.title)}</h1>
-  <div class="subt">${rptEsc(m.subtitle)}</div>
+  <h1>${E(c.title)}</h1>
+  <div class="subt">${E(m.subtitle)}</div>
   <table class="info">${info}</table>
-  <h2>1. PURPOSE OF THE REPORT</h2>
-  <p class="body">${rptEsc(c.purpose)}</p>
+  <h2>1. EXECUTIVE SUMMARY</h2>
+  ${c.purpose?`<p class="body">${E(c.purpose)}</p>`:''}
+  <p class="body">${E(m.summary2)}</p>
+  <div class="keep"><h2>2. PROJECT TIMELINE (GANTT)</h2>
+  <table class="gantt">${gHead}${gRows}</table>
+  <div class="note">${E(m.ganttNote)}</div></div>
+  <div class="keep"><h2>3. BUDGET SUMMARY BY PHASE</h2>
+  <table class="grid"><tr><th style="text-align:left">Phase</th><th>Progress</th><th>Labor</th><th>Materials</th><th>Equipment</th><th>Other</th><th>Total</th></tr>
+  ${bRows}
+  <tr class="sum"><td>PROJECT TOTAL (all phases)</td><td class="c">${m.pct}%</td><td class="r">${$(T.labor)}</td><td class="r">${$(T.materials)}</td><td class="r">${$(T.equipment)}</td><td class="r">${$(T.other)}</td><td class="r">${$(m.total)}</td></tr></table></div>
+  <h2>4. PHASE DETAIL &amp; DELIVERABLES</h2>
   ${phases}
   ${closing}
-  <div class="sigblock"><h3>PREPARED AND APPROVED BY</h3><table class="sigs"><tr>${sigs}</tr></table></div>
+  <div class="sigblock"><h4>PREPARED AND APPROVED BY</h4><table class="sigs"><tr>${sigs}</tr></table></div>
 </td></tr></tbody></table></div>
 </body></html>`;
 }
@@ -2149,78 +2188,116 @@ async function rptWord(m){
 
 function rptBuildDocx(D,m,imgs){
   const {Document,Paragraph,TextRun,ImageRun,Table,TableRow,TableCell,WidthType,BorderStyle,ShadingType,
-    AlignmentType,VerticalAlign,Header,Footer,PageNumber,TableLayoutType,LineRuleType}=D;
+    AlignmentType,VerticalAlign,Header,Footer,PageNumber,TableLayoutType,LineRuleType,HeightRule}=D;
   const c=m.cfg, FONT='Inter', W=9406;
   const line={style:BorderStyle.SINGLE,size:4,color:RPT_NAVY};
+  const thin={style:BorderStyle.SINGLE,size:2,color:'B8C7D8'};
   const none={style:BorderStyle.NONE,size:0,color:'FFFFFF'};
   const allB={top:line,bottom:line,left:line,right:line};
   const noB={top:none,bottom:none,left:none,right:none,insideHorizontal:none,insideVertical:none};
   const R=(text,o={})=>new TextRun(Object.assign({text:String(text==null?'':text),font:FONT,size:o.size||20},o));
   const P=(runs,o={})=>new Paragraph(Object.assign({children:Array.isArray(runs)?runs:[runs]},o));
-  const cell=(children,o={})=>new TableCell(Object.assign({children,borders:allB,margins:{top:40,bottom:40,left:90,right:90},verticalAlign:VerticalAlign.CENTER},o));
+  const DX=w=>({size:w,type:WidthType.DXA});
+  const cell=(children,o={})=>new TableCell(Object.assign({children,borders:allB,margins:{top:30,bottom:30,left:70,right:70},verticalAlign:VerticalAlign.CENTER},o));
   const shade=f=>({fill:f,type:ShadingType.CLEAR,color:'auto'});
-  const navyCell=(t,w,o={})=>cell([P(R(t,{bold:true,color:'FFFFFF',size:o.size||17}),{alignment:o.align||AlignmentType.LEFT})],{width:{size:w,type:WidthType.DXA},shading:shade(RPT_NAVY),columnSpan:o.span});
+  const AL={l:AlignmentType.LEFT,c:AlignmentType.CENTER,r:AlignmentType.RIGHT,j:AlignmentType.JUSTIFIED};
+  const tc=(t,w,o={})=>cell([P(R(t,{size:o.size||16,bold:!!o.bold,color:o.color||'000000'}),{alignment:AL[o.al||'l']})],{width:DX(w),shading:o.fill?shade(o.fill):undefined,columnSpan:o.span});
+  const hc=(t,w,al)=>tc(t,w,{bold:true,color:'FFFFFF',fill:RPT_NAVY,al:al||'c',size:16});
+  const table=(cw,rows)=>new Table({width:DX(cw.reduce((a,b)=>a+b,0)),columnWidths:cw,layout:TableLayoutType.FIXED,rows});
 
-  // Header
   const header=new Header({children:[
-    new Table({width:{size:W,type:WidthType.DXA},columnWidths:[4346,5060],borders:noB,layout:TableLayoutType.FIXED,rows:[new TableRow({children:[
-      new TableCell({width:{size:4346,type:WidthType.DXA},borders:noB,verticalAlign:VerticalAlign.CENTER,children:[P(new ImageRun({type:'jpg',data:imgs.logo,transformation:{width:190,height:59}}))]}),
-      new TableCell({width:{size:5060,type:WidthType.DXA},borders:noB,verticalAlign:VerticalAlign.CENTER,children:[
-        P(R('SHEMS GLOBAL PROJECTS LLC',{bold:true,color:RPT_NAVY,size:21}),{alignment:AlignmentType.RIGHT}),
-        P(R('Farmers Branch, Texas · USA',{color:RPT_NAVY,size:16}),{alignment:AlignmentType.RIGHT}),
-        P(R('Tel: (214) 477-7303 · (469) 465-1226',{color:RPT_NAVY,size:16}),{alignment:AlignmentType.RIGHT}),
-        P(R('www.shemsgp.com',{color:RPT_NAVY,size:16}),{alignment:AlignmentType.RIGHT}),
-        P(R('Document No. '+c.docNo,{bold:true,color:RPT_NAVY,size:16}),{alignment:AlignmentType.RIGHT})
+    new Table({width:DX(W),columnWidths:[4346,5060],borders:noB,layout:TableLayoutType.FIXED,rows:[new TableRow({children:[
+      new TableCell({width:DX(4346),borders:noB,verticalAlign:VerticalAlign.CENTER,children:[P(new ImageRun({type:'jpg',data:imgs.logo,transformation:{width:190,height:59}}))]}),
+      new TableCell({width:DX(5060),borders:noB,verticalAlign:VerticalAlign.CENTER,children:[
+        P(R('SHEMS GLOBAL PROJECTS LLC',{bold:true,color:RPT_NAVY,size:21}),{alignment:AL.r}),
+        P(R('Farmers Branch, Texas · USA',{color:RPT_NAVY,size:16}),{alignment:AL.r}),
+        P(R('Tel: (214) 477-7303 · (469) 465-1226',{color:RPT_NAVY,size:16}),{alignment:AL.r}),
+        P(R('www.shemsgp.com',{color:RPT_NAVY,size:16}),{alignment:AL.r}),
+        P(R('Document No. '+c.docNo,{bold:true,color:RPT_NAVY,size:16}),{alignment:AL.r})
       ]})
     ]})]}),
     P(R('',{size:4}),{border:{bottom:{style:BorderStyle.SINGLE,size:12,color:RPT_NAVY,space:1}},spacing:{after:120}})
   ]});
-  // Footer
   const footer=new Footer({children:[
     P([R(m.footer+'  |  Page ',{size:15,color:RPT_NAVY}),new TextRun({children:[PageNumber.CURRENT],font:FONT,size:15,color:RPT_NAVY}),
        R(' of ',{size:15,color:RPT_NAVY}),new TextRun({children:[PageNumber.TOTAL_PAGES],font:FONT,size:15,color:RPT_NAVY})],
-      {alignment:AlignmentType.CENTER,border:{top:{style:BorderStyle.SINGLE,size:6,color:RPT_NAVY,space:4}}})
+      {alignment:AL.c,border:{top:{style:BorderStyle.SINGLE,size:6,color:RPT_NAVY,space:4}}})
   ]});
 
   const body=[];
   const H2=t=>P(R(t,{bold:true,color:RPT_NAVY,size:21}),{keepNext:true,spacing:{before:240,after:100},border:{bottom:{style:BorderStyle.SINGLE,size:6,color:RPT_NAVY,space:1}}});
-  const BODY=(runs,o={})=>P(runs,Object.assign({alignment:AlignmentType.JUSTIFIED,spacing:{after:120,line:276}},o));
+  const H3=t=>P(R(t,{bold:true,color:RPT_NAVY,size:19}),{keepNext:true,spacing:{before:180,after:70}});
+  const BODY=(runs,o={})=>P(runs,Object.assign({alignment:AL.j,spacing:{after:120,line:276}},o));
 
-  body.push(P(R(c.title,{bold:true,color:RPT_NAVY,size:28}),{alignment:AlignmentType.CENTER,spacing:{before:60,after:60}}));
-  body.push(P(R(m.subtitle,{color:RPT_BLUE,size:17}),{alignment:AlignmentType.CENTER,spacing:{after:200}}));
+  // Title + info
+  body.push(P(R(c.title,{bold:true,color:RPT_NAVY,size:28}),{alignment:AL.c,spacing:{before:60,after:60}}));
+  body.push(P(R(m.subtitle,{color:RPT_BLUE,size:17}),{alignment:AL.c,spacing:{after:200}}));
   const IK=2260, IV=W-IK;
-  body.push(new Table({width:{size:W,type:WidthType.DXA},columnWidths:[IK,IV],layout:TableLayoutType.FIXED,rows:m.info.map(([k,v])=>new TableRow({children:[
-    navyCell(k,IK),
-    cell([P(R(v,{size:17}))],{width:{size:IV,type:WidthType.DXA}})
-  ]}))}));
-  body.push(H2('1. PURPOSE OF THE REPORT'));
-  body.push(BODY(R(c.purpose)));
+  body.push(table([IK,IV],m.info.map(([k,v])=>new TableRow({cantSplit:true,children:[tc(k,IK,{bold:true,color:'FFFFFF',fill:RPT_NAVY,size:17}),tc(v,IV,{size:17})]}))));
 
-  const CW=[1030,6020,2356];
+  // 1. Executive summary
+  body.push(H2('1. EXECUTIVE SUMMARY'));
+  if(c.purpose) body.push(BODY(R(c.purpose)));
+  body.push(BODY(R(m.summary2)));
+
+  // 2. Gantt
+  body.push(H2('2. PROJECT TIMELINE (GANTT)'));
+  const GL=2900, n=m.weekLabels.length, GW=Math.floor((W-GL)/n);
+  const gcw=[GL].concat(Array(n).fill(GW));
+  const gcell=(children,w,o={})=>new TableCell(Object.assign({children,width:DX(w),borders:{top:thin,bottom:thin,left:thin,right:thin},margins:{top:10,bottom:10,left:40,right:20},verticalAlign:VerticalAlign.CENTER},o));
+  const grows=[new TableRow({tableHeader:true,cantSplit:true,children:[
+    gcell([P(R('Phase',{bold:true,color:'FFFFFF',size:14}))],GL,{shading:shade(RPT_NAVY)}),
+    ...m.weekLabels.map(w=>gcell([P(R(w,{bold:true,color:'FFFFFF',size:11}),{alignment:AL.c})],GW,{shading:shade(RPT_NAVY),margins:{top:10,bottom:10,left:0,right:0}}))]})];
+  m.phases.forEach(p=>grows.push(new TableRow({cantSplit:true,height:{value:250,rule:HeightRule.ATLEAST},children:[
+    gcell([P([R(p.label+' ',{size:14}),R('('+p.pct+'%)',{size:14,bold:true,color:RPT_NAVY})])],GL),
+    ...p.gantt.map(on=>gcell([P(R('',{size:8}))],GW,on?{shading:shade(p.fill)}:{}))]})));
+  body.push(table(gcw,grows));
+  body.push(P(R(m.ganttNote,{size:14,color:'555555'}),{spacing:{before:60,after:120}}));
+
+  // 3. Budget
+  body.push(H2('3. BUDGET SUMMARY BY PHASE'));
+  const bw=[2500,860,1260,1230,1180,1060,1316];
+  const brows=[new TableRow({tableHeader:true,cantSplit:true,children:['Phase','Progress','Labor','Materials','Equipment','Other','Total'].map((t,i)=>hc(t,bw[i],i?'c':'l'))})];
+  m.phases.forEach(p=>brows.push(new TableRow({cantSplit:true,children:[
+    tc(p.label,bw[0]),tc(p.pct+'%',bw[1],{al:'c',bold:true,color:RPT_NAVY}),
+    tc(rptMoney(p.budget.labor),bw[2],{al:'r'}),tc(rptMoney(p.budget.materials),bw[3],{al:'r'}),
+    tc(rptMoney(p.budget.equipment),bw[4],{al:'r'}),tc(rptMoney(p.budget.other),bw[5],{al:'r'}),
+    tc(rptMoney(p.total),bw[6],{al:'r',bold:true,color:RPT_NAVY})]})));
+  const T=m.totals, so={bold:true,color:RPT_NAVY,fill:RPT_LIGHT};
+  brows.push(new TableRow({cantSplit:true,children:[
+    tc('PROJECT TOTAL (all phases)',bw[0],so),tc(m.pct+'%',bw[1],Object.assign({al:'c'},so)),
+    tc(rptMoney(T.labor),bw[2],Object.assign({al:'r'},so)),tc(rptMoney(T.materials),bw[3],Object.assign({al:'r'},so)),
+    tc(rptMoney(T.equipment),bw[4],Object.assign({al:'r'},so)),tc(rptMoney(T.other),bw[5],Object.assign({al:'r'},so)),
+    tc(rptMoney(m.total),bw[6],Object.assign({al:'r'},so))]}));
+  body.push(table(bw,brows));
+
+  // 4. Phase detail
+  body.push(H2('4. PHASE DETAIL & DELIVERABLES'));
+  const CW=[760,3950,1300,800,900,1696];
   m.phases.forEach(ph=>{
-    body.push(H2(ph.num+'. '+ph.heading));
+    body.push(H3(ph.num+' '+ph.heading));
     if(ph.desc) body.push(BODY(R(ph.desc),{keepNext:true}));
-    const rows=[new TableRow({tableHeader:true,cantSplit:true,children:[
-      navyCell('Item',CW[0],{align:AlignmentType.CENTER}),navyCell('Activity Description',CW[1],{align:AlignmentType.CENTER}),navyCell('Status',CW[2],{align:AlignmentType.CENTER})]})];
+    const rows=[new TableRow({tableHeader:true,cantSplit:true,children:['Item','Activity Description','Responsible','Deliv.','Progress','Status'].map((t,i)=>hc(t,CW[i]))})];
     ph.rows.forEach(r=>{
-      const dp=[P(R(r.desc,{size:16}),{alignment:AlignmentType.JUSTIFIED})];
-      r.sub.forEach(s=>dp.push(P(R('• '+s,{size:15,color:'444444'}))));
+      const dp=[P(R(r.desc,{size:16}),{alignment:AL.j})];
+      r.sub.forEach(s=>dp.push(P(R(s,{size:14,color:'444444'}))));
       rows.push(new TableRow({cantSplit:true,children:[
-        cell([P(R(r.code,{bold:true,color:RPT_NAVY,size:16}),{alignment:AlignmentType.CENTER})],{width:{size:CW[0],type:WidthType.DXA}}),
-        cell(dp,{width:{size:CW[1],type:WidthType.DXA}}),
-        cell([P(R(r.status,{bold:true,color:RPT_NAVY,size:16}),{alignment:AlignmentType.CENTER})],{width:{size:CW[2],type:WidthType.DXA},shading:shade(RPT_LIGHT)})
-      ]}));
+        tc(r.code,CW[0],{al:'c',bold:true,color:RPT_NAVY}),
+        cell(dp,{width:DX(CW[1])}),
+        tc(r.resp,CW[2],{al:'c',size:15}),
+        tc(r.deliv,CW[3],{al:'c'}),
+        tc(r.pct,CW[4],{al:'c',bold:true,color:RPT_NAVY}),
+        tc(r.status,CW[5],{al:'c',bold:true,color:RPT_NAVY,fill:RPT_LIGHT})]}));
     });
     rows.push(new TableRow({cantSplit:true,children:[
-      cell([P(R(ph.totalLabel,{bold:true,color:'FFFFFF',size:17}),{alignment:AlignmentType.RIGHT})],{columnSpan:2,width:{size:CW[0]+CW[1],type:WidthType.DXA},shading:shade(RPT_NAVY)}),
-      cell([P(R(rptMoney(ph.total),{bold:true,color:'FFFFFF',size:20}),{alignment:AlignmentType.CENTER})],{width:{size:CW[2],type:WidthType.DXA},shading:shade(RPT_NAVY)})
-    ]}));
-    body.push(new Table({width:{size:W,type:WidthType.DXA},columnWidths:CW,layout:TableLayoutType.FIXED,rows}));
+      tc(ph.totalLabel,CW[0]+CW[1]+CW[2]+CW[3]+CW[4],{span:5,al:'r',bold:true,color:'FFFFFF',fill:RPT_NAVY,size:17}),
+      tc(rptMoney(ph.total),CW[5],{al:'c',bold:true,color:'FFFFFF',fill:RPT_NAVY,size:19})]}));
+    body.push(table(CW,rows));
   });
 
   if(m.closing.length) body.push(BODY(m.closing.map(p=>R(p.text,p.bold?{bold:true,color:RPT_NAVY}:{})),{spacing:{before:240,after:120,line:276},keepNext:true}));
 
-  // Signatures — one unsplittable row so the block always stays on one page
+  // Signatures — one unsplittable row
   const SW=Math.floor(W/3);
   const sigCell=s=>{
     const kids=[];
@@ -2232,10 +2309,10 @@ function rptBuildDocx(D,m,imgs){
     kids.push(P(R(s.title,{size:15})));
     if(s.company) kids.push(P(R(s.company,{size:15})));
     kids.push(P(R('Date: ____________________',{size:15}),{spacing:{before:100}}));
-    return new TableCell({width:{size:SW,type:WidthType.DXA},borders:noB,verticalAlign:VerticalAlign.TOP,margins:{right:200},children:kids});
+    return new TableCell({width:DX(SW),borders:noB,verticalAlign:VerticalAlign.TOP,margins:{right:200},children:kids});
   };
   body.push(P(R('PREPARED AND APPROVED BY',{bold:true,color:RPT_NAVY,size:19}),{keepNext:true,keepLines:true,spacing:{before:300,after:60}}));
-  body.push(new Table({width:{size:SW*3,type:WidthType.DXA},columnWidths:[SW,SW,SW],borders:noB,layout:TableLayoutType.FIXED,rows:[
+  body.push(new Table({width:DX(SW*3),columnWidths:[SW,SW,SW],borders:noB,layout:TableLayoutType.FIXED,rows:[
     new TableRow({cantSplit:true,children:m.signers.map(sigCell)})]}));
 
   return new Document({
