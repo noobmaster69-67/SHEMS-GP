@@ -1951,10 +1951,26 @@ function rptModel(proj,cfg){
     };
   });
   const sum=k=>phases.reduce((s,p)=>s+p.budget[k],0);
+  const pays=(proj.payments||[]).slice().sort((a,b)=>String(a.date)<String(b.date)?-1:1);
+  let payment=null;
+  if(pays.length){
+    const contract=Number(proj.contractValue)||total, paid=pays.reduce((s,p)=>s+(Number(p.amount)||0),0), bal=Math.round((contract-paid)*100)/100;
+    const W=['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve'], n=pays.length;
+    const nTxt=(W[n]||String(n))+' ('+n+') payment'+(n>1?'s':'');
+    const dTxt=rptFmtDate(cfg.date), inv=proj.balanceInvoice||'';
+    payment={
+      rows:pays.map((p,i)=>({n:i+1,date:rptFmtDate(p.date),inv:p.invoice||'—',desc:p.desc||'',amt:Number(p.amount)||0})),
+      contract, paid, balance:bal, invoice:inv,
+      intro:'The original construction contract for the '+cfg.projectName+' project was executed for a total value of '+rptMoney(contract)+'. As of '+dTxt+', SHEMS Global Projects LLC has received '+nTxt+' from the client under this contract, totaling '+rptMoney(paid)+', as detailed below.',
+      outro:bal<=0?'The original construction contract has been paid in full.':
+        (pct>=100?'With all work under the original contract now completed, the outstanding balance of '+rptMoney(bal)+' corresponds exclusively to the remaining amount of the original construction contract ('+rptMoney(contract)+' less '+rptMoney(paid)+' received) and is due and payable upon completion of the project'+(inv?'. This balance is billed under invoice '+inv+'.':'.'):
+         'The outstanding balance of '+rptMoney(bal)+' under the original construction contract will be invoiced in accordance with the contract payment terms as the remaining work is completed.')
+    };
+  }
   const parts=String(cfg.closing||'').split('{TOTAL}');
   const dateTxt=rptFmtDate(cfg.date);
   return {
-    cfg, pct, total, phases, weekLabels, bucket,
+    cfg, pct, total, phases, weekLabels, bucket, payment,
     totals:{labor:sum('labor'),materials:sum('materials'),equipment:sum('equipment'),other:sum('other')},
     subtitle:cfg.projectName+' — '+cfg.address+'  ·  '+cfg.docNo,
     info:[['Project',cfg.projectName],['Location',cfg.address],['General Contractor','SHEMS Global Projects LLC'],
@@ -2066,6 +2082,16 @@ function rptHTML(m){
       <tr class="tot"><td colspan="5">${E(ph.totalLabel)}</td><td>${$(ph.total)}</td></tr>
       </tbody>
     </table></div>`).join('');
+  const P=m.payment;
+  const paySec=P?`<div class="keep"><h2>5. PAYMENT STATUS — ORIGINAL CONTRACT</h2>
+  <p class="body">${E(P.intro)}</p>
+  <table class="grid"><tr><th style="width:7%">No.</th><th style="width:20%">Payment Date</th><th style="width:22%">Invoice Reference</th><th>Description</th><th style="width:17%">Amount Received</th></tr>
+  ${P.rows.map(r=>`<tr><td class="c b">${r.n}</td><td class="c">${E(r.date)}</td><td class="c">${E(r.inv)}</td><td>${E(r.desc)}</td><td class="r">${$(r.amt)}</td></tr>`).join('')}
+  <tr class="sum"><td colspan="4" style="text-align:right">TOTAL PAYMENTS RECEIVED</td><td class="r">${$(P.paid)}</td></tr></table>
+  <table class="grid" style="margin-top:8pt;"><tr><td style="width:66%">Original contract value</td><td class="r">${$(P.contract)}</td></tr>
+  <tr><td>Less: total payments received</td><td class="r">(${$(P.paid)})</td></tr>
+  <tr class="tot"><td style="text-align:left">OUTSTANDING BALANCE — ORIGINAL CONTRACT${P.invoice?' ('+E(P.invoice)+')':''}</td><td style="text-align:right">${$(P.balance)}</td></tr></table>
+  <p class="body" style="margin-top:8pt;">${E(P.outro)}</p></div>`:'';
   const closing=m.closing.length?`<p class="body" style="margin-top:14px;">${m.closing.map(p=>p.bold?`<b style="color:${N}">${E(p.text)}</b>`:E(p.text)).join('')}</p>`:'';
   const sigs=m.signers.map(s=>`<td class="sg"><div class="sgimg">${s.sig?`<img src="${A[s.sig]}">`:''}</div><div class="sgline"></div>
       <div class="sgn">${E(s.name)}</div><div class="sgt">${E(s.title)}</div>${s.company?`<div class="sgt">${E(s.company)}</div>`:''}<div class="sgt" style="margin-top:6px;">Date: ____________________</div></td>`).join('');
@@ -2151,6 +2177,7 @@ table.sigs{width:100%;border-collapse:collapse;}
   <tr class="sum"><td>PROJECT TOTAL (all phases)</td><td class="c">${m.pct}%</td><td class="r">${$(T.labor)}</td><td class="r">${$(T.materials)}</td><td class="r">${$(T.equipment)}</td><td class="r">${$(T.other)}</td><td class="r">${$(m.total)}</td></tr></table></div>
   <h2>4. PHASE DETAIL &amp; DELIVERABLES</h2>
   ${phases}
+  ${paySec}
   ${closing}
   <div class="sigblock"><h4>PREPARED AND APPROVED BY</h4><table class="sigs"><tr>${sigs}</tr></table></div>
 </td></tr></tbody></table></div>
@@ -2295,6 +2322,27 @@ function rptBuildDocx(D,m,imgs){
     body.push(table(CW,rows));
   });
 
+  if(m.payment){
+    const Pm=m.payment;
+    body.push(H2('5. PAYMENT STATUS — ORIGINAL CONTRACT'));
+    body.push(BODY(R(Pm.intro),{keepNext:true}));
+    const pw=[700,1900,2000,3100,1706];
+    const prow=[new TableRow({tableHeader:true,cantSplit:true,children:['No.','Payment Date','Invoice Reference','Description','Amount Received'].map((t,i)=>hc(t,pw[i]))})];
+    Pm.rows.forEach(r=>prow.push(new TableRow({cantSplit:true,children:[
+      tc(String(r.n),pw[0],{al:'c',bold:true,color:RPT_NAVY}),tc(r.date,pw[1],{al:'c'}),tc(r.inv,pw[2],{al:'c'}),tc(r.desc,pw[3]),tc(rptMoney(r.amt),pw[4],{al:'r'})]})));
+    prow.push(new TableRow({cantSplit:true,children:[
+      tc('TOTAL PAYMENTS RECEIVED',pw[0]+pw[1]+pw[2]+pw[3],{span:4,al:'r',bold:true,color:RPT_NAVY,fill:RPT_LIGHT}),
+      tc(rptMoney(Pm.paid),pw[4],{al:'r',bold:true,color:RPT_NAVY,fill:RPT_LIGHT})]}));
+    body.push(table(pw,prow));
+    body.push(P(R('',{size:8}),{spacing:{after:80}}));
+    const sw=[6200,3206];
+    body.push(table(sw,[
+      new TableRow({cantSplit:true,children:[tc('Original contract value',sw[0],{size:17}),tc(rptMoney(Pm.contract),sw[1],{al:'r',size:17})]}),
+      new TableRow({cantSplit:true,children:[tc('Less: total payments received',sw[0],{size:17}),tc('('+rptMoney(Pm.paid)+')',sw[1],{al:'r',size:17})]}),
+      new TableRow({cantSplit:true,children:[tc('OUTSTANDING BALANCE — ORIGINAL CONTRACT'+(Pm.invoice?' ('+Pm.invoice+')':''),sw[0],{bold:true,color:'FFFFFF',fill:RPT_NAVY,size:17}),
+        tc(rptMoney(Pm.balance),sw[1],{al:'r',bold:true,color:'FFFFFF',fill:RPT_NAVY,size:20})]})]));
+    body.push(BODY(R(Pm.outro),{spacing:{before:140,after:120,line:276}}));
+  }
   if(m.closing.length) body.push(BODY(m.closing.map(p=>R(p.text,p.bold?{bold:true,color:RPT_NAVY}:{})),{spacing:{before:240,after:120,line:276},keepNext:true}));
 
   // Signatures — one unsplittable row
