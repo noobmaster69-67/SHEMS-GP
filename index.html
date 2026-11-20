@@ -1266,13 +1266,33 @@ function taskPct(task){
   const done=task.deliverables.filter(d=>d.done).length;
   return Math.round(done/task.deliverables.length*100);
 }
+// Task weights: a task with t.weight = N represents N% of the whole project;
+// all other tasks share the remaining percentage equally. Without weights: simple average.
+function taskShareFn(proj){
+  const all=proj.phases.flatMap(p=>p.tasks);
+  const W=all.reduce((s,t)=>s+(Number(t.weight)>0?Number(t.weight):0),0);
+  const n=all.filter(t=>!(Number(t.weight)>0)).length;
+  const base=n?Math.max(0,100-W)/n:0;
+  return t=>Number(t.weight)>0?Number(t.weight):base;
+}
+function projOfPhase(ph){return (typeof PROJECTS!=='undefined'&&PROJECTS.find(p=>p.phases.includes(ph)))||null;}
+function hasWeights(proj){return !!proj&&proj.phases.some(p=>p.tasks.some(t=>Number(t.weight)>0));}
 function phasePct(ph){
   if(!ph.tasks.length) return 0;
+  const proj=projOfPhase(ph);
+  if(hasWeights(proj)){
+    const sh=taskShareFn(proj); const tot=ph.tasks.reduce((s,t)=>s+sh(t),0);
+    if(tot>0) return Math.round(ph.tasks.reduce((s,t)=>s+sh(t)*taskPct(t),0)/tot);
+  }
   return Math.round(ph.tasks.reduce((s,t)=>s+taskPct(t),0)/ph.tasks.length);
 }
 function projPct(proj){
   const all=proj.phases.flatMap(p=>p.tasks);
   if(!all.length) return 0;
+  if(hasWeights(proj)){
+    const sh=taskShareFn(proj); const tot=all.reduce((s,t)=>s+sh(t),0);
+    if(tot>0) return Math.round(all.reduce((s,t)=>s+sh(t)*taskPct(t),0)/tot);
+  }
   return Math.round(all.reduce((s,t)=>s+taskPct(t),0)/all.length);
 }
 function phaseTotal(ph){return(ph.budget.labor||0)+(ph.budget.materials||0)+(ph.budget.equipment||0)+(ph.budget.other||0);}
@@ -2032,7 +2052,8 @@ function rptExecHTML(proj,cfg,logoSrc,kind){
     const th=(t,o='')=>`<th style="padding:3px 7px;border:1px solid ${BLUE};font-size:8pt;${o}">${t}</th>`;
     const outro=bal<=0?'The original construction contract has been paid in full.':
       (pct>=100?'With all work under the original contract now completed, the outstanding balance of '+rptMoney2(bal)+' corresponds exclusively to the remaining amount of the original construction contract ('+rptMoney2(contract)+' less '+rptMoney2(paid)+' received) and is due and payable upon completion of the project'+(inv?'. This balance is billed under invoice '+inv+'.':'.'):
-       'The outstanding balance of '+rptMoney2(bal)+' under the original construction contract will be invoiced in accordance with the contract payment terms as the remaining work is completed.');
+       (inv?'The outstanding balance of '+rptMoney2(bal)+' corresponds exclusively to the remaining amount of the original construction contract ('+rptMoney2(contract)+' less '+rptMoney2(paid)+' received) and is billed under invoice '+inv+'.':
+       'The outstanding balance of '+rptMoney2(bal)+' under the original construction contract will be invoiced in accordance with the contract payment terms as the remaining work is completed.'));
     paySection=`<h2>${sec++}. Payment Status — Original Contract</h2>
 <p style="margin:0 0 8px 0;text-align:justify;font-size:9pt;color:${MED};">The original construction contract for the ${E(proj.name)} project was executed for a total value of ${rptMoney2(contract)}. As of ${today}, SHEMS Global Projects LLC has received ${W[n]||n} (${n}) payment${n>1?'s':''} from the client under this contract, totaling ${rptMoney2(paid)}, as detailed below.</p>
 <table style="width:100%;border-collapse:collapse;margin-bottom:8px;page-break-inside:avoid;">
